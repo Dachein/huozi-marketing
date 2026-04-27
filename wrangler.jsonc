@@ -8,5 +8,17 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  "workers_dev": true
+  "workers_dev": true,
+  // Marketing claims the brand paths; everything else falls through to the
+  // product worker via its own catch-all. CF picks the most-specific route
+  // pattern, so /blog/foo lands here while /workspace stays on the product.
+  "routes": [
+    { "pattern": "huozi.app/", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/blog", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/blog/*", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/cloud", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/edge", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/docs", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/start", "zone_name": "huozi.app" }
+  ]
 }
