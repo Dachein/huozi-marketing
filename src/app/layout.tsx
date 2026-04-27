@@ -1,0 +1,61 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { getLocale } from "@/lib/i18n/server";
+import { LocaleProvider } from "@/lib/i18n/context";
+import { MarketingHeader } from "@/components/marketing-header";
+import { MarketingFooter } from "@/components/marketing-footer";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const langMap = { zh: "zh-Hans", en: "en", ja: "ja", fr: "fr" } as const;
+
+export const metadata: Metadata = {
+  title: {
+    default: "活字 Huozi — 以文载道，活字为器",
+    template: "%s | 活字 Huozi",
+  },
+  description:
+    "Markdown & HTML Publisher for Agents. Turn your content into beautiful, shareable web pages via API.",
+  metadataBase: new URL("https://huozi.app"),
+  openGraph: {
+    type: "website",
+    siteName: "活字 Huozi",
+    locale: "zh_CN",
+    description: "Markdown & HTML Publisher for Agents.",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};
+
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const locale = await getLocale();
+
+  return (
+    <html
+      lang={langMap[locale]}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
+        <LocaleProvider locale={locale}>
+          <MarketingHeader locale={locale} />
+          <main className="flex-1">{children}</main>
+          <MarketingFooter locale={locale} />
+        </LocaleProvider>
+      </body>
+    </html>
+  );
+}
