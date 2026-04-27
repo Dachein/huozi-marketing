@@ -42,7 +42,7 @@ export const ja = {
   "home.cloud.bullet3": "公開共有URL、任意の6桁パスコード付き",
   "home.cloud.cta": "Cloudを見る",
 
-  "home.edge.tagline": "同じドライブを自分のCloudflareまたはVercelでホスト。一人デプロイヤー、一ワークスペース、Supabase不要。MITライセンス。",
+  "home.edge.tagline": "同じドライブを自分のCloudflareまたはVercelでホスト。一人デプロイヤー、一ワークスペース。MITライセンス。",
   "home.edge.bullet1": "edge ランタイム以外の外部依存ゼロ",
   "home.edge.bullet2": "キー貼り付け認証 — メールや登録不要",
   "home.edge.bullet3": "ワンクリックデプロイ、独自ドメイン対応",
@@ -227,7 +227,7 @@ export const ja = {
 
   "cloud.try.title": "試してみる",
   "cloud.try.intro":
-    "プライベートベータ中。あなたの workspace に紐付く Bearer トークンが必要なのでお問い合わせください。手に入れたら Agent を選んで：",
+    "huozi.app でメールOTPサインイン — インストール不要。Agentを選んでください：",
   "cloud.try.h.claudeCode": "Claude Code",
   "cloud.try.h.claudeDesktop": "Claude Desktop",
   "cloud.try.h.rawHttp": "生 HTTP",
@@ -252,12 +252,12 @@ export const ja = {
   // /edge — 全ページ
   "edge.meta.title": "huozi Edge — Agent ドライブをセルフホスト",
   "edge.meta.description":
-    "huozi のオープンソース・単一デプロイヤー版。Cloudflare または Vercel にワンクリックデプロイ。Supabase なし、アカウントなし、MIT ライセンス。",
+    "huozi のオープンソース・単一デプロイヤー版。Cloudflare または Vercel にワンクリックデプロイ。アカウントなし、MIT ライセンス。",
 
   "edge.badge.openSource": "オープンソース · MIT",
   "edge.hero.tagline1": "同じ Agent ドライブを、自分のインフラで。",
   "edge.hero.tagline2":
-    "Supabase なし。メールログインなし。一人のデプロイヤー、一つの workspace、自分のドメイン。",
+    "メールログインなし。一人のデプロイヤー、一つの workspace、自分のドメイン。",
   "edge.cta.deployCF": "Cloudflare にデプロイ",
   "edge.cta.deployVercel": "Vercel にデプロイ",
   "edge.cta.github": "GitHub で見る",
@@ -275,7 +275,7 @@ export const ja = {
   "edge.compare.r1.cloud": "huozi.app",
   "edge.compare.r1.edge": "あなた",
   "edge.compare.r2.label": "認証",
-  "edge.compare.r2.cloud": "メール OTP（Supabase）",
+  "edge.compare.r2.cloud": "メール OTP",
   "edge.compare.r2.edge": "管理者シークレット + 貼り付けキー",
   "edge.compare.r3.label": "インスタンス毎のユーザー数",
   "edge.compare.r3.cloud": "多数",

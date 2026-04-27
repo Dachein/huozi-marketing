@@ -42,7 +42,7 @@ export const fr = {
   "home.cloud.bullet3": "URL de partage publiques avec code à 6 chiffres optionnel",
   "home.cloud.cta": "Explorer Cloud",
 
-  "home.edge.tagline": "Auto-hébergez le même disque sur votre propre compte Cloudflare ou Vercel. Un déployeur, un workspace, zéro Supabase. Licence MIT.",
+  "home.edge.tagline": "Auto-hébergez le même disque sur votre propre compte Cloudflare ou Vercel. Un déployeur, un workspace. Licence MIT.",
   "home.edge.bullet1": "Aucune dépendance externe au-delà du runtime edge",
   "home.edge.bullet2": "Auth par collage de clé — pas d'e-mail, pas d'inscription",
   "home.edge.bullet3": "Déploiement en un clic, domaine personnalisé",
@@ -228,7 +228,7 @@ export const fr = {
 
   "cloud.try.title": "Essayer",
   "cloud.try.intro":
-    "Bêta privée. Contactez-nous pour un token Bearer lié à votre workspace. Une fois en main, choisissez votre agent :",
+    "Connectez-vous sur huozi.app — OTP par e-mail, aucune installation. Choisissez votre agent :",
   "cloud.try.h.claudeCode": "Claude Code",
   "cloud.try.h.claudeDesktop": "Claude Desktop",
   "cloud.try.h.rawHttp": "HTTP brut",
@@ -253,12 +253,12 @@ export const fr = {
   // /edge — page complète
   "edge.meta.title": "huozi Edge — Auto-hébergez le disque pour agents",
   "edge.meta.description":
-    "Édition open-source mono-déployeur de huozi. Déploiement en un clic sur Cloudflare ou Vercel. Pas de Supabase, pas de comptes, licence MIT.",
+    "Édition open-source mono-déployeur de huozi. Déploiement en un clic sur Cloudflare ou Vercel. Pas de comptes, licence MIT.",
 
   "edge.badge.openSource": "Open Source · MIT",
   "edge.hero.tagline1": "Le même disque pour agents, sur votre propre infra.",
   "edge.hero.tagline2":
-    "Pas de Supabase. Pas de connexion e-mail. Un déployeur, un workspace, un domaine à vous.",
+    "Pas de connexion e-mail. Un déployeur, un workspace, un domaine à vous.",
   "edge.cta.deployCF": "Déployer sur Cloudflare",
   "edge.cta.deployVercel": "Déployer sur Vercel",
   "edge.cta.github": "Voir sur GitHub",
@@ -276,7 +276,7 @@ export const fr = {
   "edge.compare.r1.cloud": "huozi.app",
   "edge.compare.r1.edge": "Vous",
   "edge.compare.r2.label": "Authentification",
-  "edge.compare.r2.cloud": "OTP par e-mail (Supabase)",
+  "edge.compare.r2.cloud": "OTP par e-mail",
   "edge.compare.r2.edge": "Secret admin + collage de clé",
   "edge.compare.r3.label": "Utilisateurs par instance",
   "edge.compare.r3.cloud": "Plusieurs",

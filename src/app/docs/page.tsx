@@ -325,7 +325,7 @@ wss://cloud.huozi.app/events/ws?ticket=tk_...
             </li>
             <li>
               <a
-                href="https://github.com/Dachein/huozi-edge"
+                href="https://github.com/Dachein/huozi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-foreground"

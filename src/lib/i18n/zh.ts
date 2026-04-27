@@ -42,7 +42,7 @@ export const zh = {
   "home.cloud.bullet3": "公开分享 URL，可加 6 位口令",
   "home.cloud.cta": "了解 Cloud",
 
-  "home.edge.tagline": "把同一套云盘部署到你自己的 Cloudflare 或 Vercel。单人单工作空间，无需 Supabase。MIT 开源。",
+  "home.edge.tagline": "把同一套云盘部署到你自己的 Cloudflare 或 Vercel。单人单工作空间。MIT 开源。",
   "home.edge.bullet1": "除 edge 运行时外无任何外部依赖",
   "home.edge.bullet2": "粘贴 key 即登录，无需注册",
   "home.edge.bullet3": "一键部署，自带域名",
@@ -225,7 +225,7 @@ export const zh = {
 
   "cloud.try.title": "上手试试",
   "cloud.try.intro":
-    "目前是私测。联系我们拿一个绑到你 workspace 的 Bearer token。拿到后挑你的 Agent：",
+    "在 huozi.app 邮箱登录 —— 邮箱 OTP,无需安装。挑你的 Agent:",
   "cloud.try.h.claudeCode": "Claude Code",
   "cloud.try.h.claudeDesktop": "Claude Desktop",
   "cloud.try.h.rawHttp": "裸 HTTP",
@@ -250,12 +250,12 @@ export const zh = {
   // /edge — 整页
   "edge.meta.title": "huozi Edge — 自部署 Agent 云盘",
   "edge.meta.description":
-    "huozi 的开源、单部署者版本。一键部署到 Cloudflare 或 Vercel。无 Supabase、无账号系统，MIT 开源。",
+    "huozi 的开源、单部署者版本。一键部署到 Cloudflare 或 Vercel。无账号系统，MIT 开源。",
 
   "edge.badge.openSource": "开源 · MIT",
   "edge.hero.tagline1": "同样的 Agent 云盘，跑在你自己的基础设施上。",
   "edge.hero.tagline2":
-    "无 Supabase。无邮箱登录。一个部署者、一个工作空间、一个属于你的域名。",
+    "无邮箱登录。一个部署者、一个工作空间、一个属于你的域名。",
   "edge.cta.deployCF": "部署到 Cloudflare",
   "edge.cta.deployVercel": "部署到 Vercel",
   "edge.cta.github": "在 GitHub 上看",
@@ -273,7 +273,7 @@ export const zh = {
   "edge.compare.r1.cloud": "huozi.app",
   "edge.compare.r1.edge": "你自己",
   "edge.compare.r2.label": "鉴权",
-  "edge.compare.r2.cloud": "邮箱 OTP（Supabase）",
+  "edge.compare.r2.cloud": "邮箱 OTP",
   "edge.compare.r2.edge": "管理员密钥 + 粘贴 key",
   "edge.compare.r3.label": "每实例用户数",
   "edge.compare.r3.cloud": "多人",

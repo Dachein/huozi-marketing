@@ -42,7 +42,7 @@ export const en = {
   "home.cloud.bullet3": "Public share URLs with optional 6-digit passcodes",
   "home.cloud.cta": "Explore Cloud",
 
-  "home.edge.tagline": "Self-host the same drive on your own Cloudflare or Vercel account. One deployer, one workspace, no Supabase. MIT licensed.",
+  "home.edge.tagline": "Self-host the same drive on your own Cloudflare or Vercel account. One deployer, one workspace. MIT licensed.",
   "home.edge.bullet1": "Zero external dependencies beyond the edge runtime",
   "home.edge.bullet2": "Paste-key auth — no email, no signup",
   "home.edge.bullet3": "Deploy in one click, bring your own domain",
@@ -228,7 +228,7 @@ export const en = {
 
   "cloud.try.title": "Try it",
   "cloud.try.intro":
-    "Private beta. Get in touch for a Bearer token bound to your workspace. Once you have one, pick your Agent:",
+    "Sign in at huozi.app — email OTP, no install. Pick your Agent:",
   "cloud.try.h.claudeCode": "Claude Code",
   "cloud.try.h.claudeDesktop": "Claude Desktop",
   "cloud.try.h.rawHttp": "Raw HTTP",
@@ -253,12 +253,12 @@ export const en = {
   // /edge — full page
   "edge.meta.title": "huozi Edge — Self-host the Agent drive",
   "edge.meta.description":
-    "Open-source, single-deployer edition of huozi. Deploy in one click to Cloudflare or Vercel. No Supabase, no accounts, MIT licensed.",
+    "Open-source, single-deployer edition of huozi. Deploy in one click to Cloudflare or Vercel. No accounts, MIT licensed.",
 
   "edge.badge.openSource": "Open Source · MIT",
   "edge.hero.tagline1": "The same Agent drive, on your own infrastructure.",
   "edge.hero.tagline2":
-    "No Supabase. No email login. One deployer, one workspace, one domain you own.",
+    "No email login. One deployer, one workspace, one domain you own.",
   "edge.cta.deployCF": "Deploy to Cloudflare",
   "edge.cta.deployVercel": "Deploy to Vercel",
   "edge.cta.github": "View on GitHub",
@@ -276,7 +276,7 @@ export const en = {
   "edge.compare.r1.cloud": "huozi.app",
   "edge.compare.r1.edge": "You",
   "edge.compare.r2.label": "Auth",
-  "edge.compare.r2.cloud": "Email OTP (Supabase)",
+  "edge.compare.r2.cloud": "Email OTP",
   "edge.compare.r2.edge": "Admin secret + paste-key",
   "edge.compare.r3.label": "Users per instance",
   "edge.compare.r3.cloud": "Many",
