@@ -42,7 +42,7 @@ export const zh = {
   "home.cloud.bullet3": "公开分享 URL，可加 6 位口令",
   "home.cloud.cta": "了解 Cloud",
 
-  "home.edge.tagline": "把同一套云盘部署到你自己的 Cloudflare 或 Vercel。单人单工作空间。MIT 开源。",
+  "home.edge.tagline": "把同一套云盘部署到你自己的 Cloudflare 账号。单人单工作空间。MIT 开源。",
   "home.edge.bullet1": "除 edge 运行时外无任何外部依赖",
   "home.edge.bullet2": "粘贴 key 即登录，无需注册",
   "home.edge.bullet3": "一键部署，自带域名",
@@ -95,7 +95,7 @@ export const zh = {
     "一个 workspace、多个 Agent、多个真人。串行化进 Durable Object 做原子写；提交日志谁干了什么一清二楚。",
   "home.persp.cloud.card3.title": "公开分享 / 自部署 Edge",
   "home.persp.cloud.card3.desc":
-    "任意文件一键发布到 huozi.app 公开 URL，可加 6 位口令。也可一键 Edge 部署到自己的 Cloudflare / Vercel，MIT 开源。",
+    "任意文件一键发布到 huozi.app 公开 URL，可加 6 位口令。也可一键 Edge 部署到自己的 Cloudflare 账号，MIT 开源。",
   "home.persp.cloud.code.title": "在云端，跨 Agent 共享",
 
 
@@ -250,19 +250,22 @@ export const zh = {
   // /edge — 整页
   "edge.meta.title": "huozi Edge — 自部署 Agent 云盘",
   "edge.meta.description":
-    "huozi 的开源、单部署者版本。一键部署到 Cloudflare 或 Vercel。无账号系统，MIT 开源。",
+    "huozi 的开源、单部署者版本。一键部署到 Cloudflare。无账号系统，MIT 开源。",
 
   "edge.badge.openSource": "开源 · MIT",
   "edge.hero.tagline1": "同样的 Agent 云盘，跑在你自己的基础设施上。",
   "edge.hero.tagline2":
     "无邮箱登录。一个部署者、一个工作空间、一个属于你的域名。",
   "edge.cta.deployCF": "部署到 Cloudflare",
-  "edge.cta.deployVercel": "部署到 Vercel",
+  "edge.cta.docker": "huozi docker",
+  "edge.cta.dockerBadge": "即将推出",
   "edge.cta.github": "在 GitHub 上看",
+  "edge.cta.cfNote":
+    "Edge 跑在 Cloudflare Workers + Durable Objects + D1 + R2 上 —— 这些资源由部署脚本一次性自动开通。",
 
   "edge.same.title": "同一套云盘，由你来跑",
   "edge.same.body1":
-    "Edge 提供与 Cloud 完全一致的 MCP 接口、Claude Code 兼容性、实时同步、提交历史和公开分享 URL —— 只是没有托管账号系统。你拿着 HUOZI_ADMIN_SECRET，把它部署到自己的 Cloudflare 或 Vercel；把 API key 粘贴给谁，谁就能接 Agent。",
+    "Edge 提供与 Cloud 完全一致的 MCP 接口、Claude Code 兼容性、实时同步、提交历史和公开分享 URL —— 只是没有托管账号系统。你拿着 HUOZI_ADMIN_SECRET，把它部署到自己的 Cloudflare 账号；把 API key 粘贴给谁，谁就能接 Agent。",
   "edge.same.body2":
     "因为两个版本是同一份代码、靠 HUOZI_EDITION 切换 —— 每个 bug 修复和新功能都同时落到两边。",
 
@@ -283,21 +286,71 @@ export const zh = {
   "edge.compare.r4.edge": "一个固定 workspace",
   "edge.compare.r5.label": "成本",
   "edge.compare.r5.cloud": "付给 huozi.app",
-  "edge.compare.r5.edge": "付给 Cloudflare / Vercel（多数情况 $0）",
+  "edge.compare.r5.edge": "付给 Cloudflare（多数情况 $0）",
   "edge.compare.r6.label": "授权",
   "edge.compare.r6.cloud": "专有服务",
   "edge.compare.r6.edge": "MIT",
 
-  "edge.bootstrap.title": "三步上手",
-  "edge.bootstrap.s1.title": "部署 + 设置密钥",
+  // Prerequisites
+  "edge.prereq.title": "你需要准备什么",
+  "edge.prereq.intro":
+    "全部加起来 5 分钟。完全不需要邮箱服务、SMTP、Resend、外置数据库或 Docker —— Edge 是粘贴 key、不发邮件的设计。",
+  "edge.prereq.need.title": "需要",
+  "edge.prereq.need.cf": "一个 Cloudflare 账号（免费档够用）",
+  "edge.prereq.need.cfLink": "去 dash.cloudflare.com 注册",
+  "edge.prereq.need.local":
+    "本机：Node.js 22+、git、jq（macOS：brew install jq）",
+  "edge.prereq.no.title": "不需要",
+  "edge.prereq.no.email":
+    "邮箱登录服务（Resend / SendGrid / SES）—— Edge 不发邮件",
+  "edge.prereq.no.db":
+    "外置数据库 —— D1 + R2 + Durable Objects 全部由部署脚本自动开通",
+  "edge.prereq.no.docker":
+    "Docker —— 全部跑在 Cloudflare 边缘，不用本地容器",
+
+  // Deploy — 4 steps that mirror scripts/edge-deploy.sh
+  "edge.bootstrap.title": "5 分钟一键部署",
+  "edge.bootstrap.s1.title": "登录 Cloudflare",
   "edge.bootstrap.s1.body":
-    "一键部署，然后设置一个强 HUOZI_ADMIN_SECRET 和 HUOZI_EDITION=edge。",
-  "edge.bootstrap.s2.title": "签发管理员 key",
+    "本机装好 Node.js 之后，运行 wrangler 登录一次。会弹浏览器走一次 Cloudflare 授权，后续脚本会借用这个登录态自动开通资源。",
+  "edge.bootstrap.s2.title": "克隆仓库",
   "edge.bootstrap.s2.body":
-    "调一次 Worker 的管理端点签出第一把 API key。下一步会贴进 Web UI。",
-  "edge.bootstrap.s3.title": "粘贴 key，开干",
+    "把 Dachein/huozi 拉到本地。脚本和 Worker 源码都在仓库里，没有额外仓库要装。",
+  "edge.bootstrap.s3.title": "跑一键部署脚本",
   "edge.bootstrap.s3.body":
-    "打开 https://<你的域名>/connect，粘贴拿到的 hz_… key，进去了。和 Cloud 一样，从 Keys 页接 Claude Code / Cursor / Desktop。",
+    "脚本会替你做完全部脏活：开通 D1 数据库、R2 桶、两个 Durable Object 类、生成强随机 HUOZI_ADMIN_SECRET、部署 Worker、签发第一把 admin api_key、把所有变量写到 .huozi-edge.env。整个过程是幂等的 —— 反复跑只会刷新部署，不会破坏数据。",
+  "edge.bootstrap.s4.title": "粘贴 key，开干",
+  "edge.bootstrap.s4.body":
+    "脚本结束会打印一把 hz_… 开头的 admin api_key。打开你 Next.js 部署的 /workspace/connect 页面粘贴进去，整个 Workspace 就归你了。从此 Claude Code / Cursor / Desktop 各签发一把 key 就能接入 —— 流程和 Cloud 完全一致。",
+
+  // Config table
+  "edge.config.title": "环境变量一览",
+  "edge.config.intro":
+    "脚本跑完会写一份 .huozi-edge.env，下面是里面的字段。日常使用基本不用动；进阶用户可以覆盖。",
+  "edge.config.col.var": "变量",
+  "edge.config.col.who": "谁来填",
+  "edge.config.col.purpose": "用途",
+  "edge.config.who.auto": "脚本自动",
+  "edge.config.who.you": "你（可选）",
+  "edge.config.r1.purpose": "切换 Cloud / Edge 行为分支",
+  "edge.config.r2.purpose": "Next.js 调 Worker 用",
+  "edge.config.r3.purpose": "签发 / 撤销 api_key 的管理员凭据",
+  "edge.config.r4.purpose": "签 cookie 用的随机 secret",
+  "edge.config.r5.purpose": "唯一固定 workspace 的 slug（默认 default）",
+  "edge.config.r6.purpose": "workspace 显示名（默认 huozi-edge）",
+
+  // Upgrade
+  "edge.upgrade.title": "一键升级",
+  "edge.upgrade.body":
+    "huozi 主线发了新版本？拉一下代码，再跑一次同一个脚本即可。Worker 会被重新部署、Schema 会被重新应用，D1 / R2 / DO 数据完整保留。",
+
+  // AI Agent deploy
+  "edge.aiDeploy.title": "让 AI Agent 替你部署",
+  "edge.aiDeploy.body":
+    "把下面这段粘贴给你的 Cursor 或 Claude Code，它会按脚本一步步替你跑完。除了 wrangler login 那一步要你点一下浏览器之外，全程不需要你的输入。",
+  "edge.aiDeploy.promptLabel": "提示词（任意 Coding Agent 通用）",
+  "edge.aiDeploy.prompt":
+    "帮我把 huozi Edge 部署到我自己的 Cloudflare 账号上：\n\n1. git clone https://github.com/Dachein/huozi 到本地，然后 cd 进去\n2. 跑 npx wrangler login，等我授权完成\n3. 跑 bash scripts/edge-deploy.sh —— 全程不要打断我；脚本会自动开通 D1 / R2 / Durable Objects、部署 Worker、签发第一把 admin api_key\n4. 把生成的 hz_… admin api_key 单独打印一遍，告诉我去 /workspace/connect 粘贴\n\n整个过程除了第 2 步的 wrangler login 不需要我的任何输入，请放手做。",
 
   "edge.footer.repo": "GitHub 仓库",
   "edge.footer.docs": "MCP 参考",
@@ -416,7 +469,6 @@ export const zh = {
   "home.oss.title": "开源",
   "home.oss.desc": "自部署 Markdown 与 HTML 发布引擎。零数据库，纯 KV 存储。MIT 开源协议。",
   "home.oss.deployCF": "部署到 Cloudflare",
-  "home.oss.deployVercel": "部署到 Vercel",
   "home.oss.soon": "即将支持",
 
   // Home footer
@@ -645,7 +697,7 @@ export const zh = {
     "为什么 Agent 需要一个带 commit 历史的共享云盘。",
   "start.footer.edge.title": "自部署（Edge）",
   "start.footer.edge.desc":
-    "同一款云盘，部署到你自己的 Cloudflare / Vercel。MIT 协议。",
+    "同一款云盘，部署到你自己的 Cloudflare 账号。MIT 协议。",
 
   // /start 页上的 InstallPicker
   "start.picker.title": "按客户端选择安装方式",

@@ -42,7 +42,7 @@ export const fr = {
   "home.cloud.bullet3": "URL de partage publiques avec code à 6 chiffres optionnel",
   "home.cloud.cta": "Explorer Cloud",
 
-  "home.edge.tagline": "Auto-hébergez le même disque sur votre propre compte Cloudflare ou Vercel. Un déployeur, un workspace. Licence MIT.",
+  "home.edge.tagline": "Auto-hébergez le même disque sur votre propre compte Cloudflare. Un déployeur, un workspace. Licence MIT.",
   "home.edge.bullet1": "Aucune dépendance externe au-delà du runtime edge",
   "home.edge.bullet2": "Auth par collage de clé — pas d'e-mail, pas d'inscription",
   "home.edge.bullet3": "Déploiement en un clic, domaine personnalisé",
@@ -97,7 +97,7 @@ export const fr = {
     "Un workspace, plusieurs Agents, plusieurs humains. Les écritures sont sérialisées dans un Durable Object pour des commits atomiques ; le log montre qui a fait quoi.",
   "home.persp.cloud.card3.title": "Partage public · Edge auto-hébergé",
   "home.persp.cloud.card3.desc":
-    "Publiez tout fichier vers une URL huozi.app, code à 6 chiffres optionnel. Ou auto-hébergez Edge sur votre Cloudflare / Vercel — même disque, licence MIT.",
+    "Publiez tout fichier vers une URL huozi.app, code à 6 chiffres optionnel. Ou auto-hébergez Edge sur votre compte Cloudflare — même disque, licence MIT.",
   "home.persp.cloud.code.title": "Dans le cloud, partagé entre Agents",
 
 
@@ -253,19 +253,22 @@ export const fr = {
   // /edge — page complète
   "edge.meta.title": "huozi Edge — Auto-hébergez le disque pour agents",
   "edge.meta.description":
-    "Édition open-source mono-déployeur de huozi. Déploiement en un clic sur Cloudflare ou Vercel. Pas de comptes, licence MIT.",
+    "Édition open-source mono-déployeur de huozi. Déploiement en un clic sur Cloudflare. Pas de comptes, licence MIT.",
 
   "edge.badge.openSource": "Open Source · MIT",
   "edge.hero.tagline1": "Le même disque pour agents, sur votre propre infra.",
   "edge.hero.tagline2":
     "Pas de connexion e-mail. Un déployeur, un workspace, un domaine à vous.",
   "edge.cta.deployCF": "Déployer sur Cloudflare",
-  "edge.cta.deployVercel": "Déployer sur Vercel",
+  "edge.cta.docker": "huozi docker",
+  "edge.cta.dockerBadge": "bientôt",
   "edge.cta.github": "Voir sur GitHub",
+  "edge.cta.cfNote":
+    "Edge tourne sur Cloudflare Workers + Durable Objects + D1 + R2 — toutes ces ressources sont provisionnées d'un coup par le script de déploiement ci-dessous.",
 
   "edge.same.title": "Le même disque, à vous de le faire tourner",
   "edge.same.body1":
-    "Edge livre exactement la même surface MCP, la même compatibilité Claude Code, la sync live, l'historique de commits et les URL de partage publiques que Cloud — sans le système de comptes hébergé. Vous détenez HUOZI_ADMIN_SECRET, vous déployez sur votre propre Cloudflare ou Vercel, et toute personne à qui vous remettez une clé API collée peut connecter un agent.",
+    "Edge livre exactement la même surface MCP, la même compatibilité Claude Code, la sync live, l'historique de commits et les URL de partage publiques que Cloud — sans le système de comptes hébergé. Vous détenez HUOZI_ADMIN_SECRET, vous déployez sur votre propre compte Cloudflare, et toute personne à qui vous remettez une clé API collée peut connecter un agent.",
   "edge.same.body2":
     "Comme les deux éditions sont une seule base de code gardée par HUOZI_EDITION, chaque correction de bug et chaque fonctionnalité atterrit dans les deux en même temps.",
 
@@ -286,21 +289,76 @@ export const fr = {
   "edge.compare.r4.edge": "Un workspace fixe",
   "edge.compare.r5.label": "Coût",
   "edge.compare.r5.cloud": "Payer huozi.app",
-  "edge.compare.r5.edge": "Payer Cloudflare / Vercel (souvent 0 $)",
+  "edge.compare.r5.edge": "Payer Cloudflare (souvent 0 $)",
   "edge.compare.r6.label": "Licence",
   "edge.compare.r6.cloud": "Service propriétaire",
   "edge.compare.r6.edge": "MIT",
 
-  "edge.bootstrap.title": "Démarrer en 3 étapes",
-  "edge.bootstrap.s1.title": "Déployer + définir les secrets",
+  // Prerequisites
+  "edge.prereq.title": "Ce qu'il vous faut",
+  "edge.prereq.intro":
+    "5 minutes au total. Aucun service e-mail, ni SMTP, ni Resend, ni base de données externe, ni Docker — Edge fonctionne en collant une clé, jamais en envoyant un mail.",
+  "edge.prereq.need.title": "Il vous faut",
+  "edge.prereq.need.cf":
+    "Un compte Cloudflare (le palier gratuit suffit)",
+  "edge.prereq.need.cfLink": "S'inscrire sur dash.cloudflare.com",
+  "edge.prereq.need.local":
+    "En local : Node.js 22+, git, jq (macOS : brew install jq)",
+  "edge.prereq.no.title": "Pas besoin de",
+  "edge.prereq.no.email":
+    "Un service d'OTP par e-mail (Resend / SendGrid / SES) — Edge n'envoie pas de mail",
+  "edge.prereq.no.db":
+    "Une base de données externe — D1 + R2 + Durable Objects sont provisionnés par le script",
+  "edge.prereq.no.docker":
+    "Docker — tout tourne sur l'edge Cloudflare, pas de conteneur local",
+
+  // Deploy — 4 steps that mirror scripts/edge-deploy.sh
+  "edge.bootstrap.title": "Déployer en 5 minutes",
+  "edge.bootstrap.s1.title": "Se connecter à Cloudflare",
   "edge.bootstrap.s1.body":
-    "Déploiement en un clic, puis définissez un fort HUOZI_ADMIN_SECRET et HUOZI_EDITION=edge.",
-  "edge.bootstrap.s2.title": "Émettre la clé admin",
+    "Avec Node.js installé en local, lancez wrangler login une fois. Cela ouvre un navigateur pour l'authentification Cloudflare ; le script de déploiement réutilise ensuite cette session pour provisionner vos ressources.",
+  "edge.bootstrap.s2.title": "Cloner le dépôt",
   "edge.bootstrap.s2.body":
-    "Appelez l'endpoint admin du worker une fois pour émettre votre première clé API. Vous la collerez dans l'UI web à l'étape 3.",
-  "edge.bootstrap.s3.title": "Coller la clé, commencer à écrire",
+    "Récupérez Dachein/huozi sur votre machine. Le script et le source du Worker sont dans le même dépôt — rien d'autre à installer.",
+  "edge.bootstrap.s3.title": "Lancer le script de déploiement",
   "edge.bootstrap.s3.body":
-    "Allez sur https://<votre-domaine>/connect, collez la clé hz_… retournée, et c'est bon. Connectez Claude Code / Cursor / Desktop depuis la page Keys, comme sur Cloud.",
+    "Le script s'occupe de tout : provisionne la base D1, le bucket R2 et les deux classes Durable Object, génère un HUOZI_ADMIN_SECRET fort, déploie le Worker, émet la première admin api_key, et écrit toutes les variables dans un .huozi-edge.env local. Il est idempotent — le relancer ne fait que rafraîchir le déploiement sans toucher aux données.",
+  "edge.bootstrap.s4.title": "Coller la clé, commencer à écrire",
+  "edge.bootstrap.s4.body":
+    "Quand le script se termine, il imprime une admin api_key qui commence par hz_…. Ouvrez la page /workspace/connect de votre déploiement Next.js, collez-la, et le workspace est à vous. Émettez ensuite une clé par agent (Claude Code / Cursor / Desktop) — exactement le même flux que sur Cloud.",
+
+  // Config table
+  "edge.config.title": "Variables d'environnement",
+  "edge.config.intro":
+    "Le script écrit un .huozi-edge.env local. Voici les champs qu'il y met. Au quotidien, vous n'y touchez pas ; les utilisateurs avancés peuvent les surcharger.",
+  "edge.config.col.var": "Variable",
+  "edge.config.col.who": "Qui la remplit",
+  "edge.config.col.purpose": "Usage",
+  "edge.config.who.auto": "Script (auto)",
+  "edge.config.who.you": "Vous (optionnel)",
+  "edge.config.r1.purpose": "Bascule entre les comportements Cloud / Edge",
+  "edge.config.r2.purpose": "URL utilisée par Next.js pour appeler le Worker",
+  "edge.config.r3.purpose":
+    "Identifiant admin pour émettre / révoquer les api_keys",
+  "edge.config.r4.purpose":
+    "Secret aléatoire pour signer les cookies de session",
+  "edge.config.r5.purpose":
+    "Slug du workspace fixe unique (par défaut \"default\")",
+  "edge.config.r6.purpose":
+    "Nom d'affichage du workspace (par défaut \"huozi-edge\")",
+
+  // Upgrade
+  "edge.upgrade.title": "Mise à jour en une commande",
+  "edge.upgrade.body":
+    "Nouvelle release sur la branche principale de huozi ? Tirez le code et relancez le même script. Le Worker est redéployé, le schema est ré-appliqué, et les données D1 / R2 / DO sont conservées intactes.",
+
+  // AI Agent deploy
+  "edge.aiDeploy.title": "Laissez un agent IA déployer pour vous",
+  "edge.aiDeploy.body":
+    "Collez le prompt ci-dessous dans Cursor ou Claude Code et il enchaînera les étapes du script pour vous. Seul wrangler login demande un coup de souris dans le navigateur — le reste tourne de bout en bout sans intervention.",
+  "edge.aiDeploy.promptLabel": "Prompt (compatible avec n'importe quel agent de code)",
+  "edge.aiDeploy.prompt":
+    "Déploie huozi Edge sur mon propre compte Cloudflare :\n\n1. git clone https://github.com/Dachein/huozi en local, puis cd dedans\n2. Lance npx wrangler login et attends que je termine l'authentification navigateur\n3. Lance bash scripts/edge-deploy.sh — ne m'interromps pas. Le script provisionne D1 / R2 / Durable Objects, déploie le Worker et émet la première admin api_key\n4. Imprime la admin api_key hz_… retournée sur sa propre ligne et dis-moi de la coller à /workspace/connect\n\nÀ part wrangler login, le reste ne nécessite aucune saisie de ma part — vas-y de bout en bout.",
 
   "edge.footer.repo": "Dépôt GitHub",
   "edge.footer.docs": "Référence MCP",
@@ -419,7 +477,6 @@ export const fr = {
   "home.oss.title": "Open Source",
   "home.oss.desc": "Auto-hébergez votre propre moteur de publication Markdown & HTML. Zéro base de données, juste KV. Licence MIT.",
   "home.oss.deployCF": "Déployer sur Cloudflare",
-  "home.oss.deployVercel": "Déployer sur Vercel",
   "home.oss.soon": "bientôt",
 
   // Home footer
@@ -659,7 +716,7 @@ export const fr = {
     "Pourquoi les Agents ont besoin d'un drive partagé avec historique de commits.",
   "start.footer.edge.title": "Auto-hébergé (Edge)",
   "start.footer.edge.desc":
-    "Le même drive, déployé sur votre propre Cloudflare / Vercel. MIT.",
+    "Le même drive, déployé sur votre propre compte Cloudflare. MIT.",
 
   // InstallPicker sur /start
   "start.picker.title": "Installation selon votre agent",
