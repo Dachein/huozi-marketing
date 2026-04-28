@@ -42,7 +42,7 @@ export const ja = {
   "home.cloud.bullet3": "公開共有URL、任意の6桁パスコード付き",
   "home.cloud.cta": "Cloudを見る",
 
-  "home.edge.tagline": "同じドライブを自分のCloudflareまたはVercelでホスト。一人デプロイヤー、一ワークスペース。MITライセンス。",
+  "home.edge.tagline": "同じドライブを自分の Cloudflare アカウントでホスト。一人デプロイヤー、一ワークスペース。MIT ライセンス。",
   "home.edge.bullet1": "edge ランタイム以外の外部依存ゼロ",
   "home.edge.bullet2": "キー貼り付け認証 — メールや登録不要",
   "home.edge.bullet3": "ワンクリックデプロイ、独自ドメイン対応",
@@ -96,7 +96,7 @@ export const ja = {
     "1つのworkspaceに複数のAgent、複数の人。書き込みはDurable Objectに直列化されて原子コミット。誰が何をしたかログで一目瞭然。",
   "home.persp.cloud.card3.title": "公開共有 · Edge自前ホスト",
   "home.persp.cloud.card3.desc":
-    "任意ファイルをhuozi.appの公開URLに一発公開、6桁パスコードも可。同じドライブを自分のCloudflare / Vercelに自前ホスト、MITライセンス。",
+    "任意ファイルをhuozi.appの公開URLに一発公開、6桁パスコードも可。同じドライブを自分のCloudflareアカウントに自前ホスト、MITライセンス。",
   "home.persp.cloud.code.title": "クラウドで、Agent間で共有",
 
 
@@ -252,19 +252,22 @@ export const ja = {
   // /edge — 全ページ
   "edge.meta.title": "huozi Edge — Agent ドライブをセルフホスト",
   "edge.meta.description":
-    "huozi のオープンソース・単一デプロイヤー版。Cloudflare または Vercel にワンクリックデプロイ。アカウントなし、MIT ライセンス。",
+    "huozi のオープンソース・単一デプロイヤー版。Cloudflare にワンクリックデプロイ。アカウントなし、MIT ライセンス。",
 
   "edge.badge.openSource": "オープンソース · MIT",
   "edge.hero.tagline1": "同じ Agent ドライブを、自分のインフラで。",
   "edge.hero.tagline2":
     "メールログインなし。一人のデプロイヤー、一つの workspace、自分のドメイン。",
   "edge.cta.deployCF": "Cloudflare にデプロイ",
-  "edge.cta.deployVercel": "Vercel にデプロイ",
+  "edge.cta.docker": "huozi docker",
+  "edge.cta.dockerBadge": "近日公開",
   "edge.cta.github": "GitHub で見る",
+  "edge.cta.cfNote":
+    "Edge は Cloudflare Workers + Durable Objects + D1 + R2 で動作 —— これら全部、下のデプロイスクリプトが一発で払い出します。",
 
   "edge.same.title": "同じドライブを、自分で運用",
   "edge.same.body1":
-    "Edge は Cloud と全く同じ MCP 面、Claude Code 互換性、ライブ同期、コミット履歴、公開共有 URL を提供します — ホスト型アカウントシステムだけがありません。HUOZI_ADMIN_SECRET を握り、自分の Cloudflare または Vercel にデプロイし、API キーを渡した相手は誰でも Agent を接続できます。",
+    "Edge は Cloud と全く同じ MCP 面、Claude Code 互換性、ライブ同期、コミット履歴、公開共有 URL を提供します — ホスト型アカウントシステムだけがありません。HUOZI_ADMIN_SECRET を握り、自分の Cloudflare アカウントにデプロイし、API キーを渡した相手は誰でも Agent を接続できます。",
   "edge.same.body2":
     "両エディションが HUOZI_EDITION で守られた同一コードベースだから、全てのバグ修正と機能追加が同時に両方へ届きます。",
 
@@ -285,21 +288,73 @@ export const ja = {
   "edge.compare.r4.edge": "固定 1 workspace",
   "edge.compare.r5.label": "コスト",
   "edge.compare.r5.cloud": "huozi.app に支払い",
-  "edge.compare.r5.edge": "Cloudflare / Vercel に支払い（多くは $0）",
+  "edge.compare.r5.edge": "Cloudflare に支払い（多くは $0）",
   "edge.compare.r6.label": "ライセンス",
   "edge.compare.r6.cloud": "プロプライエタリサービス",
   "edge.compare.r6.edge": "MIT",
 
-  "edge.bootstrap.title": "3 ステップで起動",
-  "edge.bootstrap.s1.title": "デプロイ + シークレット設定",
+  // Prerequisites
+  "edge.prereq.title": "必要なもの",
+  "edge.prereq.intro":
+    "全部で 5 分。メールサービス、SMTP、Resend、外部 DB、Docker —— どれも不要です。Edge は「キーを貼り付ける」設計で、メールは送りません。",
+  "edge.prereq.need.title": "必要",
+  "edge.prereq.need.cf": "Cloudflare アカウント（無料枠で十分）",
+  "edge.prereq.need.cfLink": "dash.cloudflare.com で登録",
+  "edge.prereq.need.local":
+    "ローカル環境：Node.js 22+、git、jq（macOS は brew install jq）",
+  "edge.prereq.no.title": "不要",
+  "edge.prereq.no.email":
+    "メール OTP サービス（Resend / SendGrid / SES）—— Edge はメール送信なし",
+  "edge.prereq.no.db":
+    "外部データベース —— D1 + R2 + Durable Objects はデプロイスクリプトが自動払い出し",
+  "edge.prereq.no.docker":
+    "Docker —— 全部 Cloudflare のエッジで動くのでローカルコンテナ不要",
+
+  // Deploy — 4 steps that mirror scripts/edge-deploy.sh
+  "edge.bootstrap.title": "5 分でワンクリックデプロイ",
+  "edge.bootstrap.s1.title": "Cloudflare にログイン",
   "edge.bootstrap.s1.body":
-    "ワンクリックデプロイ後、強力な HUOZI_ADMIN_SECRET と HUOZI_EDITION=edge を設定。",
-  "edge.bootstrap.s2.title": "管理者キーを発行",
+    "Node.js が入っている前提で、wrangler login を 1 回実行。ブラウザで Cloudflare の OAuth が走り、その後はスクリプトがそのセッションを使ってリソースを払い出します。",
+  "edge.bootstrap.s2.title": "リポジトリをクローン",
   "edge.bootstrap.s2.body":
-    "Worker の管理エンドポイントを 1 回呼んで最初の API キーを発行。次のステップで Web UI に貼ります。",
-  "edge.bootstrap.s3.title": "キーを貼って書き始める",
+    "Dachein/huozi をローカルに pull します。スクリプトも Worker のソースも同じリポジトリにあり、追加で入れるものはありません。",
+  "edge.bootstrap.s3.title": "ワンショット・デプロイスクリプト実行",
   "edge.bootstrap.s3.body":
-    "https://<your-domain>/connect を開いて、返ってきた hz_… キーを貼ればログイン完了。Cloud と同じく Keys ページから Claude Code / Cursor / Desktop を接続。",
+    "スクリプトが面倒な作業を全部こなします：D1 データベース・R2 バケット・2 つの Durable Object クラスを払い出し、強い HUOZI_ADMIN_SECRET を生成、Worker をデプロイ、最初の admin api_key を発行、全変数をローカルの .huozi-edge.env に書き出し。冪等なので、何度走らせてもデプロイがリフレッシュされるだけでデータは壊れません。",
+  "edge.bootstrap.s4.title": "キーを貼り付けて書き始める",
+  "edge.bootstrap.s4.body":
+    "スクリプトが終わると hz_… で始まる admin api_key が表示されます。あなたの Next.js デプロイの /workspace/connect を開き、貼り付ければ workspace は完全にあなたのものに。あとは Claude Code / Cursor / Desktop それぞれにキーを発行 —— Cloud と全く同じ流れです。",
+
+  // Config table
+  "edge.config.title": "環境変数の一覧",
+  "edge.config.intro":
+    "スクリプトはローカルに .huozi-edge.env を書き出します。下の表はそこに入る項目です。普段は触らなくて OK；上級者は上書き可。",
+  "edge.config.col.var": "変数",
+  "edge.config.col.who": "誰が設定",
+  "edge.config.col.purpose": "用途",
+  "edge.config.who.auto": "スクリプト",
+  "edge.config.who.you": "あなた（任意）",
+  "edge.config.r1.purpose": "Cloud / Edge の挙動分岐スイッチ",
+  "edge.config.r2.purpose": "Next.js が Worker を呼ぶ URL",
+  "edge.config.r3.purpose": "api_key の発行 / 失効に使う管理者クレデンシャル",
+  "edge.config.r4.purpose": "セッションクッキー署名用のランダムシークレット",
+  "edge.config.r5.purpose":
+    "唯一固定の workspace スラッグ（既定 \"default\"）",
+  "edge.config.r6.purpose":
+    "workspace の表示名（既定 \"huozi-edge\"）",
+
+  // Upgrade
+  "edge.upgrade.title": "ワンコマンド・アップグレード",
+  "edge.upgrade.body":
+    "huozi 本体に新リリースが出た？コードを pull して同じスクリプトをもう一度走らせるだけ。Worker は再デプロイ、スキーマは再適用され、D1 / R2 / DO のデータはそのまま残ります。",
+
+  // AI Agent deploy
+  "edge.aiDeploy.title": "AI エージェントに任せてデプロイ",
+  "edge.aiDeploy.body":
+    "下のプロンプトを Cursor や Claude Code に貼り付ければ、エージェントがスクリプトを順に走らせてくれます。手を動かす必要があるのは wrangler login のブラウザ確認だけで、ほかは全自動。",
+  "edge.aiDeploy.promptLabel": "プロンプト（任意のコーディング Agent で使える）",
+  "edge.aiDeploy.prompt":
+    "huozi Edge を私の Cloudflare アカウントにデプロイしてください：\n\n1. git clone https://github.com/Dachein/huozi をローカルに実行し、cd で移動\n2. npx wrangler login を実行し、ブラウザ認証が終わるまで待つ\n3. bash scripts/edge-deploy.sh を実行 —— 途中で止めないで。スクリプトが D1 / R2 / Durable Objects の払い出し、Worker のデプロイ、最初の admin api_key の発行を全自動で行います\n4. 生成された hz_… admin api_key を単独行で表示し、/workspace/connect に貼るよう案内する\n\nwrangler login 以外、私の入力は不要なので一気に最後まで進めてください。",
 
   "edge.footer.repo": "GitHub リポジトリ",
   "edge.footer.docs": "MCP リファレンス",
@@ -418,7 +473,6 @@ export const ja = {
   "home.oss.title": "オープンソース",
   "home.oss.desc": "Markdown & HTMLパブリッシングを自己ホスト。データベース不要、KVのみ。MITライセンス。",
   "home.oss.deployCF": "Cloudflareにデプロイ",
-  "home.oss.deployVercel": "Vercelにデプロイ",
   "home.oss.soon": "近日公開",
 
   // Home footer
@@ -655,7 +709,7 @@ export const ja = {
     "なぜ Agent にコミット履歴付きの共有ドライブが必要なのか。",
   "start.footer.edge.title": "セルフホスト（Edge）",
   "start.footer.edge.desc":
-    "同じドライブを、あなた自身の Cloudflare / Vercel にデプロイ。MIT。",
+    "同じドライブを、あなた自身の Cloudflare アカウントにデプロイ。MIT。",
 
   // /start の InstallPicker
   "start.picker.title": "クライアント別のインストール",

@@ -86,21 +86,20 @@ export default async function EdgePage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://deploy.workers.cloudflare.com/?url=https://github.com/Dachein/huozi"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#deploy"
               className="rounded-full bg-[#f48120] px-6 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
             >
               {_("edge.cta.deployCF")} →
             </a>
-            <a
-              href="https://vercel.com/new/clone?repository-url=https://github.com/Dachein/huozi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-[#171717] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#333] transition-colors"
+            <span
+              aria-disabled="true"
+              className="inline-flex items-center gap-2 rounded-full border border-dashed border-border px-6 py-2.5 text-sm font-medium text-muted-foreground/70 cursor-not-allowed select-none"
             >
-              {_("edge.cta.deployVercel")} →
-            </a>
+              {_("edge.cta.docker")}
+              <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground/80">
+                {_("edge.cta.dockerBadge")}
+              </span>
+            </span>
             <a
               href="https://github.com/Dachein/huozi"
               target="_blank"
@@ -110,6 +109,9 @@ export default async function EdgePage() {
               {_("edge.cta.github")}
             </a>
           </div>
+          <p className="mt-4 text-xs text-muted-foreground/80">
+            {_("edge.cta.cfNote")}
+          </p>
         </div>
       </section>
 
@@ -157,8 +159,49 @@ export default async function EdgePage() {
         </div>
       </section>
 
-      {/* Bootstrap */}
-      <section className="mx-auto max-w-3xl px-6 py-12" id="bootstrap">
+      {/* Prerequisites */}
+      <section className="mx-auto max-w-3xl px-6 py-12">
+        <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
+          {_("edge.prereq.title")}
+        </h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+          {_("edge.prereq.intro")}
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-medium mb-3">
+              {_("edge.prereq.need.title")}
+            </h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                · {_("edge.prereq.need.cf")}{" "}
+                <a
+                  href="https://dash.cloudflare.com/sign-up"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline-offset-2 hover:underline"
+                >
+                  {_("edge.prereq.need.cfLink")} →
+                </a>
+              </li>
+              <li>· {_("edge.prereq.need.local")}</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-medium mb-3">
+              {_("edge.prereq.no.title")}
+            </h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>· {_("edge.prereq.no.email")}</li>
+              <li>· {_("edge.prereq.no.db")}</li>
+              <li>· {_("edge.prereq.no.docker")}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Deploy — 4-step bootstrap that mirrors scripts/edge-deploy.sh */}
+      <section className="mx-auto max-w-3xl px-6 py-12" id="deploy">
         <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
           {_("edge.bootstrap.title")}
         </h2>
@@ -172,11 +215,7 @@ export default async function EdgePage() {
               {_("edge.bootstrap.s1.body")}
             </p>
             <div className="ml-8">
-              <Code
-                code={`export HUOZI_ADMIN_SECRET=$(openssl rand -hex 32)
-export HUOZI_EDITION=edge
-# set on both the worker and the Next.js app`}
-              />
+              <Code code={`npx wrangler login`} />
             </div>
           </li>
 
@@ -190,11 +229,8 @@ export HUOZI_EDITION=edge
             </p>
             <div className="ml-8">
               <Code
-                code={`curl -X POST https://<your-worker>/admin/mint-key \\
-  -H "X-Admin-Secret: $HUOZI_ADMIN_SECRET" \\
-  -H "Content-Type: application/json" \\
-  -d '{"workspace_id":"ws_default","principal_id":"admin",
-       "principal_type":"user","name":"[other] Admin · browser"}'`}
+                code={`git clone https://github.com/Dachein/huozi
+cd huozi`}
               />
             </div>
           </li>
@@ -204,11 +240,101 @@ export HUOZI_EDITION=edge
               <span className="font-mono text-xs text-muted-foreground">03</span>
               <h3 className="font-medium">{_("edge.bootstrap.s3.title")}</h3>
             </div>
-            <p className="text-muted-foreground ml-8 leading-relaxed">
+            <p className="text-muted-foreground mb-3 ml-8 leading-relaxed">
               {_("edge.bootstrap.s3.body")}
+            </p>
+            <div className="ml-8">
+              <Code code={`bash scripts/edge-deploy.sh`} />
+            </div>
+          </li>
+
+          <li>
+            <div className="flex items-baseline gap-3 mb-2">
+              <span className="font-mono text-xs text-muted-foreground">04</span>
+              <h3 className="font-medium">{_("edge.bootstrap.s4.title")}</h3>
+            </div>
+            <p className="text-muted-foreground ml-8 leading-relaxed">
+              {_("edge.bootstrap.s4.body")}
             </p>
           </li>
         </ol>
+      </section>
+
+      {/* Config table — what's in .huozi-edge.env */}
+      <section className="mx-auto max-w-3xl px-6 py-12">
+        <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
+          {_("edge.config.title")}
+        </h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {_("edge.config.intro")}
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs border border-border rounded-lg">
+            <thead>
+              <tr>
+                <th className="text-left px-4 py-2.5 font-medium border-b border-border bg-muted">
+                  {_("edge.config.col.var")}
+                </th>
+                <th className="text-left px-4 py-2.5 font-medium border-b border-border bg-muted">
+                  {_("edge.config.col.who")}
+                </th>
+                <th className="text-left px-4 py-2.5 font-medium border-b border-border bg-muted">
+                  {_("edge.config.col.purpose")}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { v: "HUOZI_EDITION", who: "auto" },
+                { v: "HUOZI_CLOUD_URL", who: "auto" },
+                { v: "HUOZI_ADMIN_SECRET", who: "auto" },
+                { v: "HUOZI_AUTH_SECRET", who: "auto" },
+                { v: "HUOZI_EDGE_WORKSPACE_SLUG", who: "you" },
+                { v: "HUOZI_EDGE_WORKSPACE_NAME", who: "you" },
+              ].map((r, i) => (
+                <tr key={r.v}>
+                  <Td label>
+                    <code className="font-mono text-[11px]">{r.v}</code>
+                  </Td>
+                  <Td>
+                    {r.who === "auto"
+                      ? _("edge.config.who.auto")
+                      : _("edge.config.who.you")}
+                  </Td>
+                  <Td>{_(`edge.config.r${i + 1}.purpose`)}</Td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Upgrade — re-run the same idempotent script */}
+      <section className="mx-auto max-w-3xl px-6 py-12">
+        <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
+          {_("edge.upgrade.title")}
+        </h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {_("edge.upgrade.body")}
+        </p>
+        <Code
+          code={`git pull
+bash scripts/edge-deploy.sh`}
+        />
+      </section>
+
+      {/* AI Agent deploy — paste-into-Cursor / Claude Code prompt */}
+      <section className="mx-auto max-w-3xl px-6 py-12">
+        <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
+          {_("edge.aiDeploy.title")}
+        </h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {_("edge.aiDeploy.body")}
+        </p>
+        <p className="text-xs text-muted-foreground/80 mb-2">
+          {_("edge.aiDeploy.promptLabel")}
+        </p>
+        <Code code={_("edge.aiDeploy.prompt")} />
       </section>
 
       {/* CTAs again */}
