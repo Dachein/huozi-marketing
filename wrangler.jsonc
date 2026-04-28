@@ -19,6 +19,7 @@
     { "pattern": "huozi.app/cloud", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/edge", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/docs", "zone_name": "huozi.app" },
-    { "pattern": "huozi.app/start", "zone_name": "huozi.app" }
+    { "pattern": "huozi.app/start", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/marketing-static/*", "zone_name": "huozi.app" }
   ]
 }
