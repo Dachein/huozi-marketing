@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { CopyButton } from "@/components/copy-button";
 import { getLocale } from "@/lib/i18n/server";
+import { cloudUrl } from "@/lib/cloud-url";
 
 export const metadata: Metadata = {
   title: "Docs — huozi Cloud",
@@ -134,9 +135,9 @@ export default async function DocsPage() {
 
           <H2 id="connecting">Connecting an Agent</H2>
           <P>
-            Sign in at huozi.app, visit{" "}
+            Sign in at cloud.huozi.app, visit{" "}
             <Link
-              href="/workspace/connect"
+              href={cloudUrl("/workspace/connect")}
               className="underline hover:text-foreground"
             >
               /workspace/connect

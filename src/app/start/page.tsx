@@ -4,6 +4,7 @@ import { CopyButton } from "@/components/copy-button";
 import { InstallPicker } from "@/components/start/install-picker";
 import { getLocale } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n";
+import { cloudUrl } from "@/lib/cloud-url";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -288,7 +289,7 @@ export default async function StartPage() {
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
           {tx("start.done.manageBefore")}{" "}
           <Link
-            href="/workspace"
+            href={cloudUrl("/workspace")}
             className="underline hover:text-foreground"
           >
             /workspace
@@ -329,7 +330,7 @@ claude mcp add --transport http huozi ${CLOUD_URL}/mcp \\
             <p className="text-xs text-muted-foreground">
               {tx("start.manual.noteBefore")}{" "}
               <Link
-                href="/workspace/connect"
+                href={cloudUrl("/workspace/connect")}
                 className="underline hover:text-foreground"
               >
                 /workspace/connect

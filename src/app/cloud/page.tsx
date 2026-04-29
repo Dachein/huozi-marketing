@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CopyButton } from "@/components/copy-button";
 import { getLocale } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n";
+import { cloudUrl } from "@/lib/cloud-url";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -108,7 +109,7 @@ export default async function CloudPage() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
-                href={signedIn ? "/workspace" : "/login?redirect=/workspace"}
+                href={cloudUrl(signedIn ? "/workspace" : "/login?redirect=/workspace")}
                 className="rounded-full bg-foreground px-6 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
               >
                 {signedIn ? _("cloud.cta.open") : _("cloud.cta.signIn")} →
