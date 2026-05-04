@@ -146,6 +146,7 @@ it (NEVER show the api_key to the human):
   cursor        merge into ~/.cursor/mcp.json (or project-level
                 .cursor/mcp.json):
                   { "mcpServers": { "huozi": {
+                      "type": "http",
                       "url": "${CLOUD_URL}/mcp",
                       "headers": { "Authorization": "Bearer <api_key>" }
                   } } }
@@ -153,6 +154,7 @@ it (NEVER show the api_key to the human):
   openclaw      merge into ~/.openclaw/openclaw.json under mcp.servers:
                   { "huozi": {
                       "url": "${CLOUD_URL}/mcp",
+                      "transport": "streamable-http",
                       "headers": { "Authorization": "Bearer <api_key>" }
                   } }
 
