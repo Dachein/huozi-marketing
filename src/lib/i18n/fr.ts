@@ -59,12 +59,12 @@ export const fr = {
   "home.persp.mcp.tab": "MCP",
   "home.persp.mcp.subtitle":
     "Le dialecte de Claude Code, huozi le parle aussi.",
-  "home.persp.mcp.card1.title": "Dialecte bit-exact de CC",
+  "home.persp.mcp.card1.title": "Même dialecte que Claude Code",
   "home.persp.mcp.card1.desc":
     "Read / Edit / Write / Glob / Grep — noms de champs, codes d'erreur, comportement de staleness — tout en miroir parfait avec Claude Code. Tout Agent entraîné sur CC fonctionne sans modification.",
-  "home.persp.mcp.card2.title": "Sept outils MCP",
+  "home.persp.mcp.card2.title": "Dix-sept outils MCP",
   "home.persp.mcp.card2.desc":
-    "Cinq miroirs de CC, deux extensions cloud : huozi_batch_edit valide une douzaine de fichiers atomiquement, huozi_history parcourt la chaîne de commits.",
+    "Cinq miroirs de Claude Code (read / edit / write / glob / grep) ; les douze autres sont des extensions huozi : commits atomiques par lots, historique par fichier, gestion de répertoires, upload / download binaire, rendu SVG, gabarits HTML, partage public, identité.",
   "home.persp.mcp.card3.title": "Montage depuis tout client",
   "home.persp.mcp.card3.desc":
     "Claude Code, Cursor, Desktop, OpenClaw — chaque client MCP se connecte en une ligne. Ou en HTTP brut via curl.",
@@ -73,14 +73,14 @@ export const fr = {
   // 版 · STYLE — des octets qui se rendent avec grâce
   "home.persp.style.tab": "STYLE",
   "home.persp.style.subtitle":
-    "Des octets qui se rendent avec grâce — Markdown, CSV, et cinq mises en page intégrées, choisies en une phrase.",
+    "Des octets qui se rendent avec grâce — Markdown, CSV, et cinq gabarits HTML par scénario, choisis en une phrase.",
   "home.persp.style.card1.title": "Markdown · prose et notes",
   "home.persp.style.card1.desc":
     "Rapports, notes de recherche, docs techniques — titres, citations, code, listes rendus en qualité d'impression par défaut. Pas de thème à choisir, pas de style à régler.",
   "home.persp.style.card2.title": "CSV · des tableaux qui marchent vraiment",
   "home.persp.style.card2.desc":
     "100 colonnes ? Aucun souci. Triable, en-têtes figés, clic sur cellule pour un tiroir de ligne. Les fichiers qu'Excel n'ouvre pas, huozi les ouvre.",
-  "home.persp.style.card3.title": "Mises en page · 5 gabarits intégrés",
+  "home.persp.style.card3.title": "HTML · 5 gabarits par scénario",
   "home.persp.style.card3.desc":
     "deck (slide 16:9) / story (vertical 9:16) / paper (impression A4) / mobile (page longue) / page (longue page bureau) — l'Agent en choisit une en une phrase. Auto-redimensionnable, zéro dépendance, HTML mono-fichier, prêt à publier.",
   "home.persp.style.code.title": "Une phrase, la bonne forme",
@@ -143,11 +143,13 @@ export const fr = {
   "cloud.compare.r5b": "Accédé par n'importe quel agent",
 
   "cloud.shipped.title": "Ce qui vit aujourd'hui",
-  "cloud.shipped.intro1": "Sept outils MCP, exposés sur ",
+  "cloud.shipped.intro1": "Dix-sept outils MCP, exposés sur ",
   "cloud.shipped.intro2":
-    ". Cinq sont des miroirs bit-exact de Claude Code ; deux sont des extensions cloud-natives.",
-  "cloud.tools.ccMirror": "Miroir CC",
-  "cloud.tools.extension": "Extension huozi",
+    ". Cinq sont des miroirs du dialecte Claude Code ; les douze autres sont des extensions huozi-natives couvrant répertoires, versionnage, binaires, publication et identité.",
+  "cloud.tools.group.dialect.title": "Dialecte Claude Code",
+  "cloud.tools.group.dirops.title": "Répertoires & versions",
+  "cloud.tools.group.binary.title": "Binaire / actifs",
+  "cloud.tools.group.publish.title": "Publication / identité",
   "cloud.tools.read.desc":
     "Lecture paginée par lignes, sortie cat -n, cache file_unchanged, retour binaire en base64 ou URL signée.",
   "cloud.tools.edit.desc":
@@ -158,26 +160,48 @@ export const fr = {
     "Correspondance par motif glob. Tri mtime décroissant. Tronqué à 100 fichiers.",
   "cloud.tools.grep.desc":
     "Recherche regex. Modes content / files_with_matches / count. Contexte -A/-B/-C. Filtre type.",
+  "cloud.tools.list_tree.desc":
+    "Liste un préfixe sous forme d'arbre de répertoires. Profondeur bornée, paginé, dossiers vides implicites.",
+  "cloud.tools.mkdir.desc":
+    "Réserve un nom de dossier vide. Écrit un marqueur caché .huozi-keep.",
+  "cloud.tools.mv.desc":
+    "Renomme ou déplace un fichier. Commit atomique ; chaîne d'historique préservée.",
+  "cloud.tools.rm.desc":
+    "Supprime un fichier. Enregistré comme un commit unique ; visible dans huozi_history.",
   "cloud.tools.batch.desc":
     "Édition atomique de N fichiers. all_or_nothing + commit_sha unique. Résultats par fichier.",
   "cloud.tools.history.desc":
     "Interroge l'historique de commits d'un fichier. Classification d'opération (create / edit / write / batch). Pagination.",
+  "cloud.tools.upload.desc":
+    "Binaire entrant, streamé en base64 vers R2. Renvoie SHA-1 + taille.",
+  "cloud.tools.download.desc":
+    "Obtient une URL signée à durée limitée pour télécharger directement le binaire depuis R2.",
+  "cloud.tools.image_render.desc":
+    "SVG → PNG côté serveur via resvg-wasm. Les Agents qui veulent des pixels obtiennent des octets.",
+  "cloud.tools.template.desc":
+    "Récupère un gabarit de mise en page (deck / story / paper / mobile / page). L'Agent en choisit un en une phrase.",
+  "cloud.tools.share.desc":
+    "Publie un fichier comme lien public huozi.app/p/<slug> qui suit les octets.",
+  "cloud.tools.whoami.desc":
+    "Renvoie le principal courant, le workspace et le préfixe de scope. Pour les auto-vérifications de l'Agent.",
 
-  "cloud.underHood.title": "Sous le capot",
-  "cloud.underHood.b1.label": "Cloudflare Workers",
-  "cloud.underHood.b1.desc":
+  "edge.underHood.title": "Sous le capot",
+  "edge.underHood.intro":
+    "Voici ce qui est déployé. Chaque composant tourne sur votre propre compte Cloudflare, sur votre propre quota.",
+  "edge.underHood.b1.label": "Cloudflare Workers",
+  "edge.underHood.b1.desc":
     " comme endpoint MCP serverless (JSON-RPC 2.0 sur HTTP).",
-  "cloud.underHood.b2.label": "R2",
-  "cloud.underHood.b2.desc":
+  "edge.underHood.b2.label": "R2",
+  "edge.underHood.b2.desc":
     " stocke les blobs adressés par SHA-1 compatible Git (même algorithme que le vrai blob <size>\\0<content> de Git).",
-  "cloud.underHood.b3.label": "D1",
-  "cloud.underHood.b3.desc":
+  "edge.underHood.b3.label": "D1",
+  "edge.underHood.b3.desc":
     " maintient l'index files_current, la chaîne de commits, les lignes d'audit par chemin et les clés API.",
-  "cloud.underHood.b4.label": "Durable Objects",
-  "cloud.underHood.b4.desc":
+  "edge.underHood.b4.label": "Durable Objects",
+  "edge.underHood.b4.desc":
     " sérialisent la section critique côté écriture (un DO par workspace) et persistent le ReadFileState par session entre requêtes (un DO par {workspace, principal}).",
-  "cloud.underHood.b5.label": "Auth Bearer",
-  "cloud.underHood.b5.desc":
+  "edge.underHood.b5.label": "Auth Bearer",
+  "edge.underHood.b5.desc":
     " : un token est haché vers une ligne api_keys ; cette ligne lie l'appel à un workspace, un principal et un préfixe scope optionnel.",
 
   "cloud.principles.title": "Principes de design",

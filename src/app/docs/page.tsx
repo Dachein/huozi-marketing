@@ -189,9 +189,14 @@ export default async function DocsPage() {
 
           <H2 id="tools">MCP tools</H2>
           <P>
-            All tools return the exact shape Claude Code expects — drop
-            huozi in and your Agent uses it like a local filesystem.
+            Seventeen tools, grouped by capability area. The first five
+            mirror Claude Code&rsquo;s file-tool dialect bit-for-bit; the
+            rest are huozi-native extensions that go beyond what a local
+            filesystem can offer (atomic batches, immutable history,
+            binary asset handling, public sharing, identity).
           </P>
+
+          <H3 id="tools-dialect">Claude Code dialect (5)</H3>
           <Table>
             <thead>
               <tr>
@@ -229,15 +234,6 @@ export default async function DocsPage() {
               </tr>
               <tr>
                 <Td>
-                  <code className="font-mono">huozi_batch_edit</code>
-                </Td>
-                <Td>
-                  N edits across one or many files, applied atomically as
-                  one commit.
-                </Td>
-              </tr>
-              <tr>
-                <Td>
                   <code className="font-mono">huozi_glob</code>
                 </Td>
                 <Td>Fast path listing. Backed by D1 index.</Td>
@@ -251,13 +247,151 @@ export default async function DocsPage() {
                   than walking the tree.
                 </Td>
               </tr>
+            </tbody>
+          </Table>
+
+          <H3 id="tools-dirops">Directories &amp; versioning (6)</H3>
+          <Table>
+            <thead>
+              <tr>
+                <Th>Tool</Th>
+                <Th>Purpose</Th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_list_tree</code>
+                </Td>
+                <Td>
+                  List a prefix as a directory tree. Depth-bounded,
+                  paginated; empty dirs are implicit (folders exist iff
+                  some file lives under them).
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_mkdir</code>
+                </Td>
+                <Td>
+                  Reserve an empty directory name by writing a hidden{" "}
+                  <code>.huozi-keep</code> marker.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_mv</code>
+                </Td>
+                <Td>
+                  Rename or move a file. Atomic commit; history chain
+                  preserved across the rename.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_rm</code>
+                </Td>
+                <Td>
+                  Delete a file. Recorded as a single commit; visible (and
+                  reversible) via huozi_history.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_batch_edit</code>
+                </Td>
+                <Td>
+                  N edits across one or many files, applied atomically as
+                  one commit. Per-file results; staleness check before any
+                  byte is written.
+                </Td>
+              </tr>
               <tr>
                 <Td>
                   <code className="font-mono">huozi_history</code>
                 </Td>
                 <Td>
-                  Commit log for a file: sha, author, operation, +/-
-                  lines, message.
+                  Commit log for a file: sha, author, operation
+                  (create/edit/write/batch), +/- lines, message.
+                </Td>
+              </tr>
+            </tbody>
+          </Table>
+
+          <H3 id="tools-binary">Binary &amp; assets (3)</H3>
+          <Table>
+            <thead>
+              <tr>
+                <Th>Tool</Th>
+                <Th>Purpose</Th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_upload</code>
+                </Td>
+                <Td>
+                  Inbound binary, base64-streamed into R2. Returns SHA-1
+                  + size; the file shows up in the workspace tree.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_download</code>
+                </Td>
+                <Td>
+                  Get a time-limited signed URL to fetch a binary directly
+                  from R2 — no proxy hop through the Worker.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_image_render</code>
+                </Td>
+                <Td>
+                  Server-side SVG → PNG via resvg-wasm. For Agents that
+                  want pixels, not markup.
+                </Td>
+              </tr>
+            </tbody>
+          </Table>
+
+          <H3 id="tools-publish">Publishing &amp; identity (3)</H3>
+          <Table>
+            <thead>
+              <tr>
+                <Th>Tool</Th>
+                <Th>Purpose</Th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_template</code>
+                </Td>
+                <Td>
+                  Fetch one of five HTML scaffolds (deck / story / paper
+                  / mobile / page) for the Agent to fill in.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_share</code>
+                </Td>
+                <Td>
+                  Publish a file as a live{" "}
+                  <code>huozi.app/p/&lt;slug&gt;</code> URL that tracks the
+                  current bytes. Edits go live immediately.
+                </Td>
+              </tr>
+              <tr>
+                <Td>
+                  <code className="font-mono">huozi_whoami</code>
+                </Td>
+                <Td>
+                  Return the current principal, workspace, and scope
+                  prefix. For Agent self-checks before acting.
                 </Td>
               </tr>
             </tbody>

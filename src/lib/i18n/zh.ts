@@ -57,12 +57,12 @@ export const zh = {
   // 印 · MCP —— 字模即接口
   "home.persp.mcp.tab": "MCP",
   "home.persp.mcp.subtitle": "Claude Code 用什么方言，huozi 就讲什么方言。",
-  "home.persp.mcp.card1.title": "和 CC 逐字节一致",
+  "home.persp.mcp.card1.title": "与 Claude Code 方言一致",
   "home.persp.mcp.card1.desc":
     "Agent 已经训过的 Read / Edit / Write / Glob / Grep —— 字段名、错误码、staleness 行为，huozi 一比一复制。零代码改动直接换平台。",
-  "home.persp.mcp.card2.title": "七个 MCP 工具",
+  "home.persp.mcp.card2.title": "十七个 MCP 工具",
   "home.persp.mcp.card2.desc":
-    "五个是 CC 镜像，两个云上扩展：huozi_batch_edit 一次原子提交十几个文件，huozi_history 翻每个文件的提交链。",
+    "五个是 Claude Code 镜像（read / edit / write / glob / grep），剩下十二个是 huozi 扩展：原子批量提交、文件级历史、目录管理、二进制上传 / 下载、SVG 渲图、版式模板、公开分享、身份查询。",
   "home.persp.mcp.card3.title": "任意客户端可挂载",
   "home.persp.mcp.card3.desc":
     "Claude Code、Cursor、Desktop、OpenClaw —— 任何讲 MCP 的客户端粘一行就接好。也可以裸 HTTP curl。",
@@ -71,14 +71,14 @@ export const zh = {
   // 版 · STYLE —— 写得对，看得美
   "home.persp.style.tab": "STYLE",
   "home.persp.style.subtitle":
-    "写得对，看得美 —— Markdown、CSV，外加五套官方版式，一句话出对样子。",
+    "写得对，看得美 —— Markdown、CSV，外加五套 HTML 场景模板，一句话出对样子。",
   "home.persp.style.card1.title": "Markdown · 文章与笔记",
   "home.persp.style.card1.desc":
     "周报、研究笔记、技术文档 —— 标题、引用、代码、列表按印刷级 typography 默认渲染，不挑主题、不调样式。",
   "home.persp.style.card2.title": "CSV · 真正能用的表格",
   "home.persp.style.card2.desc":
     "100 列也不卡。可排序、表头可冻结、点单元格抽屉展开整行。Excel 打不开的，huozi 打得开。",
-  "home.persp.style.card3.title": "版式 · 五套官方模板",
+  "home.persp.style.card3.title": "HTML · 五套场景模板",
   "home.persp.style.card3.desc":
     "deck（16:9 幻灯）/ story（9:16 竖屏）/ paper（A4 打印）/ mobile（移动长页）/ page（桌面长页）—— Agent 一句话挑一个，自缩放、零依赖、单文件 HTML 直接发布。",
   "home.persp.style.code.title": "一句话，出对版式",
@@ -141,10 +141,13 @@ export const zh = {
   "cloud.compare.r5b": "被任意 Agent 访问",
 
   "cloud.shipped.title": "现在已经能用什么",
-  "cloud.shipped.intro1": "七个 MCP 工具，端点 ",
-  "cloud.shipped.intro2": "。其中五个是 Claude Code 的逐字节镜像；两个是云上原生扩展。",
-  "cloud.tools.ccMirror": "CC 镜像",
-  "cloud.tools.extension": "huozi 扩展",
+  "cloud.shipped.intro1": "十七个 MCP 工具，端点 ",
+  "cloud.shipped.intro2":
+    "。五个是 Claude Code 方言镜像；其余十二个是 huozi 原生扩展，覆盖目录、版本、二进制、发布、身份。",
+  "cloud.tools.group.dialect.title": "Claude Code 方言",
+  "cloud.tools.group.dirops.title": "目录与版本",
+  "cloud.tools.group.binary.title": "二进制 / 资产",
+  "cloud.tools.group.publish.title": "发布 / 身份",
   "cloud.tools.read.desc":
     "按行分页读取，cat -n 输出，file_unchanged 缓存，二进制按 base64 或签名 URL 返回。",
   "cloud.tools.edit.desc":
@@ -155,26 +158,48 @@ export const zh = {
     "Glob 模式匹配。按 mtime 倒序，最多 100 个文件。",
   "cloud.tools.grep.desc":
     "正则搜索。content / files_with_matches / count 三种模式。-A/-B/-C 上下文。type 过滤。",
+  "cloud.tools.list_tree.desc":
+    "按前缀列出目录树。可控深度、可分页、空目录隐式存在。",
+  "cloud.tools.mkdir.desc":
+    "保留空目录名。写一个隐藏的 .huozi-keep 占位文件。",
+  "cloud.tools.mv.desc":
+    "重命名 / 移动文件。原子提交，保留历史链。",
+  "cloud.tools.rm.desc":
+    "删除文件。一次提交记录，可在 huozi_history 里看到。",
   "cloud.tools.batch.desc":
     "原子的多文件编辑。all_or_nothing + 单个 commit_sha。逐文件结果。",
   "cloud.tools.history.desc":
     "查询某文件的提交历史。按操作分类（create / edit / write / batch）。支持分页。",
+  "cloud.tools.upload.desc":
+    "二进制入站，base64 流式收，存入 R2。返回 SHA-1 + 大小。",
+  "cloud.tools.download.desc":
+    "拿一个时限签名 URL 下载 R2 里的二进制。无需中转。",
+  "cloud.tools.image_render.desc":
+    "服务端用 resvg-wasm 把 SVG 渲成 PNG。Agent 想要图就拿到字节。",
+  "cloud.tools.template.desc":
+    "取一份 HTML 版式骨架（deck / story / paper / mobile / page）。Agent 一句话挑一个。",
+  "cloud.tools.share.desc":
+    "把一个文件发布成 huozi.app/p/<slug> 公开链接，跟着字节走。",
+  "cloud.tools.whoami.desc":
+    "返回当前 principal、workspace、scope 前缀。供 Agent 自检。",
 
-  "cloud.underHood.title": "底层栈",
-  "cloud.underHood.b1.label": "Cloudflare Workers",
-  "cloud.underHood.b1.desc":
+  "edge.underHood.title": "底层栈",
+  "edge.underHood.intro":
+    "你部署的就是这一套。每个组件都跑在你自己的 Cloudflare 账号下，付的是你自己的额度。",
+  "edge.underHood.b1.label": "Cloudflare Workers",
+  "edge.underHood.b1.desc":
     " 作为 serverless MCP 端点（HTTP 上的 JSON-RPC 2.0）。",
-  "cloud.underHood.b2.label": "R2",
-  "cloud.underHood.b2.desc":
+  "edge.underHood.b2.label": "R2",
+  "edge.underHood.b2.desc":
     " 存储 blob，按 Git 兼容的 SHA-1 寻址（与真 Git 的 blob <size>\\0<content> 同算法）。",
-  "cloud.underHood.b3.label": "D1",
-  "cloud.underHood.b3.desc":
+  "edge.underHood.b3.label": "D1",
+  "edge.underHood.b3.desc":
     " 存放 files_current 索引、commit 链、按路径的审计行、API keys。",
-  "cloud.underHood.b4.label": "Durable Objects",
-  "cloud.underHood.b4.desc":
+  "edge.underHood.b4.label": "Durable Objects",
+  "edge.underHood.b4.desc":
     " 串行化写侧关键区（每个 workspace 一个 DO），并跨请求保留每会话的 ReadFileState（每个 {workspace, principal} 一个 DO）。",
-  "cloud.underHood.b5.label": "Bearer 鉴权",
-  "cloud.underHood.b5.desc":
+  "edge.underHood.b5.label": "Bearer 鉴权",
+  "edge.underHood.b5.desc":
     "：token hash 到 api_keys 一行；那一行把这次调用绑定到 workspace、principal、可选的 scope 前缀。",
 
   "cloud.principles.title": "设计原则",

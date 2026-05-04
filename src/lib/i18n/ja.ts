@@ -58,12 +58,12 @@ export const ja = {
   "home.persp.mcp.tab": "MCP",
   "home.persp.mcp.subtitle":
     "Claude Codeが話す方言を、huoziもそのまま話す。",
-  "home.persp.mcp.card1.title": "CCとビット単位で同じ方言",
+  "home.persp.mcp.card1.title": "Claude Codeと同じ方言",
   "home.persp.mcp.card1.desc":
     "Read / Edit / Write / Glob / Grep — フィールド名、エラーコード、staleness 動作までCCと一対一。CC学習済みのAgentが、コード変更ゼロで動く。",
-  "home.persp.mcp.card2.title": "7つのMCPツール",
+  "home.persp.mcp.card2.title": "17のMCPツール",
   "home.persp.mcp.card2.desc":
-    "5つはCCミラー、2つはクラウド拡張。huozi_batch_editで十数ファイルを原子的にコミット、huozi_historyで各ファイルのコミット連鎖を辿る。",
+    "5つはClaude Codeミラー（read / edit / write / glob / grep）、残り12はhuozi拡張：原子的バッチコミット、ファイル単位履歴、ディレクトリ操作、バイナリのアップロード/ダウンロード、SVGレンダリング、版式テンプレート、公開共有、アイデンティティ。",
   "home.persp.mcp.card3.title": "任意のクライアントからマウント",
   "home.persp.mcp.card3.desc":
     "Claude Code、Cursor、Desktop、OpenClaw — MCP対応クライアントなら一行で接続。生のHTTP curlでもOK。",
@@ -72,14 +72,14 @@ export const ja = {
   // 版 · STYLE —— 美しく描画されるバイト
   "home.persp.style.tab": "STYLE",
   "home.persp.style.subtitle":
-    "美しく描画されるバイト —— Markdown、CSV、加えて5つの公式レイアウトが一言で揃う。",
+    "美しく描画されるバイト —— Markdown、CSV、加えて5つのHTMLシーンテンプレートが一言で揃う。",
   "home.persp.style.card1.title": "Markdown · 文章とノート",
   "home.persp.style.card1.desc":
     "週報、リサーチメモ、技術ドキュメント — 見出し、引用、コード、リストが印刷品質のtypographyで既定描画。テーマ選択もスタイル調整も不要。",
   "home.persp.style.card2.title": "CSV · 本当に使える表",
   "home.persp.style.card2.desc":
     "100列でも詰まらない。ソート可能、ヘッダ固定、セルをクリックで行ドロワー展開。Excelで開けないファイルも、huoziなら開ける。",
-  "home.persp.style.card3.title": "版式 · 5つの公式テンプレート",
+  "home.persp.style.card3.title": "HTML · 5つのシーンテンプレート",
   "home.persp.style.card3.desc":
     "deck（16:9スライド）/ story（9:16縦型）/ paper（A4印刷）/ mobile（モバイル長尺）/ page（デスクトップ長尺）—— Agentが一言で選択。自動スケール、依存ゼロ、単一ファイルHTML、即公開可。",
   "home.persp.style.code.title": "一言で、正しい版型へ",
@@ -142,11 +142,13 @@ export const ja = {
   "cloud.compare.r5b": "任意の Agent からアクセス",
 
   "cloud.shipped.title": "今日動くもの",
-  "cloud.shipped.intro1": "7 つの MCP ツール、エンドポイントは ",
+  "cloud.shipped.intro1": "17 の MCP ツール、エンドポイントは ",
   "cloud.shipped.intro2":
-    "。5 つは Claude Code のビット単位のミラー、2 つはクラウドネイティブ拡張です。",
-  "cloud.tools.ccMirror": "CC ミラー",
-  "cloud.tools.extension": "huozi 拡張",
+    "。5 つは Claude Code 方言のミラー、残り 12 は huozi ネイティブ拡張で、ディレクトリ・バージョン・バイナリ・公開・アイデンティティをカバーします。",
+  "cloud.tools.group.dialect.title": "Claude Code 方言",
+  "cloud.tools.group.dirops.title": "ディレクトリとバージョン",
+  "cloud.tools.group.binary.title": "バイナリ / アセット",
+  "cloud.tools.group.publish.title": "公開 / アイデンティティ",
   "cloud.tools.read.desc":
     "行ページング読み取り、cat -n 出力、file_unchanged キャッシュ、バイナリは base64 / 署名 URL。",
   "cloud.tools.edit.desc":
@@ -157,26 +159,48 @@ export const ja = {
     "Glob パターンマッチ。mtime 降順、最大 100 ファイル。",
   "cloud.tools.grep.desc":
     "正規表現検索。content / files_with_matches / count の 3 モード。-A/-B/-C コンテキスト。type フィルタ。",
+  "cloud.tools.list_tree.desc":
+    "プレフィックスをディレクトリツリーで列挙。深さ制限・ページング対応、空ディレクトリは暗黙。",
+  "cloud.tools.mkdir.desc":
+    "空のディレクトリ名を予約。隠しの .huozi-keep マーカーを書き込みます。",
+  "cloud.tools.mv.desc":
+    "ファイルのリネームや移動。原子的コミット、履歴チェーン保持。",
+  "cloud.tools.rm.desc":
+    "ファイル削除。1 コミットとして記録、huozi_history で確認可能。",
   "cloud.tools.batch.desc":
     "原子的な複数ファイル編集。all_or_nothing + 単一の commit_sha。ファイル毎の結果。",
   "cloud.tools.history.desc":
     "ファイルのコミット履歴を照会。操作分類（create / edit / write / batch）。ページネーション対応。",
+  "cloud.tools.upload.desc":
+    "バイナリ受信、base64 ストリームで R2 へ。SHA-1 とサイズを返す。",
+  "cloud.tools.download.desc":
+    "期限付き署名 URL を取得し、R2 から直接バイナリをダウンロード。",
+  "cloud.tools.image_render.desc":
+    "サーバー側で resvg-wasm により SVG → PNG。Agent がピクセルを欲しがればバイトで返す。",
+  "cloud.tools.template.desc":
+    "版式スカフォールド（deck / story / paper / mobile / page）を取得。Agent が一言で選択。",
+  "cloud.tools.share.desc":
+    "ファイルを huozi.app/p/<slug> 公開リンクとして発行、バイトを追跡。",
+  "cloud.tools.whoami.desc":
+    "現在の principal、workspace、scope 前缀を返す。Agent の自己確認用。",
 
-  "cloud.underHood.title": "内部構成",
-  "cloud.underHood.b1.label": "Cloudflare Workers",
-  "cloud.underHood.b1.desc":
+  "edge.underHood.title": "内部構成",
+  "edge.underHood.intro":
+    "デプロイされるのはこの構成です。各コンポーネントはあなた自身の Cloudflare アカウント、あなた自身のクォータの下で動きます。",
+  "edge.underHood.b1.label": "Cloudflare Workers",
+  "edge.underHood.b1.desc":
     " — サーバーレス MCP エンドポイント（HTTP 上の JSON-RPC 2.0）。",
-  "cloud.underHood.b2.label": "R2",
-  "cloud.underHood.b2.desc":
+  "edge.underHood.b2.label": "R2",
+  "edge.underHood.b2.desc":
     " — Git 互換 SHA-1 で blob を保存（実 Git の blob <size>\\0<content> と同じアルゴリズム）。",
-  "cloud.underHood.b3.label": "D1",
-  "cloud.underHood.b3.desc":
+  "edge.underHood.b3.label": "D1",
+  "edge.underHood.b3.desc":
     " — files_current インデックス、コミットチェーン、パス単位の監査ログ、API キーを保持。",
-  "cloud.underHood.b4.label": "Durable Objects",
-  "cloud.underHood.b4.desc":
+  "edge.underHood.b4.label": "Durable Objects",
+  "edge.underHood.b4.desc":
     " — 書き込み側のクリティカルセクションを直列化（workspace 毎に 1 DO）し、セッション毎の ReadFileState を跨リクエスト保持（{workspace, principal} 毎に 1 DO）。",
-  "cloud.underHood.b5.label": "Bearer 認証",
-  "cloud.underHood.b5.desc":
+  "edge.underHood.b5.label": "Bearer 認証",
+  "edge.underHood.b5.desc":
     "：トークンが api_keys 行にハッシュされ、その行が呼び出しを workspace、principal、任意の scope 前缀に紐付けます。",
 
   "cloud.principles.title": "設計原則",

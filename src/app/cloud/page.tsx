@@ -22,6 +22,55 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// Source-of-truth ordering for the cloud tools section.  Each group
+// matches a section heading on /cloud; ordering inside the group is
+// "most-used first → niche last" so the eye lands on the workhorse tools.
+// Keep the descKey aligned with the i18n key — `huozi_batch_edit` reads
+// `cloud.tools.batch.desc` for historical parity with the older 7-tool
+// content (avoids touching every locale just to rename one key).
+const TOOL_GROUPS: ReadonlyArray<{
+  key: "dialect" | "dirops" | "binary" | "publish";
+  tools: ReadonlyArray<{ name: string; descKey: string }>;
+}> = [
+  {
+    key: "dialect",
+    tools: [
+      { name: "huozi_read", descKey: "read" },
+      { name: "huozi_edit", descKey: "edit" },
+      { name: "huozi_write", descKey: "write" },
+      { name: "huozi_glob", descKey: "glob" },
+      { name: "huozi_grep", descKey: "grep" },
+    ],
+  },
+  {
+    key: "dirops",
+    tools: [
+      { name: "huozi_list_tree", descKey: "list_tree" },
+      { name: "huozi_mkdir", descKey: "mkdir" },
+      { name: "huozi_mv", descKey: "mv" },
+      { name: "huozi_rm", descKey: "rm" },
+      { name: "huozi_batch_edit", descKey: "batch" },
+      { name: "huozi_history", descKey: "history" },
+    ],
+  },
+  {
+    key: "binary",
+    tools: [
+      { name: "huozi_upload", descKey: "upload" },
+      { name: "huozi_download", descKey: "download" },
+      { name: "huozi_image_render", descKey: "image_render" },
+    ],
+  },
+  {
+    key: "publish",
+    tools: [
+      { name: "huozi_template", descKey: "template" },
+      { name: "huozi_share", descKey: "share" },
+      { name: "huozi_whoami", descKey: "whoami" },
+    ],
+  },
+];
+
 function CodeBlock({ code, lang }: { code: string; lang?: string }) {
   return (
     <div className="relative group">
@@ -176,95 +225,27 @@ export default async function CloudPage() {
             {_("cloud.shipped.intro2")}
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            <ToolCard
-              name="huozi_read"
-              desc={_("cloud.tools.read.desc")}
-              ccMirror
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-            <ToolCard
-              name="huozi_edit"
-              desc={_("cloud.tools.edit.desc")}
-              ccMirror
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-            <ToolCard
-              name="huozi_write"
-              desc={_("cloud.tools.write.desc")}
-              ccMirror
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-            <ToolCard
-              name="huozi_glob"
-              desc={_("cloud.tools.glob.desc")}
-              ccMirror
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-            <ToolCard
-              name="huozi_grep"
-              desc={_("cloud.tools.grep.desc")}
-              ccMirror
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-            <ToolCard
-              name="huozi_batch_edit"
-              desc={_("cloud.tools.batch.desc")}
-              extension
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-            <ToolCard
-              name="huozi_history"
-              desc={_("cloud.tools.history.desc")}
-              extension
-              ccMirrorLabel={_("cloud.tools.ccMirror")}
-              extensionLabel={_("cloud.tools.extension")}
-            />
-          </div>
-
-          <div className="mt-10">
-            <h3 className="text-lg font-semibold mb-4">
-              {_("cloud.underHood.title")}
-            </h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <strong className="text-foreground">
-                  {_("cloud.underHood.b1.label")}
-                </strong>
-                {_("cloud.underHood.b1.desc")}
-              </li>
-              <li>
-                <strong className="text-foreground">
-                  {_("cloud.underHood.b2.label")}
-                </strong>
-                {_("cloud.underHood.b2.desc")}
-              </li>
-              <li>
-                <strong className="text-foreground">
-                  {_("cloud.underHood.b3.label")}
-                </strong>
-                {_("cloud.underHood.b3.desc")}
-              </li>
-              <li>
-                <strong className="text-foreground">
-                  {_("cloud.underHood.b4.label")}
-                </strong>
-                {_("cloud.underHood.b4.desc")}
-              </li>
-              <li>
-                <strong className="text-foreground">
-                  {_("cloud.underHood.b5.label")}
-                </strong>
-                {_("cloud.underHood.b5.desc")}
-              </li>
-            </ul>
-          </div>
+          {/* Tool grid grouped by capability area. The "Claude Code 方言"
+              group is the dialect-mirror tier (drop-in for any CC-trained
+              Agent); the rest are huozi-native extensions, sliced by what
+              kind of work they do. Group titles double as the only badge
+              users need — no per-card cc-mirror / huozi-ext tag clutter. */}
+          {TOOL_GROUPS.map((group) => (
+            <div key={group.key} className="mb-8 last:mb-0">
+              <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground mb-3">
+                {_(`cloud.tools.group.${group.key}.title`)}
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {group.tools.map((t) => (
+                  <ToolCard
+                    key={t.name}
+                    name={t.name}
+                    desc={_(`cloud.tools.${t.descKey}.desc`)}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </section>
 
         {/* Design principles */}
@@ -411,36 +392,10 @@ function Row({ a, b }: { a: string; b: string }) {
   );
 }
 
-function ToolCard({
-  name,
-  desc,
-  ccMirror,
-  extension,
-  ccMirrorLabel,
-  extensionLabel,
-}: {
-  name: string;
-  desc: string;
-  ccMirror?: boolean;
-  extension?: boolean;
-  ccMirrorLabel: string;
-  extensionLabel: string;
-}) {
+function ToolCard({ name, desc }: { name: string; desc: string }) {
   return (
     <div className="rounded-lg border border-border p-5 hover:border-foreground/20 transition-colors">
-      <div className="flex items-center justify-between mb-2">
-        <code className="font-mono text-sm font-semibold">{name}</code>
-        {ccMirror && (
-          <span className="text-[10px] uppercase tracking-wider text-accent">
-            {ccMirrorLabel}
-          </span>
-        )}
-        {extension && (
-          <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-            {extensionLabel}
-          </span>
-        )}
-      </div>
+      <code className="font-mono text-sm font-semibold block mb-2">{name}</code>
       <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
     </div>
   );

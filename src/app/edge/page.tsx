@@ -159,6 +159,28 @@ export default async function EdgePage() {
         </div>
       </section>
 
+      {/* Tech stack — moved over from /cloud (where it was implementation
+          noise). Self-hosters actually need to know what's getting deployed
+          to their CF account; Cloud users just want the product. */}
+      <section className="mx-auto max-w-3xl px-6 py-12">
+        <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
+          {_("edge.underHood.title")}
+        </h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {_("edge.underHood.intro")}
+        </p>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          {[1, 2, 3, 4, 5].map((n) => (
+            <li key={n}>
+              <strong className="text-foreground">
+                {_(`edge.underHood.b${n}.label`)}
+              </strong>
+              {_(`edge.underHood.b${n}.desc`)}
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* Prerequisites */}
       <section className="mx-auto max-w-3xl px-6 py-12">
         <h2 className="font-serif text-xl font-bold tracking-wide mb-4">

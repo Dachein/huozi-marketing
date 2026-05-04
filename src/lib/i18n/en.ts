@@ -59,12 +59,12 @@ export const en = {
   "home.persp.mcp.tab": "MCP",
   "home.persp.mcp.subtitle":
     "Whatever dialect Claude Code speaks, huozi speaks too.",
-  "home.persp.mcp.card1.title": "Bit-exact CC dialect",
+  "home.persp.mcp.card1.title": "Same dialect as Claude Code",
   "home.persp.mcp.card1.desc":
     "Read / Edit / Write / Glob / Grep — field names, error codes, staleness behavior — all one-to-one with Claude Code. Drop in any CC-trained Agent, no code changes.",
-  "home.persp.mcp.card2.title": "Seven MCP tools",
+  "home.persp.mcp.card2.title": "Seventeen MCP tools",
   "home.persp.mcp.card2.desc":
-    "Five mirror Claude Code; two are cloud-native extensions: huozi_batch_edit commits a dozen files atomically, huozi_history walks any file's commit chain.",
+    "Five mirror Claude Code (read / edit / write / glob / grep); the other twelve are huozi-native: atomic batch commits, per-file history, dir ops, binary upload / download, SVG rendering, layout templates, public sharing, identity.",
   "home.persp.mcp.card3.title": "Mount from any client",
   "home.persp.mcp.card3.desc":
     "Claude Code, Cursor, Desktop, OpenClaw — every MCP client connects with one line. Or talk to it as raw HTTP via curl.",
@@ -73,14 +73,14 @@ export const en = {
   // 版 · STYLE — bytes that render gracefully
   "home.persp.style.tab": "STYLE",
   "home.persp.style.subtitle":
-    "Bytes that render gracefully — Markdown, CSV, and five built-in layouts picked in one sentence.",
+    "Bytes that render gracefully — Markdown, CSV, and five HTML scene templates picked in one sentence.",
   "home.persp.style.card1.title": "Markdown · prose & notes",
   "home.persp.style.card1.desc":
     "Weekly reviews, research notes, technical docs — headings, quotes, code, lists rendered at print quality by default. No theme picking, no style tweaking.",
   "home.persp.style.card2.title": "CSV · tables that actually work",
   "home.persp.style.card2.desc":
     "100 columns? No problem. Sortable, frozen headers, click any cell for a row drawer. Files Excel can't open, huozi can.",
-  "home.persp.style.card3.title": "Layouts · 5 built-in scaffolds",
+  "home.persp.style.card3.title": "HTML · 5 scene templates",
   "home.persp.style.card3.desc":
     "deck (16:9 slide) / story (9:16 vertical) / paper (A4 print) / mobile (long page) / page (desktop long page) — the Agent picks one in a sentence. Self-scaling, zero-dep, single-file HTML, ready to publish.",
   "home.persp.style.code.title": "One sentence, the right shape",
@@ -143,11 +143,13 @@ export const en = {
   "cloud.compare.r5b": "Accessed by any Agent",
 
   "cloud.shipped.title": "What's alive today",
-  "cloud.shipped.intro1": "Seven MCP tools, exposed at ",
+  "cloud.shipped.intro1": "Seventeen MCP tools, exposed at ",
   "cloud.shipped.intro2":
-    ". Five are bit-exact mirrors of Claude Code; two are cloud-native extensions.",
-  "cloud.tools.ccMirror": "CC-mirror",
-  "cloud.tools.extension": "huozi-ext",
+    ". Five mirror the Claude Code dialect; the other twelve are huozi-native extensions covering directories, versioning, binaries, publishing, and identity.",
+  "cloud.tools.group.dialect.title": "Claude Code dialect",
+  "cloud.tools.group.dirops.title": "Directories & versioning",
+  "cloud.tools.group.binary.title": "Binary / assets",
+  "cloud.tools.group.publish.title": "Publish / identity",
   "cloud.tools.read.desc":
     "Line-paged read, cat -n output, file_unchanged cache, base64 or signed-URL binary return.",
   "cloud.tools.edit.desc":
@@ -158,27 +160,30 @@ export const en = {
     "Glob pattern matching. mtime-desc ordering. 100-file truncation.",
   "cloud.tools.grep.desc":
     "Regex search. content / files_with_matches / count modes. -A/-B/-C context. type filter.",
+  "cloud.tools.list_tree.desc":
+    "List a prefix as a directory tree. Depth-bounded, paginated, empty dirs implicit.",
+  "cloud.tools.mkdir.desc":
+    "Reserve an empty directory name. Writes a hidden .huozi-keep marker.",
+  "cloud.tools.mv.desc":
+    "Rename or move a file. Atomic commit; history chain preserved.",
+  "cloud.tools.rm.desc":
+    "Delete a file. Recorded as a single commit; visible in huozi_history.",
   "cloud.tools.batch.desc":
     "Atomic N-file edit. all_or_nothing + single commit_sha. Per-file results.",
   "cloud.tools.history.desc":
     "Query a file's commit trail. operation classification (create / edit / write / batch). Pagination.",
-
-  "cloud.underHood.title": "Under the hood",
-  "cloud.underHood.b1.label": "Cloudflare Workers",
-  "cloud.underHood.b1.desc":
-    " as the serverless MCP endpoint (JSON-RPC 2.0 over HTTP).",
-  "cloud.underHood.b2.label": "R2",
-  "cloud.underHood.b2.desc":
-    " stores blobs addressed by Git-compatible SHA-1 (same algorithm as real Git's blob <size>\\0<content>).",
-  "cloud.underHood.b3.label": "D1",
-  "cloud.underHood.b3.desc":
-    " holds files_current index, commit chain, per-path audit rows, and API keys.",
-  "cloud.underHood.b4.label": "Durable Objects",
-  "cloud.underHood.b4.desc":
-    " serialize the write-side critical section (one DO per workspace) and persist per-session ReadFileState across requests (one DO per {workspace, principal}).",
-  "cloud.underHood.b5.label": "Bearer auth",
-  "cloud.underHood.b5.desc":
-    ": a token hashes to an api_keys row; that row binds the call to a workspace, principal, and optional scope prefix.",
+  "cloud.tools.upload.desc":
+    "Inbound binary, base64-streamed into R2. Returns SHA-1 + size.",
+  "cloud.tools.download.desc":
+    "Get a time-limited signed URL to fetch the binary directly from R2.",
+  "cloud.tools.image_render.desc":
+    "Server-side SVG → PNG via resvg-wasm. Agents that want pixels get bytes.",
+  "cloud.tools.template.desc":
+    "Fetch a layout scaffold (deck / story / paper / mobile / page). Agent picks one in a sentence.",
+  "cloud.tools.share.desc":
+    "Publish a file as a public huozi.app/p/<slug> link that tracks the bytes.",
+  "cloud.tools.whoami.desc":
+    "Return the current principal, workspace, and scope prefix. For Agent self-checks.",
 
   "cloud.principles.title": "Design principles",
   "cloud.principles.1.title": "CC-dialect bit-exact",
@@ -326,6 +331,27 @@ export const en = {
   "edge.bootstrap.s4.title": "Paste the key, start writing",
   "edge.bootstrap.s4.body":
     "When the script finishes, it prints an admin api_key starting with hz_…. Open your Next.js deployment's /workspace/connect, paste it in, and the workspace is yours. From there, mint one key per Agent (Claude Code / Cursor / Desktop) — exactly the same flow as Cloud.",
+
+  // Tech stack — moved from /cloud (where it was implementation noise)
+  // to /edge, where self-hosters actually need to know what they're deploying.
+  "edge.underHood.title": "Under the hood",
+  "edge.underHood.intro":
+    "This is what gets deployed. Every component runs on your own Cloudflare account, on your own quota.",
+  "edge.underHood.b1.label": "Cloudflare Workers",
+  "edge.underHood.b1.desc":
+    " as the serverless MCP endpoint (JSON-RPC 2.0 over HTTP).",
+  "edge.underHood.b2.label": "R2",
+  "edge.underHood.b2.desc":
+    " stores blobs addressed by Git-compatible SHA-1 (same algorithm as real Git's blob <size>\\0<content>).",
+  "edge.underHood.b3.label": "D1",
+  "edge.underHood.b3.desc":
+    " holds files_current index, commit chain, per-path audit rows, and API keys.",
+  "edge.underHood.b4.label": "Durable Objects",
+  "edge.underHood.b4.desc":
+    " serialize the write-side critical section (one DO per workspace) and persist per-session ReadFileState across requests (one DO per {workspace, principal}).",
+  "edge.underHood.b5.label": "Bearer auth",
+  "edge.underHood.b5.desc":
+    ": a token hashes to an api_keys row; that row binds the call to a workspace, principal, and optional scope prefix.",
 
   // Config table
   "edge.config.title": "Environment variables",
