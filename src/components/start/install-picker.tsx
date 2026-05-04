@@ -59,15 +59,23 @@ const MODE_LABELS: Record<Mode, string> = {
 };
 
 function commandFor(client: Client, mode: Mode): string {
-  // MCP install — the one-liner wraps the whole thing.
-  if (mode === "mcp" && client !== "generic") {
-    return `npx huozi-mcp --client ${client}`;
+  // MCP install — runs the host's add-MCP-server command directly
+  // against the remote HTTP endpoint. No npm wrapper, no local proxy.
+  // The host stores the api_key in its own MCP config; daily traffic
+  // goes from the host straight to cloud.huozi.app/mcp.
+  if (mode === "mcp" && client === "claude-code") {
+    return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp \\
+  --header "Authorization: Bearer hz_your_key"`;
   }
   // OpenClaw skill — published to ClawHub as huozi/mcp; the CLI fetches
   // and wires the skill into ~/.openclaw/skills/ for you.
   if (client === "openclaw" && mode === "skill") {
     return `openclaw skills install huozi/mcp`;
   }
+  // Cursor / OpenClaw / generic share the same shape: an mcp.json
+  // snippet. We render the JSON inline below the picker; the function
+  // returns an empty string so the parent skips the "command" panel
+  // and goes straight to the JSON one.
   return "";
 }
 
@@ -143,6 +151,36 @@ export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
   );
 }
 
+/**
+ * Build the mcp.json snippet a Cursor / OpenClaw config needs.
+ * Universal shape:
+ *   { "mcpServers": { "huozi": {
+ *       "type": "http",
+ *       "url": "https://cloud.huozi.app/mcp",
+ *       "headers": { "Authorization": "Bearer hz_your_key" }
+ *   } } }
+ *
+ * The placeholder string `hz_your_key` is intentional — users grab their
+ * actual key from /workspace/connect on the product side.
+ */
+function mcpJsonSnippet(): string {
+  return JSON.stringify(
+    {
+      mcpServers: {
+        huozi: {
+          type: "http",
+          url: "https://cloud.huozi.app/mcp",
+          headers: {
+            Authorization: "Bearer hz_your_key",
+          },
+        },
+      },
+    },
+    null,
+    2,
+  );
+}
+
 function InstallCell({
   client,
   mode,
@@ -153,6 +191,9 @@ function InstallCell({
   t: (key: string) => string;
 }) {
   const cmd = commandFor(client, mode);
+  const showJson =
+    mode === "mcp" && (client === "cursor" || client === "openclaw");
+  const json = showJson ? mcpJsonSnippet() : "";
   const bodyKey = `start.picker.content.${client}.${mode}.body`;
   const noteKey = `start.picker.content.${client}.${mode}.note`;
   const body = t(bodyKey);
@@ -173,6 +214,14 @@ function InstallCell({
             <code>{cmd}</code>
           </pre>
           <CopyButton text={cmd} />
+        </div>
+      )}
+      {json && (
+        <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20 mb-3">
+          <pre className="p-4 pr-14 text-xs leading-relaxed font-mono whitespace-pre overflow-x-auto">
+            <code>{json}</code>
+          </pre>
+          <CopyButton text={json} />
         </div>
       )}
       {hasNote && (

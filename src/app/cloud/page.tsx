@@ -321,8 +321,7 @@ export default async function CloudPage() {
             {_("cloud.try.h.claudeCode")}
           </h3>
           <CodeBlock
-            code={`claude mcp add huozi-cloud -- \\
-  npx -y mcp-remote https://cloud.huozi.app/mcp \\
+            code={`claude mcp add --transport http huozi https://cloud.huozi.app/mcp \\
   --header "Authorization: Bearer hz_YOUR_TOKEN"`}
           />
 
@@ -333,13 +332,12 @@ export default async function CloudPage() {
             code={`// ~/Library/Application Support/Claude/claude_desktop_config.json
 {
   "mcpServers": {
-    "huozi-cloud": {
-      "command": "npx",
-      "args": [
-        "-y", "mcp-remote",
-        "https://cloud.huozi.app/mcp",
-        "--header", "Authorization: Bearer hz_YOUR_TOKEN"
-      ]
+    "huozi": {
+      "type": "http",
+      "url": "https://cloud.huozi.app/mcp",
+      "headers": {
+        "Authorization": "Bearer hz_YOUR_TOKEN"
+      }
     }
   }
 }`}

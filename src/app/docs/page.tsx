@@ -156,6 +156,7 @@ export default async function DocsPage() {
               {
                 mcpServers: {
                   huozi: {
+                    type: "http",
                     url: "https://cloud.huozi.app/mcp",
                     headers: { Authorization: "Bearer hz_your_key" },
                   },
@@ -175,14 +176,9 @@ export default async function DocsPage() {
               {
                 mcpServers: {
                   huozi: {
-                    command: "npx",
-                    args: [
-                      "-y",
-                      "mcp-remote",
-                      "https://cloud.huozi.app/mcp",
-                      "--header",
-                      "Authorization: Bearer hz_your_key",
-                    ],
+                    type: "http",
+                    url: "https://cloud.huozi.app/mcp",
+                    headers: { Authorization: "Bearer hz_your_key" },
                   },
                 },
               },

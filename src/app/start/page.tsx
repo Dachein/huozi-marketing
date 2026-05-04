@@ -183,9 +183,10 @@ Security rules (always).
   - The human can revoke any key at any time from the Connected Agents
     panel on cloud.huozi.app/workspace.
 
-If the human is at a terminal themselves and prefers to drive the
-install interactively, suggest \`npx huozi-mcp\` instead — same flow,
-just with a TTY in the loop.`;
+If the human is at a terminal and prefers to drive the install
+interactively, that's fine — the same curl + JWT exchange works from
+any shell. The endpoints in PATH 1/2 above are stable JSON-RPC
+endpoints; nothing about them needs to be wrapped in a CLI.`;
 
 export default async function StartPage() {
   const locale = await getLocale();
@@ -226,27 +227,10 @@ export default async function StartPage() {
         </div>
       </section>
 
-      {/* 0b · Secondary — terminal one-liner for the dev path. Purposely
-              less visually heavy than the conversational block above. */}
-      <section className="mb-12">
-        <div className="flex items-baseline justify-between gap-3 mb-2">
-          <h2 className="font-serif text-sm font-medium text-muted-foreground">
-            {tx("start.terminal.title")}
-          </h2>
-          <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-            {tx("start.terminal.badge")}
-          </span>
-        </div>
-        <div className="relative rounded-lg border border-border bg-muted/30">
-          <pre className="p-3 pr-12 text-sm leading-relaxed font-mono">
-            <code>npx huozi-mcp</code>
-          </pre>
-          <CopyButton text="npx huozi-mcp" />
-        </div>
-        <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-          {tx("start.terminal.desc")}
-        </p>
-      </section>
+      {/* (Removed: a `npx huozi-mcp` terminal one-liner used to live
+          here. We dropped it as part of the "remote HTTP MCP, no local
+          npm" architecture decision — daily-use config is mcp.json with
+          type:"http", surfaced via the InstallPicker below.) */}
 
       {/* 1 · Per-client install picker — MCP × Skill tabs per actual support */}
       <section className="mb-14">
