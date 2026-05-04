@@ -723,6 +723,63 @@ export const zh = {
   "start.picker.content.generic.mcp.note":
     "保留英文 —— LLM 原生读英文，翻译反而可能让步骤出现细微偏差。适用于任何 stdio / HTTP MCP 客户端。",
 
+  // /edge 快速部署 CTA（取代原来的 4 步 bootstrap；安装路径统一在 /start/edge）
+  "edge.quickstart.title": "一行命令部署",
+  "edge.quickstart.body":
+    "完整安装路径在 /start/edge —— 一条 curl 命令，约 5 分钟。下面的架构细节解释会建出哪些资源以及为什么。",
+  "edge.quickstart.cta": "Quick deploy →",
+
+  // /start tab labels (Cloud / Edge tabs shared across /start subroutes)
+  "start.tab.cloud": "Cloud",
+  "start.tab.edge": "自部署 (Edge)",
+
+  // /start/edge page
+  "start.edge.meta.title": "Get started with huozi Edge — huozi.app",
+  "start.edge.meta.description":
+    "一行命令把 huozi Edge 部署到你自己的 Cloudflare 账户。",
+
+  "start.edge.hero.title": "部署 huozi Edge",
+  "start.edge.hero.subtitle":
+    "一行命令把 huozi Edge 自部署到你自己的 Cloudflare 账户，约 5 分钟。部署完成后，日常使用跟 Cloud 完全一样。",
+
+  "start.edge.oneline.title": "一行安装",
+  "start.edge.oneline.badge": "推荐",
+  "start.edge.oneline.desc":
+    "脚本会自动建好 D1 + R2 + Durable Objects + DNS + Worker routes，部署两个 worker，最后给你一个一次性 setup URL。唯一要你手动的环节是浏览器弹出后点 Authorize 完成 Cloudflare OAuth 授权。",
+
+  "start.edge.prereq.title": "你需要准备",
+  "start.edge.prereq.cf":
+    "Cloudflare 账户（免费版即可，没有的话去 dash.cloudflare.com 注册）。",
+  "start.edge.prereq.zone":
+    "在 CF 账户里有一个域名（自带域名 + 改 NS 到 CF，或者用 Cloudflare Registrar 现买一个）。",
+  "start.edge.prereq.tools":
+    "本地工具：Node ≥ 20、jq、openssl、curl、python3（脚本会自动检查并提示缺什么）。",
+
+  "start.edge.agent.title": "或者让 Agent 替你跑",
+  "start.edge.agent.badge": "对话式",
+  "start.edge.agent.desc":
+    "把这段 prompt 粘到 Claude Code / Cursor 等 Agent 里。Agent 会用它自己的 Bash 工具跑安装命令，遇到报错也能帮你 debug。",
+
+  "start.edge.after.title": "部署完成后",
+  "start.edge.after.s1":
+    "浏览器打开脚本输出的 setup URL。设置 admin 邮箱 + 密码，这是你的 owner 账号。",
+  "start.edge.after.s2":
+    "进入 /workspace。顶部 banner 会显示 connection snippet —— 你可以复制 hz_link_ token 或完整的 mcp.json 段。",
+  "start.edge.after.s3":
+    "把 snippet 粘到 AI 客户端的 MCP 配置（比如 Claude Code 的 mcp.json），重启客户端。",
+  "start.edge.after.s4":
+    "用 huozi_glob { pattern: \"**/*\" } 验证。16 个 huozi 工具就位，跟 Cloud 完全一样。",
+
+  "start.edge.footer.deep.title": "Edge 架构",
+  "start.edge.footer.deep.desc":
+    "Edge 跟 Cloud 的差异、部署的资源清单、环境变量、License。",
+  "start.edge.footer.repo.title": "GitHub 源码",
+  "start.edge.footer.repo.desc":
+    "MIT 授权 monorepo。可以看 install / deploy 脚本。",
+  "start.edge.footer.docs.title": "MCP 参考",
+  "start.edge.footer.docs.desc":
+    "16 个工具，JSON-RPC 协议，Cloud 和 Edge 完全相同。",
+
   // Connect-Agent 页面
   "connect.back": "← 工作区",
   "connect.title": "连接 Agent",

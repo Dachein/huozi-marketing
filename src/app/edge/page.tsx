@@ -200,64 +200,27 @@ export default async function EdgePage() {
         </div>
       </section>
 
-      {/* Deploy — 4-step bootstrap that mirrors scripts/edge-deploy.sh */}
+      {/* Quick deploy CTA — short pointer to /start/edge for users who
+          want to install rather than read the architecture below. */}
       <section className="mx-auto max-w-3xl px-6 py-12" id="deploy">
-        <h2 className="font-serif text-xl font-bold tracking-wide mb-4">
-          {_("edge.bootstrap.title")}
-        </h2>
-        <ol className="space-y-6 text-sm">
-          <li>
-            <div className="flex items-baseline gap-3 mb-2">
-              <span className="font-mono text-xs text-muted-foreground">01</span>
-              <h3 className="font-medium">{_("edge.bootstrap.s1.title")}</h3>
+        <div className="rounded-xl border-2 border-accent/40 bg-muted/20 px-6 py-5">
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div className="flex-1 min-w-0">
+              <h2 className="font-serif text-lg font-bold tracking-wide mb-1">
+                {_("edge.quickstart.title")}
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {_("edge.quickstart.body")}
+              </p>
             </div>
-            <p className="text-muted-foreground mb-3 ml-8 leading-relaxed">
-              {_("edge.bootstrap.s1.body")}
-            </p>
-            <div className="ml-8">
-              <Code code={`npx wrangler login`} />
-            </div>
-          </li>
-
-          <li>
-            <div className="flex items-baseline gap-3 mb-2">
-              <span className="font-mono text-xs text-muted-foreground">02</span>
-              <h3 className="font-medium">{_("edge.bootstrap.s2.title")}</h3>
-            </div>
-            <p className="text-muted-foreground mb-3 ml-8 leading-relaxed">
-              {_("edge.bootstrap.s2.body")}
-            </p>
-            <div className="ml-8">
-              <Code
-                code={`git clone https://github.com/Dachein/huozi
-cd huozi`}
-              />
-            </div>
-          </li>
-
-          <li>
-            <div className="flex items-baseline gap-3 mb-2">
-              <span className="font-mono text-xs text-muted-foreground">03</span>
-              <h3 className="font-medium">{_("edge.bootstrap.s3.title")}</h3>
-            </div>
-            <p className="text-muted-foreground mb-3 ml-8 leading-relaxed">
-              {_("edge.bootstrap.s3.body")}
-            </p>
-            <div className="ml-8">
-              <Code code={`bash scripts/edge-deploy.sh`} />
-            </div>
-          </li>
-
-          <li>
-            <div className="flex items-baseline gap-3 mb-2">
-              <span className="font-mono text-xs text-muted-foreground">04</span>
-              <h3 className="font-medium">{_("edge.bootstrap.s4.title")}</h3>
-            </div>
-            <p className="text-muted-foreground ml-8 leading-relaxed">
-              {_("edge.bootstrap.s4.body")}
-            </p>
-          </li>
-        </ol>
+            <Link
+              href="/start/edge"
+              className="shrink-0 rounded-lg bg-foreground text-background px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              {_("edge.quickstart.cta")}
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Config table — what's in .huozi-edge.env */}

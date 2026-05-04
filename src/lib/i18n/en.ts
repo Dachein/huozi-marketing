@@ -738,6 +738,64 @@ export const en = {
   "start.picker.content.generic.mcp.note":
     "Kept in English — LLMs read English natively, and translating the steps risks subtle drift. Works for any stdio / HTTP MCP client.",
 
+  // /edge quick-deploy CTA (replaces inline 4-step bootstrap; install
+  // path canonically lives at /start/edge now)
+  "edge.quickstart.title": "Deploy in one line",
+  "edge.quickstart.body":
+    "The full install path lives at /start/edge — a single curl-piped command, ~5 minutes. The architecture details below explain what gets provisioned and why.",
+  "edge.quickstart.cta": "Quick deploy →",
+
+  // /start tab labels (Cloud / Edge tabs shared across /start subroutes)
+  "start.tab.cloud": "Cloud",
+  "start.tab.edge": "Self-host (Edge)",
+
+  // /start/edge page — Edge install path
+  "start.edge.meta.title": "Get started with huozi Edge — huozi.app",
+  "start.edge.meta.description":
+    "One-line bootstrap to deploy huozi Edge on your own Cloudflare account.",
+
+  "start.edge.hero.title": "Deploy huozi Edge",
+  "start.edge.hero.subtitle":
+    "Run one command to provision a self-hosted instance on your own Cloudflare account. ~5 minutes end-to-end. Once it's up, daily use is identical to Cloud.",
+
+  "start.edge.oneline.title": "One-line install",
+  "start.edge.oneline.badge": "Recommended",
+  "start.edge.oneline.desc":
+    "The script provisions D1 + R2 + Durable Objects + DNS + Worker routes, deploys both workers, then prints a one-shot setup URL. The only manual step is clicking Authorize when the browser opens for Cloudflare OAuth.",
+
+  "start.edge.prereq.title": "What you need",
+  "start.edge.prereq.cf":
+    "A Cloudflare account (free plan is fine; sign up at dash.cloudflare.com).",
+  "start.edge.prereq.zone":
+    "A domain in your Cloudflare account (bring your own and add NS records, or buy via Cloudflare Registrar).",
+  "start.edge.prereq.tools":
+    "Local tools: Node ≥ 20, jq, openssl, curl, python3 (the script checks and tells you what's missing).",
+
+  "start.edge.agent.title": "Or let an Agent run it for you",
+  "start.edge.agent.badge": "Conversational",
+  "start.edge.agent.desc":
+    "Paste this prompt into Claude Code, Cursor, or any tool-using AI. The Agent runs the install via its Bash tool and helps debug if anything goes wrong.",
+
+  "start.edge.after.title": "After deploy",
+  "start.edge.after.s1":
+    "Open the setup URL printed by the script in your browser. Pick an admin email + password (this becomes your owner account).",
+  "start.edge.after.s2":
+    "You land on /workspace. The top banner shows a connection snippet — copy either the hz_link_ token or the full mcp.json block.",
+  "start.edge.after.s3":
+    "Paste the snippet into your AI client's MCP config (e.g. Claude Code's mcp.json), then restart the client.",
+  "start.edge.after.s4":
+    "Verify with: huozi_glob { pattern: \"**/*\" }. The 16 huozi tools are now available; daily use is the same as Cloud.",
+
+  "start.edge.footer.deep.title": "Edge architecture",
+  "start.edge.footer.deep.desc":
+    "How Edge differs from Cloud, what gets provisioned, env vars, license.",
+  "start.edge.footer.repo.title": "Source on GitHub",
+  "start.edge.footer.repo.desc":
+    "MIT-licensed monorepo. Browse the install / deploy scripts.",
+  "start.edge.footer.docs.title": "MCP reference",
+  "start.edge.footer.docs.desc":
+    "16 tools, JSON-RPC shape, identical for Cloud + Edge.",
+
   // Connect-Agent page
   "connect.back": "← Workspace",
   "connect.title": "Connect an Agent",
