@@ -23,10 +23,23 @@ import { CopyButton } from "@/components/copy-button";
 import { AgentLogo } from "@/components/workspace/agent-logo";
 import { useT } from "@/lib/i18n/context";
 
-type Client = "claude-code" | "cursor" | "openclaw" | "generic";
+type Client =
+  | "claude-code"
+  | "cursor"
+  | "openclaw"
+  | "codex"
+  | "hermes"
+  | "generic";
 type Mode = "mcp" | "skill";
 
-const CLIENTS: Client[] = ["claude-code", "cursor", "openclaw", "generic"];
+const CLIENTS: Client[] = [
+  "claude-code",
+  "cursor",
+  "openclaw",
+  "codex",
+  "hermes",
+  "generic",
+];
 
 /**
  * Per-client install modes, matched to each ecosystem's native extension
@@ -37,12 +50,16 @@ const CLIENTS: Client[] = ["claude-code", "cursor", "openclaw", "generic"];
  *     servers follow.
  *   - OpenClaw → ClawHub is the first-class ecosystem. Skill and MCP coexist;
  *     users may prefer the Skill entry point.
+ *   - Codex → first-class MCP via `codex mcp add` (TOML-backed).
+ *   - Hermes → MCP via ~/.hermes/config.yaml; no `mcp add` subcommand yet.
  *   - Generic → only the Agent-readable curl prompt applies.
  */
 const CLIENT_MODES: Record<Client, Mode[]> = {
   "claude-code": ["mcp"],
   cursor: ["mcp"],
   openclaw: ["mcp", "skill"],
+  codex: ["mcp"],
+  hermes: ["mcp"],
   generic: ["mcp"],
 };
 
@@ -50,6 +67,8 @@ const CLIENT_NAMES: Record<Exclude<Client, "generic">, string> = {
   "claude-code": "Claude Code",
   cursor: "Cursor",
   openclaw: "OpenClaw",
+  codex: "Codex",
+  hermes: "Hermes Agent",
 };
 
 // Mode labels are product names — we don't translate "MCP" / "Skill".
@@ -67,16 +86,39 @@ function commandFor(client: Client, mode: Mode): string {
     return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp \\
   --header "Authorization: Bearer hz_your_key"`;
   }
+  // OpenAI Codex CLI — same `mcp add` ergonomic, but TOML-backed
+  // (~/.codex/config.toml) and reads the bearer indirectly via env-var
+  // so the token never lands in plain text inside config.
+  if (client === "codex" && mode === "mcp") {
+    return `# 1) export the key once in your shell rc
+export HUOZI_API_KEY=hz_your_key
+
+# 2) register the server
+codex mcp add huozi \\
+  --url https://cloud.huozi.app/mcp \\
+  --bearer-token-env-var HUOZI_API_KEY`;
+  }
   // OpenClaw skill — published to ClawHub as huozi/mcp; the CLI fetches
   // and wires the skill into ~/.openclaw/skills/ for you.
   if (client === "openclaw" && mode === "skill") {
     return `openclaw skills install huozi/mcp`;
   }
-  // Cursor / OpenClaw / generic share the same shape: an mcp.json
-  // snippet. We render the JSON inline below the picker; the function
-  // returns an empty string so the parent skips the "command" panel
-  // and goes straight to the JSON one.
+  // Cursor / OpenClaw-MCP / Hermes / generic share the same shape: a
+  // config-file snippet. We render the YAML/JSON inline below the picker;
+  // the function returns an empty string so the parent skips the "command"
+  // panel and goes straight to the snippet panel.
   return "";
+}
+
+/** Hermes Agent uses YAML, not JSON; bearer is inline (no env-var
+ *  redirect documented in their config schema as of Feb 2026). */
+function hermesYamlSnippet(): string {
+  return `# Append to ~/.hermes/config.yaml
+mcp_servers:
+  huozi:
+    url: "https://cloud.huozi.app/mcp"
+    headers:
+      Authorization: "Bearer hz_your_key"`;
 }
 
 export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
@@ -194,6 +236,7 @@ function InstallCell({
   const showJson =
     mode === "mcp" && (client === "cursor" || client === "openclaw");
   const json = showJson ? mcpJsonSnippet() : "";
+  const yaml = client === "hermes" && mode === "mcp" ? hermesYamlSnippet() : "";
   const bodyKey = `start.picker.content.${client}.${mode}.body`;
   const noteKey = `start.picker.content.${client}.${mode}.note`;
   const body = t(bodyKey);
@@ -222,6 +265,14 @@ function InstallCell({
             <code>{json}</code>
           </pre>
           <CopyButton text={json} />
+        </div>
+      )}
+      {yaml && (
+        <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20 mb-3">
+          <pre className="p-4 pr-14 text-xs leading-relaxed font-mono whitespace-pre overflow-x-auto">
+            <code>{yaml}</code>
+          </pre>
+          <CopyButton text={yaml} />
         </div>
       )}
       {hasNote && (

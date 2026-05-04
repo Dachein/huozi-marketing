@@ -205,30 +205,37 @@ export const en = {
   "cloud.principles.6.body":
     "Claude Code's Edit tool fails hard when old_string doesn't match exactly. The official MCP filesystem server, by contrast, silently falls back to whitespace-tolerant matching — and quietly edits the wrong location under concurrent writes. We side with CC. Strict fail, explicit re-read.",
 
+  "cloud.team.title": "Permissions · collaboration",
+  "cloud.team.intro":
+    "Bytes are one thing — who can touch them is another.",
+  "cloud.team.scope.title": "Scope-bound API keys",
+  "cloud.team.scope.body":
+    "Mint a key with a scope_prefix and the Agent literally cannot read or write outside that prefix. Enforced at the Worker boundary, not via Agent self-discipline.",
+  "cloud.team.members.title": "Invite collaborators, each with their own key",
+  "cloud.team.members.body":
+    "From /workspace/members enter an email and generate an invite URL — they click it and they're in. Each member mints their own API keys (scope-bindable). The owner can revoke invites, remove members, transfer ownership. Invite links live 7 days.",
+
   "cloud.roadmap.title": "On the roadmap",
-  "cloud.roadmap.1.label": "Scope enforcement",
+  "cloud.roadmap.1.label": "Secret scanner",
   "cloud.roadmap.1.desc":
-    "API-key-bound subdirectory sandboxing. An Agent scoped to funds/fund-A/ physically cannot read funds/fund-B/.",
-  "cloud.roadmap.2.label": "Secret scanner",
-  "cloud.roadmap.2.desc":
     "Inline scan at write time. ~20 built-in rules (AWS / OpenAI / GitHub / JWT / private keys) + placeholder allowlist.",
-  "cloud.roadmap.3.label": "Production-grade Grep",
-  "cloud.roadmap.3.desc":
+  "cloud.roadmap.2.label": "Production-grade Grep",
+  "cloud.roadmap.2.desc":
     "D1 FTS5 trigram index for fast regex; stream-scan fallback for multiline / complex patterns; 5 MB / 50 MB / 10 s safety caps.",
-  "cloud.roadmap.4.label": "Real Git commit hashes",
-  "cloud.roadmap.4.desc":
+  "cloud.roadmap.3.label": "Real Git commit hashes",
+  "cloud.roadmap.3.desc":
     "isomorphic-git on Cloudflare Worker. Commit SHA equals what local Git would produce.",
-  "cloud.roadmap.5.label": "Notebook editing",
-  "cloud.roadmap.5.desc":
+  "cloud.roadmap.4.label": "Notebook editing",
+  "cloud.roadmap.4.desc":
     "huozi_notebook_edit tool for .ipynb cells. Until then, notebooks are read-only.",
-  "cloud.roadmap.6.label": "Revert tool",
-  "cloud.roadmap.6.desc":
+  "cloud.roadmap.5.label": "Revert tool",
+  "cloud.roadmap.5.desc":
     "huozi_revert by commit_sha or message_uuid. New commit cancels old; history preserved.",
-  "cloud.roadmap.7.label": "Multi-workspace search",
-  "cloud.roadmap.7.desc":
+  "cloud.roadmap.6.label": "Multi-workspace search",
+  "cloud.roadmap.6.desc":
     "Organization concept layered above workspaces. Lets a fund manager search across all their funds at once.",
-  "cloud.roadmap.8.label": "Live subscribers",
-  "cloud.roadmap.8.desc":
+  "cloud.roadmap.7.label": "Live subscribers",
+  "cloud.roadmap.7.desc":
     "WebSocket push from WorkspaceDO. When Agent A commits, Agent B gets a changed-files notification in real time.",
 
   "cloud.try.title": "Try it",
@@ -759,6 +766,16 @@ export const en = {
   "start.picker.content.openclaw.skill.note":
     "We only surface Skill for OpenClaw because that's where it's the native idiom — Claude Code and Cursor users stick with MCP.",
 
+  "start.picker.content.codex.mcp.body":
+    "OpenAI Codex CLI is a first-class MCP host. Run this — it writes ~/.codex/config.toml; export your key in your shell rc and restart codex.",
+  "start.picker.content.codex.mcp.note":
+    "Codex reads the bearer indirectly via bearer_token_env_var, so the token never lands in plain text inside config.toml.",
+
+  "start.picker.content.hermes.mcp.body":
+    "Hermes Agent (Nous Research) registers remote MCP servers through ~/.hermes/config.yaml. Paste this snippet into the mcp_servers block, then run /reload-mcp inside a Hermes session.",
+  "start.picker.content.hermes.mcp.note":
+    "Hermes has no mcp add subcommand yet; you edit YAML and /reload-mcp instead of restarting the process.",
+
   "start.picker.content.generic.mcp.body":
     "Any Agent that can make HTTP calls. Copy this prompt into the Agent — it reads the steps, runs the curl device flow, and writes its own MCP config. Your only job: click one Authorize link in the browser.",
   "start.picker.content.generic.mcp.note":
@@ -810,7 +827,7 @@ export const en = {
   "start.edge.after.s3":
     "Paste the snippet into your AI client's MCP config (e.g. Claude Code's mcp.json), then restart the client.",
   "start.edge.after.s4":
-    "Verify with: huozi_glob { pattern: \"**/*\" }. The 16 huozi tools are now available; daily use is the same as Cloud.",
+    "Verify with: huozi_glob { pattern: \"**/*\" }. The 17 huozi tools are now available; daily use is the same as Cloud.",
 
   "start.edge.footer.deep.title": "Edge architecture",
   "start.edge.footer.deep.desc":
@@ -820,7 +837,7 @@ export const en = {
     "MIT-licensed monorepo. Browse the install / deploy scripts.",
   "start.edge.footer.docs.title": "MCP reference",
   "start.edge.footer.docs.desc":
-    "16 tools, JSON-RPC shape, identical for Cloud + Edge.",
+    "17 tools, JSON-RPC shape, identical for Cloud + Edge.",
 
   // Connect-Agent page
   "connect.back": "← Workspace",

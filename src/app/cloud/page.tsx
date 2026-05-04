@@ -248,6 +248,41 @@ export default async function CloudPage() {
           ))}
         </section>
 
+        {/* Permissions & collaboration — sits between the bare tool grid
+            and the abstract design principles. The two items below are
+            both shipped, just under-advertised: scope enforcement is a
+            Worker-side hard guarantee, members/invites is a real /workspace/
+            members UI surface. Don't move this back into the roadmap. */}
+        <section className="mx-auto max-w-3xl px-6 py-12 border-t border-border/50">
+          <div className="flex items-center gap-3 mb-3">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-wide">
+              {_("cloud.team.title")}
+            </h2>
+            <Status kind="shipping" text={_("cloud.status.shipping")} />
+          </div>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            {_("cloud.team.intro")}
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-semibold mb-2 text-sm">
+                {_("cloud.team.scope.title")}
+              </h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {_("cloud.team.scope.body")}
+              </p>
+            </div>
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-semibold mb-2 text-sm">
+                {_("cloud.team.members.title")}
+              </h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {_("cloud.team.members.body")}
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Design principles */}
         <section className="mx-auto max-w-3xl px-6 py-12 border-t border-border/50">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-wide mb-6">
@@ -276,7 +311,7 @@ export default async function CloudPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
               <Roadmap
                 key={n}
                 label={_(`cloud.roadmap.${n}.label`)}

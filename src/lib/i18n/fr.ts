@@ -224,30 +224,37 @@ export const fr = {
   "cloud.principles.6.body":
     "L'outil Edit de Claude Code échoue durement quand old_string ne correspond pas exactement. Le serveur MCP filesystem officiel, à l'inverse, retombe silencieusement sur une correspondance tolérante aux espaces — et édite la mauvaise position en cas d'écritures concurrentes. Nous suivons CC : échec strict, relecture explicite.",
 
+  "cloud.team.title": "Permissions · collaboration",
+  "cloud.team.intro":
+    "Les octets sont une chose — qui peut les toucher, c'en est une autre.",
+  "cloud.team.scope.title": "Clés API liées à un scope",
+  "cloud.team.scope.body":
+    "Mintez une clé avec un scope_prefix : l'Agent ne peut littéralement plus lire ni écrire en dehors de ce préfixe. Imposé à la frontière du Worker, pas à la discipline de l'Agent.",
+  "cloud.team.members.title": "Invitez des collaborateurs, chacun avec sa clé",
+  "cloud.team.members.body":
+    "Depuis /workspace/members, saisissez un e-mail et générez un lien d'invitation — un clic et la personne est dans le workspace. Chaque membre mint ses propres clés API (avec scope optionnel). Le owner peut révoquer des invitations, retirer des membres, transférer le owner. Les invitations expirent à 7 jours.",
+
   "cloud.roadmap.title": "Feuille de route",
-  "cloud.roadmap.1.label": "Cloisonnement scope",
+  "cloud.roadmap.1.label": "Scanner de secrets",
   "cloud.roadmap.1.desc":
-    "Sandbox de sous-répertoire lié à la clé API. Un agent scope sur funds/fund-A/ ne peut physiquement pas lire funds/fund-B/.",
-  "cloud.roadmap.2.label": "Scanner de secrets",
-  "cloud.roadmap.2.desc":
     "Scan inline à l'écriture. ~20 règles intégrées (AWS / OpenAI / GitHub / JWT / clés privées) + liste blanche de placeholders.",
-  "cloud.roadmap.3.label": "Grep niveau production",
-  "cloud.roadmap.3.desc":
+  "cloud.roadmap.2.label": "Grep niveau production",
+  "cloud.roadmap.2.desc":
     "Index trigramme D1 FTS5 pour regex rapides ; fallback stream-scan pour patterns multi-lignes / complexes ; plafonds de sécurité 5 Mo / 50 Mo / 10 s.",
-  "cloud.roadmap.4.label": "Vrais hash de commits Git",
-  "cloud.roadmap.4.desc":
+  "cloud.roadmap.3.label": "Vrais hash de commits Git",
+  "cloud.roadmap.3.desc":
     "isomorphic-git sur Cloudflare Worker. SHA de commit identique à ce que produirait Git local.",
-  "cloud.roadmap.5.label": "Édition de notebooks",
-  "cloud.roadmap.5.desc":
+  "cloud.roadmap.4.label": "Édition de notebooks",
+  "cloud.roadmap.4.desc":
     "Outil huozi_notebook_edit pour les cellules .ipynb. D'ici là, notebooks en lecture seule.",
-  "cloud.roadmap.6.label": "Outil revert",
-  "cloud.roadmap.6.desc":
+  "cloud.roadmap.5.label": "Outil revert",
+  "cloud.roadmap.5.desc":
     "huozi_revert par commit_sha ou message_uuid. Nouveau commit annule l'ancien ; historique préservé.",
-  "cloud.roadmap.7.label": "Recherche multi-workspace",
-  "cloud.roadmap.7.desc":
+  "cloud.roadmap.6.label": "Recherche multi-workspace",
+  "cloud.roadmap.6.desc":
     "Concept d'organisation au-dessus des workspaces. Permet à un gérant de fonds de chercher dans tous ses fonds d'un coup.",
-  "cloud.roadmap.8.label": "Abonnés en temps réel",
-  "cloud.roadmap.8.desc":
+  "cloud.roadmap.7.label": "Abonnés en temps réel",
+  "cloud.roadmap.7.desc":
     "Push WebSocket depuis le WorkspaceDO. Quand l'agent A commit, l'agent B reçoit une notification de fichiers modifiés en temps réel.",
 
   "cloud.try.title": "Essayer",
@@ -760,6 +767,16 @@ export const fr = {
     "L'écosystème natif d'OpenClaw est ClawHub — Skill y est un citoyen de première classe. Exécutez ceci : le CLI récupère huozi/mcp depuis ClawHub dans ~/.openclaw/skills/ ; redémarrez OpenClaw pour l'activer.",
   "start.picker.content.openclaw.skill.note":
     "Skill n'apparaît que pour OpenClaw parce que c'est là qu'il est l'idiome natif — les utilisateurs Claude Code et Cursor en restent à MCP.",
+
+  "start.picker.content.codex.mcp.body":
+    "OpenAI Codex CLI prend en charge MCP distant nativement. Lancez cette commande — elle écrit dans ~/.codex/config.toml ; exportez votre clé dans votre shell rc et relancez codex pour l'activer.",
+  "start.picker.content.codex.mcp.note":
+    "Codex lit le bearer indirectement via bearer_token_env_var, donc le token n'apparaît jamais en clair dans le config.toml.",
+
+  "start.picker.content.hermes.mcp.body":
+    "Hermes Agent (Nous Research) enregistre les serveurs MCP distants dans ~/.hermes/config.yaml. Collez ce snippet dans le bloc mcp_servers, puis lancez /reload-mcp dans une session Hermes.",
+  "start.picker.content.hermes.mcp.note":
+    "Hermes n'a pas encore de sous-commande mcp add ; on édite le YAML puis /reload-mcp plutôt que de redémarrer le process.",
 
   "start.picker.content.generic.mcp.body":
     "Tout Agent capable d'appels HTTP. Collez cette invite dans l'Agent — il lit les étapes, exécute le flux device en curl, et écrit sa propre configuration MCP. Votre seul rôle : cliquer une fois sur Authorize dans le navigateur.",

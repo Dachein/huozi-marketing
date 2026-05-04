@@ -222,30 +222,37 @@ export const zh = {
   "cloud.principles.6.body":
     "Claude Code 的 Edit 工具在 old_string 不精确匹配时直接报错。官方 MCP filesystem server 反过来 —— 默默回退到对空白宽容的匹配 —— 在并发写入时就悄悄改了不该改的地方。我们站 CC 这边：严格失败，显式重读。",
 
+  "cloud.team.title": "权限 · 协作",
+  "cloud.team.intro":
+    "字节是一回事，谁能动它是另一回事。",
+  "cloud.team.scope.title": "Scope 隔离 — API key 绑子目录沙箱",
+  "cloud.team.scope.body":
+    "mint key 时可指定 scope_prefix。被限定到 funds/fund-A/ 的 Agent 在物理上读不到 funds/fund-B/ —— Worker 边界硬性强制，不靠 Agent 自觉。",
+  "cloud.team.members.title": "邀请协作者，每人独立 key",
+  "cloud.team.members.body":
+    "在 /workspace/members 输 email 生成邀请链接，对方点击进站即加入。每个成员独立 mint API key，可分配自己的 scope。owner 可撤销邀请、移除成员、切 owner。邀请链接 7 天有效。",
+
   "cloud.roadmap.title": "路线图",
-  "cloud.roadmap.1.label": "Scope 强制隔离",
+  "cloud.roadmap.1.label": "Secret 扫描",
   "cloud.roadmap.1.desc":
-    "API key 绑子目录沙箱。被限定到 funds/fund-A/ 的 Agent 在物理上读不到 funds/fund-B/。",
-  "cloud.roadmap.2.label": "Secret 扫描",
-  "cloud.roadmap.2.desc":
     "写入时内联扫描。约 20 条内置规则（AWS / OpenAI / GitHub / JWT / 私钥）+ 占位符白名单。",
-  "cloud.roadmap.3.label": "生产级 Grep",
-  "cloud.roadmap.3.desc":
+  "cloud.roadmap.2.label": "生产级 Grep",
+  "cloud.roadmap.2.desc":
     "D1 FTS5 trigram 索引提速正则；多行 / 复杂模式回退到流式扫描；5 MB / 50 MB / 10 秒安全上限。",
-  "cloud.roadmap.4.label": "真实 Git 提交哈希",
-  "cloud.roadmap.4.desc":
+  "cloud.roadmap.3.label": "真实 Git 提交哈希",
+  "cloud.roadmap.3.desc":
     "在 Cloudflare Worker 上跑 isomorphic-git。Commit SHA 与本地 Git 的算法一致。",
-  "cloud.roadmap.5.label": "Notebook 编辑",
-  "cloud.roadmap.5.desc":
+  "cloud.roadmap.4.label": "Notebook 编辑",
+  "cloud.roadmap.4.desc":
     "为 .ipynb cell 提供 huozi_notebook_edit 工具。在此之前 notebook 只读。",
-  "cloud.roadmap.6.label": "Revert 工具",
-  "cloud.roadmap.6.desc":
+  "cloud.roadmap.5.label": "Revert 工具",
+  "cloud.roadmap.5.desc":
     "huozi_revert 按 commit_sha 或 message_uuid 撤销。新提交取消旧的；历史保留。",
-  "cloud.roadmap.7.label": "跨 workspace 搜索",
-  "cloud.roadmap.7.desc":
+  "cloud.roadmap.6.label": "跨 workspace 搜索",
+  "cloud.roadmap.6.desc":
     "在 workspace 之上引入组织概念。让基金经理能一次性搜遍他名下所有基金。",
-  "cloud.roadmap.8.label": "实时订阅",
-  "cloud.roadmap.8.desc":
+  "cloud.roadmap.7.label": "实时订阅",
+  "cloud.roadmap.7.desc":
     "WorkspaceDO 的 WebSocket 推送。Agent A 提交后，Agent B 实时收到变更通知。",
 
   "cloud.try.title": "上手试试",
@@ -743,6 +750,16 @@ export const zh = {
   "start.picker.content.openclaw.skill.note":
     "Skill 这条路只出现在 OpenClaw，因为那里才是它的原生习惯 —— Claude Code 和 Cursor 用户保持 MCP 一条路就够了。",
 
+  "start.picker.content.codex.mcp.body":
+    "OpenAI Codex CLI 一等支持远程 MCP。跑这行命令，CLI 写进 ~/.codex/config.toml；shell rc 里 export 你的 API key，重启 Codex 生效。",
+  "start.picker.content.codex.mcp.note":
+    "Codex 用 bearer_token_env_var 间接读 key，避免把明文写进配置文件。",
+
+  "start.picker.content.hermes.mcp.body":
+    "Hermes Agent（Nous Research）通过 ~/.hermes/config.yaml 注册远程 MCP。把下面这段贴进文件的 mcp_servers 块，然后在 Hermes 会话里 /reload-mcp。",
+  "start.picker.content.hermes.mcp.note":
+    "Hermes 暂时没有 mcp add 子命令；改 yaml 后必须 /reload-mcp 而不是重启进程。",
+
   "start.picker.content.generic.mcp.body":
     "任何能发 HTTP 请求的 Agent 都适用。把下面这段提示词贴给 Agent —— 它读指令、跑 curl 设备流程、把拿到的 key 写进自己的 MCP 配置里。你只需要在浏览器里点一次 Authorize。",
   "start.picker.content.generic.mcp.note":
@@ -793,7 +810,7 @@ export const zh = {
   "start.edge.after.s3":
     "把 snippet 粘到 AI 客户端的 MCP 配置（比如 Claude Code 的 mcp.json），重启客户端。",
   "start.edge.after.s4":
-    "用 huozi_glob { pattern: \"**/*\" } 验证。16 个 huozi 工具就位，跟 Cloud 完全一样。",
+    "用 huozi_glob { pattern: \"**/*\" } 验证。17 个 huozi 工具就位，跟 Cloud 完全一样。",
 
   "start.edge.footer.deep.title": "Edge 架构",
   "start.edge.footer.deep.desc":
@@ -803,7 +820,7 @@ export const zh = {
     "MIT 授权 monorepo。可以看 install / deploy 脚本。",
   "start.edge.footer.docs.title": "MCP 参考",
   "start.edge.footer.docs.desc":
-    "16 个工具，JSON-RPC 协议，Cloud 和 Edge 完全相同。",
+    "17 个工具，JSON-RPC 协议，Cloud 和 Edge 完全相同。",
 
   // Connect-Agent 页面
   "connect.back": "← 工作区",

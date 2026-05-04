@@ -223,30 +223,37 @@ export const ja = {
   "cloud.principles.6.body":
     "Claude Code の Edit ツールは old_string が完全一致しないと失敗する。一方、公式 MCP filesystem server は静かに空白寛容なマッチへフォールバック — 並行書き込み下で間違った場所を編集してしまう。我々は CC 側に立つ。厳密失敗、明示的な再読み込み。",
 
+  "cloud.team.title": "権限 · 協業",
+  "cloud.team.intro":
+    "バイトはバイト、誰が触れるかはまた別の話。",
+  "cloud.team.scope.title": "Scope 隔離 — API key をサブディレクトリにバインド",
+  "cloud.team.scope.body":
+    "key を mint する際に scope_prefix を指定すると、その Agent はそのプレフィックスの外を物理的に読み書きできない。Worker 境界での強制であり、Agent の自制ではない。",
+  "cloud.team.members.title": "コラボレーターを招待、各自が独自の key を持つ",
+  "cloud.team.members.body":
+    "/workspace/members で email を入力し招待 URL を生成 — クリックで参加。各メンバーが独自の API key を mint（scope バインド可）。owner は招待を取り消し、メンバーを除外、所有権を移譲できる。招待リンクは 7 日間有効。",
+
   "cloud.roadmap.title": "ロードマップ",
-  "cloud.roadmap.1.label": "Scope 強制隔離",
+  "cloud.roadmap.1.label": "シークレットスキャナ",
   "cloud.roadmap.1.desc":
-    "API キーに紐付くサブディレクトリサンドボックス。funds/fund-A/ にスコープされた Agent は funds/fund-B/ を物理的に読めない。",
-  "cloud.roadmap.2.label": "シークレットスキャナ",
-  "cloud.roadmap.2.desc":
     "書き込み時のインラインスキャン。約 20 の組み込みルール（AWS / OpenAI / GitHub / JWT / 秘密鍵）+ プレースホルダ許可リスト。",
-  "cloud.roadmap.3.label": "本番品質の Grep",
-  "cloud.roadmap.3.desc":
+  "cloud.roadmap.2.label": "本番品質の Grep",
+  "cloud.roadmap.2.desc":
     "高速正規表現のための D1 FTS5 トライグラムインデックス、複数行 / 複雑パターン用のストリームスキャンフォールバック、5 MB / 50 MB / 10 秒の安全上限。",
-  "cloud.roadmap.4.label": "本物の Git コミットハッシュ",
-  "cloud.roadmap.4.desc":
+  "cloud.roadmap.3.label": "本物の Git コミットハッシュ",
+  "cloud.roadmap.3.desc":
     "Cloudflare Worker 上で isomorphic-git。コミット SHA はローカル Git と一致。",
-  "cloud.roadmap.5.label": "Notebook 編集",
-  "cloud.roadmap.5.desc":
+  "cloud.roadmap.4.label": "Notebook 編集",
+  "cloud.roadmap.4.desc":
     ".ipynb セル用の huozi_notebook_edit ツール。それまで notebook は読み取り専用。",
-  "cloud.roadmap.6.label": "Revert ツール",
-  "cloud.roadmap.6.desc":
+  "cloud.roadmap.5.label": "Revert ツール",
+  "cloud.roadmap.5.desc":
     "huozi_revert で commit_sha または message_uuid 指定。新コミットが古いものを打ち消し、履歴は保持。",
-  "cloud.roadmap.7.label": "複数 workspace 横断検索",
-  "cloud.roadmap.7.desc":
+  "cloud.roadmap.6.label": "複数 workspace 横断検索",
+  "cloud.roadmap.6.desc":
     "workspace の上に組織概念を導入。ファンドマネージャーが配下の全ファンドを一度に検索可能に。",
-  "cloud.roadmap.8.label": "ライブ購読",
-  "cloud.roadmap.8.desc":
+  "cloud.roadmap.7.label": "ライブ購読",
+  "cloud.roadmap.7.desc":
     "WorkspaceDO からの WebSocket プッシュ。Agent A がコミットすると、Agent B が変更ファイルの通知をリアルタイムで受け取る。",
 
   "cloud.try.title": "試してみる",
@@ -753,6 +760,16 @@ export const ja = {
     "OpenClaw のネイティブ生態系は ClawHub —— Skill はここでは一級市民です。これを実行すると、CLI が ClawHub から huozi/mcp を取得して ~/.openclaw/skills/ に配置します。OpenClaw を再起動で反映。",
   "start.picker.content.openclaw.skill.note":
     "Skill を表示するのは OpenClaw だけです —— そこが Skill のネイティブな慣習だから。Claude Code と Cursor のユーザーは MCP 一本で十分。",
+
+  "start.picker.content.codex.mcp.body":
+    "OpenAI Codex CLI はリモート MCP をネイティブ対応。このコマンドで ~/.codex/config.toml に書き込み、shell rc で API key を export して codex を再起動すれば反映。",
+  "start.picker.content.codex.mcp.note":
+    "Codex は bearer_token_env_var で間接的に key を読むため、平文の token が config.toml に残りません。",
+
+  "start.picker.content.hermes.mcp.body":
+    "Hermes Agent（Nous Research）は ~/.hermes/config.yaml でリモート MCP を登録。下のスニペットを mcp_servers ブロックに貼り、Hermes セッション内で /reload-mcp を実行。",
+  "start.picker.content.hermes.mcp.note":
+    "Hermes には mcp add サブコマンドがまだなく、yaml を編集して /reload-mcp する流儀です（プロセス再起動ではなく）。",
 
   "start.picker.content.generic.mcp.body":
     "HTTP を扱える任意の Agent 向け。このプロンプトを Agent に貼り付け —— Agent が手順を読み、curl デバイスフローを実行し、自身の MCP 設定を書き込みます。あなたはブラウザで Authorize を一回クリックするだけ。",
