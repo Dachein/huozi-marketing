@@ -702,7 +702,7 @@ export const fr = {
   "start.conversation.title": "Laissez l'Agent s'installer tout seul",
   "start.conversation.badge": "chat · ~60 secondes",
   "start.conversation.desc":
-    "Collez ceci dans n'importe quel Agent compatible MCP (Hermes, OpenClaw, Claude Code, etc.). Il lit les instructions depuis cette page, puis exécute le device flow RFC 8628 lui-même — il vous imprime un lien huozi.app/device, vous cliquez Approve une fois, l'Agent récupère la clé, écrit la config et vérifie via huozi_whoami. Pilotage par l'Agent de bout en bout.",
+    "Collez ceci dans n'importe quel Agent compatible MCP (Hermes, OpenClaw, Claude Code, etc.). Il lit les instructions depuis cette page, puis exécute le device flow RFC 8628 lui-même — il vous imprime un lien cloud.huozi.app/device, vous cliquez Approve une fois, l'Agent récupère la clé, écrit la config et vérifie via huozi_whoami. Pilotage par l'Agent de bout en bout.",
 
   "start.terminal.title": "Ou, depuis un terminal",
   "start.terminal.badge": "Node ≥ 18",
@@ -718,7 +718,7 @@ export const fr = {
 
   "start.authorize.title": "2 · L'Agent imprime un lien — cliquez sur Authorize",
   "start.authorize.example":
-    "→ Ouvrez https://huozi.app/device?code=ABCD-1234 et cliquez sur Authorize.",
+    "→ Ouvrez https://cloud.huozi.app/device?code=ABCD-1234 et cliquez sur Authorize.",
   "start.authorize.desc":
     "Ouvrez le lien dans n'importe quel navigateur. Si vous n'êtes pas connecté à huozi.app, faites d'abord un email OTP unique. Vous verrez ensuite quel Agent demande l'accès, à quel workspace, et un bouton Authorize. Cliquez, puis fermez l'onglet.",
 

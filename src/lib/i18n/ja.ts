@@ -695,7 +695,7 @@ export const ja = {
   "start.conversation.title": "Agent に自動でインストールさせる",
   "start.conversation.badge": "チャット · 約 60 秒",
   "start.conversation.desc":
-    "MCP 対応の任意の Agent（Hermes、OpenClaw、Claude Code など）にこの一言を貼り付けてください。このページの手順を読み取り、自身で RFC 8628 device flow を実行 —— huozi.app/device のリンクを 1 つ表示するので、Approve を 1 回クリック。Agent が key を取得して config に書き込み、huozi_whoami で検証します。完全に Agent 駆動。",
+    "MCP 対応の任意の Agent（Hermes、OpenClaw、Claude Code など）にこの一言を貼り付けてください。このページの手順を読み取り、自身で RFC 8628 device flow を実行 —— cloud.huozi.app/device のリンクを 1 つ表示するので、Approve を 1 回クリック。Agent が key を取得して config に書き込み、huozi_whoami で検証します。完全に Agent 駆動。",
 
   "start.terminal.title": "または、ターミナルから",
   "start.terminal.badge": "Node ≥ 18",
@@ -711,7 +711,7 @@ export const ja = {
 
   "start.authorize.title": "2 · Agent がリンクを出力 —— Authorize をクリック",
   "start.authorize.example":
-    "→ https://huozi.app/device?code=ABCD-1234 を開いて Authorize をクリック。",
+    "→ https://cloud.huozi.app/device?code=ABCD-1234 を開いて Authorize をクリック。",
   "start.authorize.desc":
     "任意のブラウザで開きます。huozi.app にログインしていなければ、一度限りのメール OTP を実行。その後「どの Agent が要求しているか」「どのワークスペースにアクセスするか」と Authorize ボタンが表示されます。クリックしてタブを閉じてください。",
 

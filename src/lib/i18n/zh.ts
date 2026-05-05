@@ -686,7 +686,7 @@ export const zh = {
   "start.conversation.title": "让 Agent 自己装",
   "start.conversation.badge": "对话 · 约 60 秒",
   "start.conversation.desc":
-    "把这句话贴给任意支持 MCP 的 Agent（Hermes、OpenClaw、Claude Code 等）。它读完本页指令后自己跑 RFC 8628 device flow：给你一个 huozi.app/device 链接，你点一次 Approve，Agent 拿到 key、写好配置、调用 huozi_whoami 验证。Agent 驱动全程。",
+    "把这句话贴给任意支持 MCP 的 Agent（Hermes、OpenClaw、Claude Code 等）。它读完本页指令后自己跑 RFC 8628 device flow：给你一个 cloud.huozi.app/device 链接，你点一次 Approve，Agent 拿到 key、写好配置、调用 huozi_whoami 验证。Agent 驱动全程。",
 
   "start.terminal.title": "或者，从终端",
   "start.terminal.badge": "Node ≥ 18",
@@ -701,7 +701,7 @@ export const zh = {
 
   "start.authorize.title": "2 · Agent 会打印一个链接 —— 点一下 Authorize",
   "start.authorize.example":
-    "→ 打开 https://huozi.app/device?code=ABCD-1234 并点 Authorize。",
+    "→ 打开 https://cloud.huozi.app/device?code=ABCD-1234 并点 Authorize。",
   "start.authorize.desc":
     "用任意浏览器打开链接。如果你还没登录 huozi.app，会先走一次 email OTP。然后你会看到「哪个 Agent 在请求」「要访问哪个工作区」以及一个 Authorize 按钮。点它，关掉页面。",
 

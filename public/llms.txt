@@ -61,12 +61,18 @@ Response:
 {
   "device_code": "<opaque hex>",
   "user_code": "ABCD-1234",
-  "verification_url": "https://huozi.app/device",
-  "verification_url_complete": "https://huozi.app/device?code=ABCD-1234",
+  "verification_url": "https://cloud.huozi.app/device",
+  "verification_url_complete": "https://cloud.huozi.app/device?code=ABCD-1234",
   "expires_in": 900,
   "interval": 5
 }
 ```
+
+The `verification_url` host always matches the host you POST'd
+`/auth/device-code` to. Cloud → `cloud.huozi.app`. Edge → your own
+worker domain (whatever you deployed to). Hand the user whichever
+URL the response contains — never hard-code a domain. This keeps
+self-hosted Edge deploys working with the same protocol.
 
 `agent_kind` enum (use the value matching your host):
 `claude-code | openclaw | hermes | codex | cursor | cowork | generic`
