@@ -697,10 +697,10 @@ export const en = {
   "start.hero.subtitle":
     "Pick your Agent. One prompt or one command — click a single link and you're connected.",
 
-  "start.conversation.title": "Let the Agent install itself",
-  "start.conversation.badge": "chat · ~60 seconds",
+  "start.conversation.title": "Choice 1 · Let the Agent install itself",
+  "start.conversation.badge": "RFC 8628 device flow · ~60s",
   "start.conversation.desc":
-    "Paste this into any MCP-capable Agent (Hermes, OpenClaw, Claude Code, etc.). It reads the instructions from this page, then drives the RFC 8628 device flow on its own — prints you a cloud.huozi.app/device link, you click Approve once, the Agent picks up the key, writes the config, and verifies via huozi_whoami. Agent-driven end to end.",
+    "Best for **cloud-deployed Agents** or users not fluent with CLI. Paste this into any MCP-capable Agent (Hermes, OpenClaw, Claude Code, etc.) — it reads the instructions from this page, then drives the RFC 8628 device flow on its own: prints you a cloud.huozi.app/device link, you click Approve once, the Agent picks up the key, writes the config, and verifies via huozi_whoami. Agent-driven end to end — no terminal required.",
 
   "start.terminal.title": "Or, from a terminal",
   "start.terminal.badge": "Node ≥ 18",
@@ -748,9 +748,9 @@ export const en = {
     "Same drive, deployed on your own Cloudflare account. MIT.",
 
   // InstallPicker on /start
-  "start.picker.title": "Or pick your client and grab a snippet",
+  "start.picker.title": "Choice 2 · Native CLI / GUI install",
   "start.picker.subtitle":
-    "Two parallel pipelines: **local terminal / GUI** uses one CLI line or a config file (RFC 8252 OAuth — first call opens a browser); **chat-mode Agent** pastes a prompt into the agent's chat and lets it run the RFC 8628 device flow. Both work; pick by client.",
+    "Best for **users at their own terminal**. RFC 8252 OAuth: each client has its own native `mcp add` CLI (Claude Code / Codex / Hermes) or GUI entry (Cowork, Cursor); the first huozi call auto-opens a browser to authorize. Pick your client and grab the one-liner or config snippet.",
   "start.picker.generic.name": "Generic / Other",
 
   "start.picker.content.claude-code.mcp.body":

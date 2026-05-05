@@ -683,10 +683,10 @@ export const zh = {
   "start.hero.subtitle":
     "选你用的 Agent。一段 prompt 或一行命令，点一次链接就连上了。",
 
-  "start.conversation.title": "让 Agent 自己装",
-  "start.conversation.badge": "对话 · 约 60 秒",
+  "start.conversation.title": "选择一 · 让 Agent 自己装",
+  "start.conversation.badge": "RFC 8628 device flow · 约 60 秒",
   "start.conversation.desc":
-    "把这句话贴给任意支持 MCP 的 Agent（Hermes、OpenClaw、Claude Code 等）。它读完本页指令后自己跑 RFC 8628 device flow：给你一个 cloud.huozi.app/device 链接，你点一次 Approve，Agent 拿到 key、写好配置、调用 huozi_whoami 验证。Agent 驱动全程。",
+    "适合**云端部署的 Agent**、或不熟 CLI 体系的用户。把这句话贴给任意支持 MCP 的 Agent（Hermes、OpenClaw、Claude Code 等），它读完本页指令后自己跑 RFC 8628 device flow：给你一个 cloud.huozi.app/device 链接，你点一次 Approve，Agent 拿到 key、写好配置、调用 huozi_whoami 验证。Agent 驱动全程,不用打开终端。",
 
   "start.terminal.title": "或者，从终端",
   "start.terminal.badge": "Node ≥ 18",
@@ -733,9 +733,9 @@ export const zh = {
     "同一款云盘，部署到你自己的 Cloudflare 账号。MIT 协议。",
 
   // /start 页上的 InstallPicker
-  "start.picker.title": "或者按客户端拿安装片段",
+  "start.picker.title": "选择二 · 按客户端 CLI / GUI 安装",
   "start.picker.subtitle":
-    "两条平行管线：**本地终端 / GUI** 一行命令或一段配置（RFC 8252 OAuth，第一次调用弹浏览器）；**Chat-mode Agent** 粘一段 prompt 让 Agent 自己跑 RFC 8628 device flow。两条都通，选你的客户端。",
+    "适合**本地终端用户**。RFC 8252 OAuth：每个客户端有自己原生的 `mcp add` CLI（Claude Code / Codex / Hermes）或 GUI 入口（Cowork、Cursor），第一次调用 huozi 时自动弹浏览器授权。选你的客户端拿一行命令或一段配置。",
   "start.picker.generic.name": "通用 / 其他",
 
   "start.picker.content.claude-code.mcp.body":

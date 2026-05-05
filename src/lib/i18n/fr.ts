@@ -699,10 +699,10 @@ export const fr = {
   "start.hero.subtitle":
     "Choisissez votre Agent. Une invite ou une commande — un seul clic et c'est connecté.",
 
-  "start.conversation.title": "Laissez l'Agent s'installer tout seul",
-  "start.conversation.badge": "chat · ~60 secondes",
+  "start.conversation.title": "Choix 1 · Laissez l'Agent s'installer tout seul",
+  "start.conversation.badge": "device flow RFC 8628 · ~60 s",
   "start.conversation.desc":
-    "Collez ceci dans n'importe quel Agent compatible MCP (Hermes, OpenClaw, Claude Code, etc.). Il lit les instructions depuis cette page, puis exécute le device flow RFC 8628 lui-même — il vous imprime un lien cloud.huozi.app/device, vous cliquez Approve une fois, l'Agent récupère la clé, écrit la config et vérifie via huozi_whoami. Pilotage par l'Agent de bout en bout.",
+    "Idéal pour les **Agents déployés dans le cloud** ou les utilisateurs peu familiers avec le CLI. Collez ceci dans n'importe quel Agent compatible MCP (Hermes, OpenClaw, Claude Code, etc.) — il lit les instructions depuis cette page, puis exécute le device flow RFC 8628 lui-même : il vous imprime un lien cloud.huozi.app/device, vous cliquez Approve une fois, l'Agent récupère la clé, écrit la config et vérifie via huozi_whoami. Pilotage par l'Agent de bout en bout — aucun terminal requis.",
 
   "start.terminal.title": "Ou, depuis un terminal",
   "start.terminal.badge": "Node ≥ 18",
@@ -750,9 +750,9 @@ export const fr = {
     "Le même drive, déployé sur votre propre compte Cloudflare. MIT.",
 
   // InstallPicker sur /start
-  "start.picker.title": "Ou choisissez votre client et récupérez un extrait",
+  "start.picker.title": "Choix 2 · Installation via CLI / GUI native",
   "start.picker.subtitle":
-    "Deux pipelines parallèles : **terminal local / GUI** utilise une commande CLI ou un fichier de config (OAuth RFC 8252 — le premier appel ouvre un navigateur) ; **Agent en chat** colle un prompt dans le chat de l'agent et le laisse exécuter le device flow RFC 8628. Les deux fonctionnent ; choisissez par client.",
+    "Idéal pour les **utilisateurs à leur propre terminal**. OAuth RFC 8252 : chaque client a sa propre commande `mcp add` (Claude Code / Codex / Hermes) ou son point d'entrée GUI (Cowork, Cursor) ; le premier appel huozi ouvre automatiquement un navigateur pour autoriser. Choisissez votre client et copiez la commande ou l'extrait de config.",
   "start.picker.generic.name": "Générique / Autre",
 
   "start.picker.content.claude-code.mcp.body":

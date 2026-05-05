@@ -692,10 +692,10 @@ export const ja = {
   "start.hero.subtitle":
     "Agent を選び、プロンプト 1 つまたはコマンド 1 行 —— リンクを 1 回クリックで接続完了。",
 
-  "start.conversation.title": "Agent に自動でインストールさせる",
-  "start.conversation.badge": "チャット · 約 60 秒",
+  "start.conversation.title": "選択 1 · Agent に自動でインストールさせる",
+  "start.conversation.badge": "RFC 8628 device flow · 約 60 秒",
   "start.conversation.desc":
-    "MCP 対応の任意の Agent（Hermes、OpenClaw、Claude Code など）にこの一言を貼り付けてください。このページの手順を読み取り、自身で RFC 8628 device flow を実行 —— cloud.huozi.app/device のリンクを 1 つ表示するので、Approve を 1 回クリック。Agent が key を取得して config に書き込み、huozi_whoami で検証します。完全に Agent 駆動。",
+    "**クラウドにデプロイされた Agent** や CLI に詳しくないユーザー向け。MCP 対応の任意の Agent（Hermes、OpenClaw、Claude Code など）にこの一言を貼り付けてください。このページの手順を読み取り、自身で RFC 8628 device flow を実行 —— cloud.huozi.app/device のリンクを 1 つ表示するので、Approve を 1 回クリック。Agent が key を取得して config に書き込み、huozi_whoami で検証します。完全に Agent 駆動 —— ターミナル不要。",
 
   "start.terminal.title": "または、ターミナルから",
   "start.terminal.badge": "Node ≥ 18",
@@ -743,9 +743,9 @@ export const ja = {
     "同じドライブを、あなた自身の Cloudflare アカウントにデプロイ。MIT。",
 
   // /start の InstallPicker
-  "start.picker.title": "またはクライアント別にスニペットを取得",
+  "start.picker.title": "選択 2 · クライアント別 CLI / GUI インストール",
   "start.picker.subtitle":
-    "2 つの並行パイプライン：**ローカルターミナル / GUI** は CLI 1 行または設定ファイル（RFC 8252 OAuth、初回呼び出しでブラウザ起動）；**チャットモード Agent** はプロンプトをチャットに貼り、Agent が RFC 8628 device flow を実行。両方動作。クライアントで選んで。",
+    "**ローカルターミナルユーザー**向け。RFC 8252 OAuth：各クライアントには自身の `mcp add` CLI（Claude Code / Codex / Hermes）または GUI エントリ（Cowork、Cursor）があり、初回 huozi 呼び出しでブラウザを自動起動して認可。クライアントを選んでワンライナーまたは設定スニペットをコピー。",
   "start.picker.generic.name": "汎用 / その他",
 
   "start.picker.content.claude-code.mcp.body":
