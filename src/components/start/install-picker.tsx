@@ -150,28 +150,50 @@ export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
 
   return (
     <div>
-      {/* Client tabs */}
-      <div className="mb-5 flex flex-wrap gap-1 border-b border-border">
-        {CLIENTS.map((c) => {
-          const isActive = c === client;
-          const label =
-            c === "generic" ? t("start.picker.generic.name") : CLIENT_NAMES[c];
-          return (
-            <button
-              key={c}
-              type="button"
-              onClick={() => pickClient(c)}
-              className={`-mb-px inline-flex items-center gap-2 px-4 py-2.5 border-b-2 text-sm font-medium transition-colors ${
-                isActive
-                  ? "border-accent text-foreground"
-                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-              }`}
-            >
-              {c !== "generic" && <AgentLogo kind={c} size={16} />}
-              <span>{label}</span>
-            </button>
-          );
-        })}
+      {/* Client picker — native <select> instead of a tab row.
+          The section H2 + subtitle above already explain what
+          to pick, so the dropdown stands alone (no inline label).
+          Matches the /workspace ConnectPicker on the app side. */}
+      <div className="mb-5">
+        <div className="relative inline-flex items-center">
+          <span className="absolute left-3 pointer-events-none text-foreground">
+            <AgentLogo kind={client} size={16} />
+          </span>
+          <select
+            id="install-picker-client"
+            value={client}
+            onChange={(e) => pickClient(e.target.value as Client)}
+            className="appearance-none rounded-md border border-border bg-background pl-9 pr-9 py-1.5 text-sm font-medium hover:border-foreground/40 focus:outline-none focus:border-foreground/60 transition-colors cursor-pointer"
+          >
+            {CLIENTS.map((c) => {
+              const label =
+                c === "generic"
+                  ? t("start.picker.generic.name")
+                  : CLIENT_NAMES[c];
+              return (
+                <option key={c} value={c}>
+                  {label}
+                </option>
+              );
+            })}
+          </select>
+          <svg
+            viewBox="0 0 12 12"
+            width="10"
+            height="10"
+            className="absolute right-3 pointer-events-none text-muted-foreground"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 4 L6 8 L10 4"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
       </div>
 
       {/* Mode pills — hidden when the client only has one mode */}

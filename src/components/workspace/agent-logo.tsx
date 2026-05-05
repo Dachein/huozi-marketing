@@ -18,6 +18,7 @@ type AgentKind =
   | "openclaw"
   | "codex"
   | "hermes"
+  | "generic"
   | "raw-curl"
   | "other";
 
@@ -39,12 +40,11 @@ export function AgentLogo({ kind, size = 20, className }: AgentLogoProps) {
   };
 
   switch (kind) {
-    /* ── Anthropic family · Claude Code + Cowork + Claude Desktop ──
-       8-pointed star — echoes Anthropic's asterisk mark. Cowork is
-       Desktop's third tab (Chat / Cowork / Code) so it shares the
-       Anthropic mark visually. */
+    /* ── Anthropic family · Claude Code + Claude Desktop ──
+       8-pointed star — echoes Anthropic's asterisk mark. Cowork
+       is split off below to get its own collaboration glyph so
+       sibling Anthropic surfaces read apart at a glance. */
     case "claude-code":
-    case "cowork":
     case "desktop":
       return (
         <svg {...common}>
@@ -53,6 +53,25 @@ export function AgentLogo({ kind, size = 20, className }: AgentLogoProps) {
             fill="currentColor"
             opacity="0.9"
           />
+        </svg>
+      );
+
+    /* ── Claude Cowork · "C" arc + chat-bubble trail ──
+       Co-work = collaboration. Distinct from Claude Code's 8-point
+       star so the two Anthropic surfaces read apart in pickers. */
+    case "cowork":
+      return (
+        <svg {...common}>
+          <path
+            d="M14 6 A4.2 4.2 0 0 0 6 6 A4.2 4.2 0 0 0 14 14"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <circle cx="6" cy="14.5" r="1" fill="currentColor" />
+          <circle cx="9" cy="16.3" r="1" fill="currentColor" />
+          <circle cx="12" cy="17.5" r="1" fill="currentColor" />
         </svg>
       );
 
@@ -109,26 +128,61 @@ export function AgentLogo({ kind, size = 20, className }: AgentLogoProps) {
         </svg>
       );
 
-    /* ── Hermes Agent (Nous Research) · H with orbital ring ──
-       Hermes = Mercury; we use a stylized H inside a thin ring. */
+    /* ── Hermes Agent (Nous Research) · Mercury / ☿ ──
+       The astronomical glyph for Mercury (the Roman name for the
+       Greek god Hermes): crescent on top, circle in the middle,
+       cross at the bottom. Distinctive at 20×20. */
     case "hermes":
     case "hermes-agent":
+      return (
+        <svg {...common}>
+          <path
+            d="M6 4 Q10 1.5 14 4"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle
+            cx="10"
+            cy="8.2"
+            r="2.5"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            fill="none"
+          />
+          <path
+            d="M10 10.7 L10 17 M7.4 14 L12.6 14"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      );
+
+    /* ── Generic Agent · concentric "any-host" mark ──
+       Center dot inside a ring with four short radial ticks —
+       reads as "a node connected to anything", different from
+       the raw-curl `>_` (terminal scripts) and the default
+       fallback square (unknown). */
+    case "generic":
       return (
         <svg {...common}>
           <circle
             cx="10"
             cy="10"
-            r="7.5"
-            fill="none"
+            r="6.2"
             stroke="currentColor"
             strokeWidth="1.3"
-          />
-          <path
-            d="M7 5.5 L7 14.5 M13 5.5 L13 14.5 M7 10 L13 10"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
             fill="none"
+          />
+          <circle cx="10" cy="10" r="1.5" fill="currentColor" />
+          <path
+            d="M10 1.5 L10 3.5 M10 16.5 L10 18.5 M1.5 10 L3.5 10 M16.5 10 L18.5 10"
+            stroke="currentColor"
+            strokeWidth="1.3"
+            strokeLinecap="round"
           />
         </svg>
       );
