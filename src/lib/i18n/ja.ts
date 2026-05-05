@@ -749,7 +749,11 @@ export const ja = {
   "start.picker.generic.name": "汎用 / その他",
 
   "start.picker.content.claude-code.mcp.body":
-    "Claude Code の拡張方法は MCP —— ツール記述自体が Agent に必要な文脈を全て担います。任意のシェルでこれを実行すると、CLI がブラウザを開いてワンクリック認証、Claude Code のユーザースコープ MCP 設定に書き込み、新しいシェルで有効になります。",
+    "Step 1 · 任意のターミナルでこれを一度貼り付け —— Claude Code のユーザースコープ MCP 設定（全プロジェクトで有効）に huozi を登録します。",
+  "start.picker.content.claude-code.mcp.step2":
+    "Step 2 · Claude Code 内で /mcp と入力 → huozi を選択 → Authenticate。ブラウザで一回承認すれば、現在のセッションで huozi ツールが即利用可能に。",
+  "start.picker.content.claude-code.mcp.note":
+    "Endpoint: cloud.huozi.app/mcp · 認可トークンは MCP クライアント内のみで保持され、会話には流れません · Claude Desktop から Code モードを起動した場合も同じ手順 —— 内部は同じ Claude Code です。",
 
   "start.picker.content.cursor.mcp.body":
     "Cursor はリモート MCP をネイティブサポート。統合ターミナル（⌘J）を開いてこれを実行 —— ~/.cursor/mcp.json に書き込まれ、Reload Window（⌘⇧P）で反映されます。",

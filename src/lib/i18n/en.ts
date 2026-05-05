@@ -754,7 +754,11 @@ export const en = {
   "start.picker.generic.name": "Generic / Other",
 
   "start.picker.content.claude-code.mcp.body":
-    "Claude Code's canonical way to extend is MCP — the tool descriptions carry everything the Agent needs. Run this in any terminal; the CLI opens your browser for a one-click authorize, writes Claude Code's user-scope MCP config, and any fresh shell picks it up.",
+    "Step 1 · Paste this once in any terminal — registers huozi into Claude Code's user-scope MCP config (works across every project).",
+  "start.picker.content.claude-code.mcp.step2":
+    "Step 2 · Inside Claude Code, type /mcp → pick huozi → Authenticate. One browser click and huozi tools light up in the current session.",
+  "start.picker.content.claude-code.mcp.note":
+    "Endpoint: cloud.huozi.app/mcp · OAuth token stays inside the MCP client locally, never enters the conversation · Same flow applies when you open Code from inside Claude Desktop — it shares the same underlying Claude Code.",
 
   "start.picker.content.cursor.mcp.body":
     "Cursor ships native remote-MCP support. Open Cursor's integrated terminal (⌘J) and run this — it writes ~/.cursor/mcp.json; Reload Window (⌘⇧P) to pick it up.",

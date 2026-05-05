@@ -738,7 +738,11 @@ export const zh = {
   "start.picker.generic.name": "通用 / 其他",
 
   "start.picker.content.claude-code.mcp.body":
-    "Claude Code 的原生扩展方式就是 MCP —— 工具描述本身就承载了 Agent 需要的全部上下文。在任意 shell 跑这行，CLI 打开浏览器让你一键授权，写进 Claude Code 的用户级 MCP 配置，新开一个 shell 就生效。",
+    "Step 1 · 终端粘贴这一行 —— 把 huozi 注册到 Claude Code 用户级 MCP 配置（全项目可用）。",
+  "start.picker.content.claude-code.mcp.step2":
+    "Step 2 · 在 Claude Code 内输入 /mcp → 选 huozi → Authenticate；浏览器一键同意，huozi 工具立即在本会话可用。",
+  "start.picker.content.claude-code.mcp.note":
+    "Endpoint: cloud.huozi.app/mcp · 授权令牌由 MCP 客户端在本地持有，不进入对话上下文 · 在 Claude Desktop 内进入 Code 模式同样适用 —— 底层是同一个 Claude Code。",
 
   "start.picker.content.cursor.mcp.body":
     "Cursor 原生支持远程 MCP。打开 Cursor 的集成终端（⌘J），跑这行 —— CLI 写 ~/.cursor/mcp.json，Reload Window（⌘⇧P）生效。",

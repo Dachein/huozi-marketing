@@ -83,8 +83,7 @@ function commandFor(client: Client, mode: Mode): string {
   // The host stores the api_key in its own MCP config; daily traffic
   // goes from the host straight to cloud.huozi.app/mcp.
   if (mode === "mcp" && client === "claude-code") {
-    return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp \\
-  --header "Authorization: Bearer hz_your_key"`;
+    return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp`;
   }
   // OpenAI Codex CLI — same `mcp add` ergonomic, but TOML-backed
   // (~/.codex/config.toml) and reads the bearer indirectly via env-var
@@ -238,10 +237,13 @@ function InstallCell({
   const json = showJson ? mcpJsonSnippet() : "";
   const yaml = client === "hermes" && mode === "mcp" ? hermesYamlSnippet() : "";
   const bodyKey = `start.picker.content.${client}.${mode}.body`;
+  const step2Key = `start.picker.content.${client}.${mode}.step2`;
   const noteKey = `start.picker.content.${client}.${mode}.note`;
   const body = t(bodyKey);
+  const step2 = t(step2Key);
   const note = t(noteKey);
-  // `t()` returns the key itself when missing — treat that as "no note".
+  // `t()` returns the key itself when missing — treat that as absent.
+  const hasStep2 = step2 !== step2Key;
   const hasNote = note !== noteKey;
 
   return (
@@ -258,6 +260,11 @@ function InstallCell({
           </pre>
           <CopyButton text={cmd} />
         </div>
+      )}
+      {hasStep2 && (
+        <p className="text-sm text-foreground/85 leading-relaxed mb-3">
+          {step2}
+        </p>
       )}
       {json && (
         <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20 mb-3">
