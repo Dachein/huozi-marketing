@@ -33,13 +33,18 @@ type Client =
   | "generic";
 type Mode = "mcp" | "skill";
 
+// Canonical 7-tab order — matches the /workspace ConnectPicker on the app
+// side. Local-CLI / OAuth-on-first-use clients first (Claude Code), then
+// chat-mode device-flow clients (OpenClaw, Hermes), then more local clients
+// (Codex, Cursor), then GUI (Cowork), finally the universal Generic Agent
+// fallback.
 const CLIENTS: Client[] = [
   "claude-code",
-  "cowork",
-  "cursor",
   "openclaw",
-  "codex",
   "hermes",
+  "codex",
+  "cursor",
+  "cowork",
   "generic",
 ];
 

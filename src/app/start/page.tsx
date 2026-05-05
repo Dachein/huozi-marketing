@@ -51,7 +51,7 @@ STEP 1 — Request a device code.
 
 curl -sS -X POST ${CLOUD_URL}/auth/device-code \\
   -H "content-type: application/json" \\
-  -d '{"client_name":"<host name, e.g. Hermes>","agent_kind":"<claude-code|cursor|hermes|openclaw|codex|desktop|generic>"}'
+  -d '{"client_name":"<host name, e.g. Hermes>","agent_kind":"<claude-code|openclaw|hermes|codex|cursor|cowork|generic>"}'
 # → 200 {
 #     device_code,                  # opaque, you poll with this
 #     user_code,                    # 8-char human-readable, prefilled in URL
@@ -131,16 +131,20 @@ to the user.
                  codex mcp add huozi --url ${CLOUD_URL}/mcp \\
                    --bearer-token-env-var HUOZI_API_KEY
 
-  desktop      merge into claude_desktop_config.json (per-OS path),
-               then tell the user to restart Claude Desktop:
-                 { "mcpServers": { "huozi": {
-                     "type": "http",
-                     "url": "${CLOUD_URL}/mcp",
-                     "headers": { "Authorization": "Bearer <api_key>" }
-                 } } }
+  cowork       Tell the user to open Claude Cowork → Customize →
+               Connectors → + Add custom connector. Paste this URL into
+               the URL field:
+                 ${CLOUD_URL}/mcp
+               No Authorization header — Cowork drives OAuth on first
+               call. The api_key from STEP 3 is unused for cowork; you
+               can revoke it after the user finishes setup.
 
-  generic      print the URL + Authorization header, let the user paste
-               them into whatever MCP client they use.
+  generic      Register the MCP server in whichever host the user is
+               running. URL = ${CLOUD_URL}/mcp, Authorization header =
+               "Bearer <api_key>". Per the host's docs, write to its
+               config file (JSON / YAML / TOML) or use its CLI. Reload
+               the host as it requires (process restart / slash command
+               / reconnect).
 
 ==========================================================================
 STEP 5 — Verify and announce.
