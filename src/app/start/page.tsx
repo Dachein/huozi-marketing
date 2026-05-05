@@ -197,36 +197,11 @@ export default async function StartPage() {
         </p>
       </div>
 
-      {/* 0 · Conversational install — the primary path for normal users.
-              They paste a short human-readable message into their Agent;
-              the Agent WebFetches this very page, reads the agentPrompt
-              section below, and drives the /api/agent/* state machine. */}
-      <section className="mb-10">
-        <div className="flex items-baseline justify-between gap-3 mb-3">
-          <h2 className="font-serif text-lg font-bold">
-            {tx("start.conversation.title")}
-          </h2>
-          <span className="text-[11px] uppercase tracking-wider text-accent">
-            {tx("start.conversation.badge")}
-          </span>
-        </div>
-        <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-          {tx("start.conversation.desc")}
-        </p>
-        <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20">
-          <pre className="p-5 pr-14 text-base leading-relaxed font-mono whitespace-pre-wrap">
-            <code>Install huozi from cloud.huozi.app/llms.txt.</code>
-          </pre>
-          <CopyButton text="Install huozi from cloud.huozi.app/llms.txt." />
-        </div>
-      </section>
-
-      {/* (Removed: a `npx huozi-mcp` terminal one-liner used to live
-          here. We dropped it as part of the "remote HTTP MCP, no local
-          npm" architecture decision — daily-use config is mcp.json with
-          type:"http", surfaced via the InstallPicker below.) */}
-
-      {/* 1 · Per-client install picker — MCP × Skill tabs per actual support */}
+      {/* 1 · Install picker — pick agent → both Choice 1 (Agent prompt
+          paste) and Choice 2 (native CLI/GUI) tailored to that agent.
+          The standalone "conversational install" hero used to live
+          above this section but it duplicated Choice 1; the picker now
+          subsumes both paths under one dropdown. */}
       <section className="mb-14">
         <div className="mb-4">
           <h2 className="font-serif text-lg font-bold">

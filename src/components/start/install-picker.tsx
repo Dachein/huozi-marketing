@@ -80,12 +80,6 @@ const CLIENT_NAMES: Record<Exclude<Client, "generic">, string> = {
   hermes: "Hermes Agent",
 };
 
-// Mode labels are product names — we don't translate "MCP" / "Skill".
-const MODE_LABELS: Record<Mode, string> = {
-  mcp: "MCP",
-  skill: "Skill",
-};
-
 function commandFor(client: Client, mode: Mode): string {
   // Choice 2 across all clients = one CLI line (or GUI URL paste for
   // Cowork). Every client relies on RFC 8252 OAuth-on-first-use:
@@ -114,38 +108,55 @@ function commandFor(client: Client, mode: Mode): string {
     // back to Choice 1.)
     return `openclaw mcp set huozi '{"url":"https://cloud.huozi.app/mcp","transport":"streamable-http"}'`;
   }
-  // Cowork — UI flow, no terminal command. Show the URL itself in the
-  // copy box so users can paste it into the Customize > Connectors > +
-  // dialog. Cowork drives OAuth itself.
+  // Cowork — UI flow, no terminal command. Show the URL itself in
+  // the copy box so users can paste it into the Customize >
+  // Connectors > + dialog. Cowork drives OAuth itself.
   if (mode === "mcp" && client === "cowork") {
     return `https://cloud.huozi.app/mcp`;
   }
-  // Cursor / generic — return empty string so the parent skips the
-  // "command" panel and renders mcpJsonSnippet() (Cursor) or the
-  // GenericCell agent prompt instead.
+  // Generic — same shape as Cowork: just the URL. The user adapts
+  // it to whichever host they're configuring.
+  if (mode === "mcp" && client === "generic") {
+    return `https://cloud.huozi.app/mcp`;
+  }
+  // Cursor — empty string so the parent renders mcpJsonSnippet()
+  // (config-file paste, no one-line CLI exists).
   return "";
 }
 
-export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
+export function InstallPicker(_props: { agentPrompt: string }) {
   const t = useT();
   const [client, setClient] = useState<Client>("claude-code");
-  const [mode, setMode] = useState<Mode>("mcp");
-
-  const modes = CLIENT_MODES[client];
+  // The mode dimension is currently a no-op — every client has a
+  // single canonical install path now that OpenClaw's Skill route
+  // was retired. Keep it pinned to "mcp" so the rest of the snippet
+  // machinery still works without an extra branch.
+  const mode: Mode = "mcp";
+  void _props;
 
   function pickClient(c: Client) {
     setClient(c);
-    const next = CLIENT_MODES[c];
-    if (!next.includes(mode)) setMode(next[0]);
   }
 
+  // Choice 1 paste prompt — universal across all agents, only the
+  // ?for=<kind> filter changes. The /llms.txt route handler reads
+  // ?for and trims its Step 4 to that one host so the agent gets a
+  // doc that's already aimed at where it runs.
+  const choice1Body = `Install huozi from cloud.huozi.app/llms.txt?for=${client}.`;
+
   return (
-    <div>
-      {/* Client picker — native <select> instead of a tab row.
-          The section H2 + subtitle above already explain what
-          to pick, so the dropdown stands alone (no inline label).
-          Matches the /workspace ConnectPicker on the app side. */}
-      <div className="mb-5">
+    <div className="space-y-6">
+      {/* Step 1: pick your Agent. Native <select> rather than a tab
+          row — 7 clients wrap to two lines as tabs, the dropdown is
+          one line and scales without a layout shift. The selected
+          agent's logo stays visible to the left of the trigger. */}
+      <div>
+        <label
+          htmlFor="install-picker-client"
+          className="block text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2"
+        >
+          {t("start.picker.dropdown.label")}
+        </label>
         <div className="relative inline-flex items-center">
           <span className="absolute left-3 pointer-events-none text-foreground">
             <AgentLogo kind={client} size={16} />
@@ -187,35 +198,46 @@ export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
         </div>
       </div>
 
-      {/* Mode pills — hidden when the client only has one mode */}
-      {modes.length > 1 && (
-        <div className="mb-5 inline-flex rounded-full border border-border bg-muted/30 p-1">
-          {modes.map((m) => {
-            const isActive = m === mode;
-            return (
-              <button
-                key={m}
-                type="button"
-                onClick={() => setMode(m)}
-                className={`px-4 py-1 text-xs font-medium uppercase tracking-[0.15em] rounded-full transition-colors ${
-                  isActive
-                    ? "bg-foreground text-background"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {MODE_LABELS[m]}
-              </button>
-            );
-          })}
+      {/* Choice 1 · Agent-driven (RFC 8628 device flow).
+          Paste-prompt is universal; only the ?for=<kind> query param
+          changes per agent so /llms.txt serves a Step 4 already
+          narrowed to the right host. */}
+      <section>
+        <div className="flex items-baseline justify-between gap-3 mb-1.5">
+          <h3 className="font-medium text-sm text-foreground">
+            {t("start.picker.choice1.title")}
+          </h3>
+          <span className="text-[10px] uppercase tracking-[0.15em] text-accent">
+            {t("start.picker.choice1.badge")}
+          </span>
         </div>
-      )}
+        <p className="text-xs text-muted-foreground leading-relaxed mb-2.5">
+          {t("start.picker.choice1.desc")}
+        </p>
+        <div className="relative rounded-lg border-2 border-accent/40 bg-muted/40">
+          <pre className="overflow-x-auto px-4 py-3 pr-14 text-sm font-mono leading-relaxed whitespace-pre-wrap break-all">
+            {choice1Body}
+          </pre>
+          <CopyButton text={choice1Body} />
+        </div>
+      </section>
 
-      {/* Content */}
-      {client === "generic" ? (
-        <GenericCell t={t} agentPrompt={agentPrompt} />
-      ) : (
+      {/* Choice 2 · Native CLI / GUI (RFC 8252 OAuth-on-first-use).
+          Per-client snippet driven by the same dropdown. */}
+      <section>
+        <div className="flex items-baseline justify-between gap-3 mb-1.5">
+          <h3 className="font-medium text-sm text-foreground">
+            {t("start.picker.choice2.title")}
+          </h3>
+          <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+            {t("start.picker.choice2.badge")}
+          </span>
+        </div>
+        <p className="text-xs text-muted-foreground leading-relaxed mb-2.5">
+          {t("start.picker.choice2.desc")}
+        </p>
         <InstallCell client={client} mode={mode} t={t} />
-      )}
+      </section>
     </div>
   );
 }
@@ -303,29 +325,3 @@ function InstallCell({
   );
 }
 
-function GenericCell({
-  t,
-  agentPrompt,
-}: {
-  t: (key: string) => string;
-  agentPrompt: string;
-}) {
-  return (
-    <div>
-      <p className="text-sm text-foreground/85 leading-relaxed mb-4">
-        {t("start.picker.content.generic.mcp.body")}
-      </p>
-      <div className="relative rounded-xl border-2 border-dashed border-border bg-muted/40">
-        <pre className="p-5 pr-14 text-xs leading-relaxed whitespace-pre-wrap break-words font-mono overflow-x-auto max-h-[380px]">
-          <code>{agentPrompt}</code>
-        </pre>
-        <div className="absolute top-3 right-3">
-          <CopyButton text={agentPrompt} />
-        </div>
-      </div>
-      <p className="text-xs text-muted-foreground leading-relaxed mt-3">
-        {t("start.picker.content.generic.mcp.note")}
-      </p>
-    </div>
-  );
-}

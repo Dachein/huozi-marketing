@@ -742,11 +742,21 @@ export const ja = {
   "start.footer.edge.desc":
     "同じドライブを、あなた自身の Cloudflare アカウントにデプロイ。MIT。",
 
-  // /start の InstallPicker
-  "start.picker.title": "選択 2 · クライアント別 CLI / GUI インストール",
+  // /start InstallPicker — 先にエージェントを選ぶ → 2 つのパスが展開される
+  "start.picker.title": "インストール",
   "start.picker.subtitle":
-    "**ローカルターミナルユーザー**向け。RFC 8252 OAuth：各クライアントには自身の `mcp add` CLI（Claude Code / Codex / Hermes）または GUI エントリ（Cowork、Cursor）があり、初回 huozi 呼び出しでブラウザを自動起動して認可。クライアントを選んでワンライナーまたは設定スニペットをコピー。",
+    "エージェントを選ぶと両方のパスが展開されます：**選択 1** はエージェントが自分でインストール(チャットにプロンプトを貼り付け)、**選択 2** は自分のターミナルで原生 CLI / GUI を実行。どちらもすべてのエージェントで動作。",
+  "start.picker.dropdown.label": "1. エージェントを選択",
   "start.picker.generic.name": "汎用 / その他",
+  "start.picker.copy": "コピー",
+  "start.picker.choice1.title": "選択 1 · エージェントに自動でインストールさせる",
+  "start.picker.choice1.badge": "RFC 8628 device flow",
+  "start.picker.choice1.desc":
+    "選択したエージェントにこの一行を貼り付け。エージェントは本デプロイの /llms.txt(選んだクライアントに絞り込み済み)を取得し、自身で device flow を実行 —— リンクを表示するので Approve を 1 回クリック、エージェントがキーを取得、config を書き込み、huozi_whoami で検証。",
+  "start.picker.choice2.title": "選択 2 · クライアント別 CLI / GUI インストール",
+  "start.picker.choice2.badge": "RFC 8252 OAuth-on-first-use",
+  "start.picker.choice2.desc":
+    "自分のターミナルでこの一行を実行(または設定スニペットを貼り付け)。huozi の初回呼び出しでブラウザが自動で OAuth を実行;トークンはクライアントがローカルで保持。",
 
   "start.picker.content.claude-code.mcp.body":
     "Step 1 · 任意のターミナルでこれを一度貼り付け —— Claude Code のユーザースコープ MCP 設定（全プロジェクトで有効）に huozi を登録します。",

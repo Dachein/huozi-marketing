@@ -747,11 +747,21 @@ export const en = {
   "start.footer.edge.desc":
     "Same drive, deployed on your own Cloudflare account. MIT.",
 
-  // InstallPicker on /start
-  "start.picker.title": "Choice 2 · Native CLI / GUI install",
+  // /start InstallPicker — pick the Agent first, then see both paths
+  "start.picker.title": "Install",
   "start.picker.subtitle":
-    "Best for **users at their own terminal**. RFC 8252 OAuth: each client has its own native `mcp add` CLI (Claude Code / Codex / Hermes) or GUI entry (Cowork, Cursor); the first huozi call auto-opens a browser to authorize. Pick your client and grab the one-liner or config snippet.",
+    "Pick your Agent and both paths unfold: **Choice 1** lets the Agent install itself (paste a prompt into its chat); **Choice 2** is the native CLI / GUI you run yourself. Both paths work for every Agent.",
+  "start.picker.dropdown.label": "1. Pick your Agent",
   "start.picker.generic.name": "Generic / Other",
+  "start.picker.copy": "Copy",
+  "start.picker.choice1.title": "Choice 1 · Let the Agent install itself",
+  "start.picker.choice1.badge": "RFC 8628 device flow",
+  "start.picker.choice1.desc":
+    "Paste this line into the Agent you picked. It fetches /llms.txt from this deploy (already filtered to your client), runs the device flow itself: prints you a link, you click Approve once, the Agent grabs the key, writes the config, calls huozi_whoami to verify.",
+  "start.picker.choice2.title": "Choice 2 · Native CLI / GUI install",
+  "start.picker.choice2.badge": "RFC 8252 OAuth-on-first-use",
+  "start.picker.choice2.desc":
+    "Run this line in your own terminal (or paste the config snippet). First call to huozi auto-opens the browser for OAuth; the token stays inside the client locally.",
 
   "start.picker.content.claude-code.mcp.body":
     "Step 1 · Paste this once in any terminal — registers huozi into Claude Code's user-scope MCP config (works across every project).",

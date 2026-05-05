@@ -749,11 +749,21 @@ export const fr = {
   "start.footer.edge.desc":
     "Le même drive, déployé sur votre propre compte Cloudflare. MIT.",
 
-  // InstallPicker sur /start
-  "start.picker.title": "Choix 2 · Installation via CLI / GUI native",
+  // /start InstallPicker — choisissez l'Agent d'abord, puis les deux paths
+  "start.picker.title": "Installation",
   "start.picker.subtitle":
-    "Idéal pour les **utilisateurs à leur propre terminal**. OAuth RFC 8252 : chaque client a sa propre commande `mcp add` (Claude Code / Codex / Hermes) ou son point d'entrée GUI (Cowork, Cursor) ; le premier appel huozi ouvre automatiquement un navigateur pour autoriser. Choisissez votre client et copiez la commande ou l'extrait de config.",
+    "Choisissez votre Agent et les deux paths se déplient : **Choix 1** laisse l'Agent s'installer lui-même (collez un prompt dans son chat) ; **Choix 2** est la CLI / GUI native que vous exécutez vous-même. Les deux fonctionnent pour chaque Agent.",
+  "start.picker.dropdown.label": "1. Choisissez votre Agent",
   "start.picker.generic.name": "Générique / Autre",
+  "start.picker.copy": "Copier",
+  "start.picker.choice1.title": "Choix 1 · Laissez l'Agent s'installer",
+  "start.picker.choice1.badge": "device flow RFC 8628",
+  "start.picker.choice1.desc":
+    "Collez cette ligne dans l'Agent choisi. Il récupère /llms.txt de ce déploiement (déjà filtré pour votre client), exécute le device flow lui-même : vous imprime un lien, vous cliquez Approve une fois, l'Agent récupère la clé, écrit la config, appelle huozi_whoami pour vérifier.",
+  "start.picker.choice2.title": "Choix 2 · Installation via CLI / GUI native",
+  "start.picker.choice2.badge": "OAuth-on-first-use RFC 8252",
+  "start.picker.choice2.desc":
+    "Lancez cette ligne dans votre propre terminal (ou collez l'extrait de config). Le premier appel à huozi ouvre automatiquement le navigateur pour OAuth ; le jeton reste dans le client en local.",
 
   "start.picker.content.claude-code.mcp.body":
     "Step 1 · Collez ceci une fois dans un terminal — enregistre huozi dans la config MCP utilisateur de Claude Code (actif dans tous les projets).",

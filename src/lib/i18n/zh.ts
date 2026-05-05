@@ -732,11 +732,21 @@ export const zh = {
   "start.footer.edge.desc":
     "同一款云盘，部署到你自己的 Cloudflare 账号。MIT 协议。",
 
-  // /start 页上的 InstallPicker
-  "start.picker.title": "选择二 · 按客户端 CLI / GUI 安装",
+  // /start 页上的 InstallPicker —— 先选 Agent,再看两条路 (Choice 1 / Choice 2)
+  "start.picker.title": "安装",
   "start.picker.subtitle":
-    "适合**本地终端用户**。RFC 8252 OAuth：每个客户端有自己原生的 `mcp add` CLI（Claude Code / Codex / Hermes）或 GUI 入口（Cowork、Cursor），第一次调用 huozi 时自动弹浏览器授权。选你的客户端拿一行命令或一段配置。",
+    "选你用的 Agent,然后两条路都展开:**选择一** Agent 自己装(粘 prompt 给 chat 里的 Agent),**选择二** 你自己在终端 / GUI 里装。每个 Agent 都两条都通。",
+  "start.picker.dropdown.label": "1. 选你用的 Agent",
   "start.picker.generic.name": "通用 / 其他",
+  "start.picker.copy": "复制",
+  "start.picker.choice1.title": "选择一 · 让 Agent 自己装",
+  "start.picker.choice1.badge": "RFC 8628 device flow",
+  "start.picker.choice1.desc":
+    "把这一行贴给所选 Agent。Agent 会去拉本部署的 /llms.txt(已按你选的客户端过滤),自己跑 device flow:给你一个链接,你点一次 Approve,Agent 拿 key、写 config、调 huozi_whoami 验证。",
+  "start.picker.choice2.title": "选择二 · 按客户端 CLI / GUI 安装",
+  "start.picker.choice2.badge": "RFC 8252 OAuth-on-first-use",
+  "start.picker.choice2.desc":
+    "在你自己电脑的终端跑这一行(或贴这段配置)。第一次调用 huozi 自动弹浏览器走 OAuth,token 由客户端本地持有。",
 
   "start.picker.content.claude-code.mcp.body":
     "Step 1 · 终端粘贴这一行 —— 把 huozi 注册到 Claude Code 用户级 MCP 配置（全项目可用）。",
