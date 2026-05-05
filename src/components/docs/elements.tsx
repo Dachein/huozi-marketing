@@ -9,6 +9,38 @@
  */
 
 import { CopyButton } from "@/components/copy-button";
+import type { Locale } from "@/lib/i18n";
+
+/**
+ * Pick the right per-locale variant of a string/node, falling back
+ * sensibly when a translation is missing.
+ *
+ *   pick(locale, { zh: "你好", en: "Hi", ja: "こんにちは", fr: "Salut" })
+ *
+ * Order of preference for missing locales:
+ *   1. The exact locale key.
+ *   2. en (most readable second choice for tech docs).
+ *   3. zh (default locale).
+ *   4. The first variant that exists.
+ *
+ * Used by /docs pages to express bilingual or quad-lingual prose
+ * inline without a per-string i18n key. Keep this co-located with
+ * the docs visual primitives so all docs pages import from one
+ * place.
+ */
+export function pick<T>(
+  locale: Locale,
+  variants: Partial<Record<Locale, T>>,
+): T {
+  if (variants[locale] !== undefined) return variants[locale] as T;
+  if (variants.en !== undefined) return variants.en as T;
+  if (variants.zh !== undefined) return variants.zh as T;
+  for (const v of Object.values(variants) as T[]) {
+    if (v !== undefined) return v;
+  }
+  // Should be unreachable if at least one variant is provided.
+  throw new Error("pick: no variants given");
+}
 
 export function H2({
   id,
