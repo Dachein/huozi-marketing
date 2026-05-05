@@ -739,6 +739,13 @@ export const fr = {
     "Déjà connecté à huozi.app ? Choisissez votre client et copiez un extrait prêt à l'emploi sur",
   "start.manual.noteAfter": ".",
 
+  // /docs sidebar nav
+  "docs.nav.heading": "Documentation",
+  "docs.nav.overview": "Aperçu",
+  "docs.nav.editions": "Cloud vs Edge",
+  "docs.nav.auth": "Deux pipelines d'installation",
+  "docs.nav.api": "Référence API HTTP",
+
   "start.footer.mcp.title": "Référence MCP",
   "start.footer.mcp.desc":
     "Tous les outils huozi_*, le format JSON-RPC, les événements temps réel.",

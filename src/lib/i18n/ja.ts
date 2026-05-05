@@ -732,6 +732,13 @@ export const ja = {
     "すでに huozi.app にログイン済み？クライアントを選んで設定スニペットを取得：",
   "start.manual.noteAfter": "。",
 
+  // /docs sidebar nav
+  "docs.nav.heading": "ドキュメント",
+  "docs.nav.overview": "概要",
+  "docs.nav.editions": "Cloud vs Edge",
+  "docs.nav.auth": "2 つのインストールパイプライン",
+  "docs.nav.api": "HTTP API リファレンス",
+
   "start.footer.mcp.title": "MCP リファレンス",
   "start.footer.mcp.desc":
     "すべての huozi_* ツール、JSON-RPC 形式、リアルタイムイベント。",
