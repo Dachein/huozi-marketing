@@ -737,6 +737,13 @@ export const en = {
     "Already signed in at huozi.app? Pick your client and copy a ready-to-use snippet at",
   "start.manual.noteAfter": ".",
 
+  // /docs sidebar nav
+  "docs.nav.heading": "Docs",
+  "docs.nav.overview": "Overview",
+  "docs.nav.editions": "Cloud vs Edge",
+  "docs.nav.auth": "Two install pipelines",
+  "docs.nav.api": "HTTP API reference",
+
   "start.footer.mcp.title": "MCP reference",
   "start.footer.mcp.desc":
     "All huozi_* tools, JSON-RPC shape, real-time events.",

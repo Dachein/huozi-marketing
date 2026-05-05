@@ -722,6 +722,13 @@ export const zh = {
   "start.manual.noteAfter":
     " 选客户端拿 ready-to-use 的配置片段。",
 
+  // /docs sidebar nav
+  "docs.nav.heading": "文档导航",
+  "docs.nav.overview": "概览",
+  "docs.nav.editions": "Cloud vs Edge",
+  "docs.nav.auth": "两条安装管线",
+  "docs.nav.api": "HTTP API 参考",
+
   "start.footer.mcp.title": "MCP 参考文档",
   "start.footer.mcp.desc":
     "所有 huozi_* 工具、JSON-RPC 格式、实时事件。",
