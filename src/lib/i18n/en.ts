@@ -695,12 +695,12 @@ export const en = {
     "One command or one prompt. Give it to any Agent. Click one link. Done.",
   "start.hero.title": "Get started",
   "start.hero.subtitle":
-    "One prompt, one click, done. Works with any MCP-capable Agent.",
+    "Pick your Agent. One prompt or one command — click a single link and you're connected.",
 
-  "start.conversation.title": "Tell your Agent",
+  "start.conversation.title": "Let the Agent install itself",
   "start.conversation.badge": "chat · ~60 seconds",
   "start.conversation.desc":
-    "Paste this into any MCP-capable Agent (Claude Code, Cursor, OpenClaw, or anything with web access). It reads the install protocol from this page, then asks you 2–3 questions in chat — sign up, browser login, or paste an existing token. No terminal required.",
+    "Paste this into any MCP-capable Agent (Hermes, OpenClaw, Claude Code, etc.). It reads the instructions from this page, then drives the RFC 8628 device flow on its own — prints you a huozi.app/device link, you click Approve once, the Agent picks up the key, writes the config, and verifies via huozi_whoami. Agent-driven end to end.",
 
   "start.terminal.title": "Or, from a terminal",
   "start.terminal.badge": "Node ≥ 18",
@@ -732,9 +732,9 @@ export const en = {
 
   "start.manual.summary": "No Agent? Do it by hand",
   "start.manual.desc":
-    "The same flow is plain HTTP — you can run the curl commands yourself:",
+    "The whole flow is plain HTTP — you can run the curl device flow yourself:",
   "start.manual.noteBefore":
-    "Already signed in at huozi.app? You can also mint a ready-made config snippet for Cursor / OpenClaw directly at",
+    "Already signed in at huozi.app? Pick your client and copy a ready-to-use snippet at",
   "start.manual.noteAfter": ".",
 
   "start.footer.mcp.title": "MCP reference",
@@ -748,9 +748,9 @@ export const en = {
     "Same drive, deployed on your own Cloudflare account. MIT.",
 
   // InstallPicker on /start
-  "start.picker.title": "Install for your agent",
+  "start.picker.title": "Or pick your client and grab a snippet",
   "start.picker.subtitle":
-    "Pick your client — we'll show exactly what applies. MCP adds the tools; Skill / Rules adds the know-how. Most clients want both.",
+    "Two parallel pipelines: **local terminal / GUI** uses one CLI line or a config file (RFC 8252 OAuth — first call opens a browser); **chat-mode Agent** pastes a prompt into the agent's chat and lets it run the RFC 8628 device flow. Both work; pick by client.",
   "start.picker.generic.name": "Generic / Other",
 
   "start.picker.content.claude-code.mcp.body":
@@ -783,9 +783,9 @@ export const en = {
     "Codex reads the bearer indirectly via bearer_token_env_var, so the token never lands in plain text inside config.toml.",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent (Nous Research) registers remote MCP servers through ~/.hermes/config.yaml. Paste this snippet into the mcp_servers block, then run /reload-mcp inside a Hermes session.",
+    "Hermes Agent (Nous Research v0.12+) registers remote MCP servers through ~/.hermes/config.yaml. Paste this snippet into the mcp_servers block, then type /reload-mcp inside a Hermes session. If you're inside a Hermes chat asking the agent to install for you, use the conversation prompt at the top of this page instead — `hermes mcp add` requires a TTY and exits in chat shells.",
   "start.picker.content.hermes.mcp.note":
-    "Hermes has no mcp add subcommand yet; you edit YAML and /reload-mcp instead of restarting the process.",
+    "Local-terminal users can also run `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` — that triggers RFC 8252 OAuth in a real browser (PKCE + DCR) and writes the YAML for you.",
 
   "start.picker.content.generic.mcp.body":
     "Any Agent that can make HTTP calls. Copy this prompt into the Agent — it reads the steps, runs the curl device flow, and writes its own MCP config. Your only job: click one Authorize link in the browser.",

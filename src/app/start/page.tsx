@@ -308,10 +308,10 @@ claude mcp add --transport http huozi ${CLOUD_URL}/mcp \\
             <p className="text-xs text-muted-foreground">
               {tx("start.manual.noteBefore")}{" "}
               <Link
-                href={cloudUrl("/workspace/connect")}
+                href={cloudUrl("/workspace")}
                 className="underline hover:text-foreground"
               >
-                /workspace/connect
+                /workspace
               </Link>
               {tx("start.manual.noteAfter")}
             </p>

@@ -697,12 +697,12 @@ export const fr = {
     "Une commande ou une invite. Donnez-la à n'importe quel Agent. Un clic de lien. Terminé.",
   "start.hero.title": "Commencer",
   "start.hero.subtitle":
-    "Une invite, un clic, terminé. Fonctionne avec n'importe quel Agent compatible MCP.",
+    "Choisissez votre Agent. Une invite ou une commande — un seul clic et c'est connecté.",
 
-  "start.conversation.title": "Confiez à votre Agent",
+  "start.conversation.title": "Laissez l'Agent s'installer tout seul",
   "start.conversation.badge": "chat · ~60 secondes",
   "start.conversation.desc":
-    "Collez ceci dans n'importe quel Agent compatible MCP (Claude Code, Cursor, OpenClaw, ou tout autre ayant un accès web). Il lit le protocole d'installation depuis cette page, puis vous pose 2–3 questions dans le chat : inscription, connexion navigateur, ou collage d'un token existant. Aucun terminal requis.",
+    "Collez ceci dans n'importe quel Agent compatible MCP (Hermes, OpenClaw, Claude Code, etc.). Il lit les instructions depuis cette page, puis exécute le device flow RFC 8628 lui-même — il vous imprime un lien huozi.app/device, vous cliquez Approve une fois, l'Agent récupère la clé, écrit la config et vérifie via huozi_whoami. Pilotage par l'Agent de bout en bout.",
 
   "start.terminal.title": "Ou, depuis un terminal",
   "start.terminal.badge": "Node ≥ 18",
@@ -734,9 +734,9 @@ export const fr = {
 
   "start.manual.summary": "Pas d'Agent ? À la main",
   "start.manual.desc":
-    "Le même flux est du HTTP brut — vous pouvez exécuter les commandes curl vous-même :",
+    "Le flux entier est du HTTP brut — vous pouvez exécuter le device flow en curl vous-même :",
   "start.manual.noteBefore":
-    "Déjà connecté à huozi.app ? Vous pouvez aussi obtenir un extrait de configuration prêt à coller pour Cursor / OpenClaw directement à :",
+    "Déjà connecté à huozi.app ? Choisissez votre client et copiez un extrait prêt à l'emploi sur",
   "start.manual.noteAfter": ".",
 
   "start.footer.mcp.title": "Référence MCP",
@@ -750,9 +750,9 @@ export const fr = {
     "Le même drive, déployé sur votre propre compte Cloudflare. MIT.",
 
   // InstallPicker sur /start
-  "start.picker.title": "Installation selon votre agent",
+  "start.picker.title": "Ou choisissez votre client et récupérez un extrait",
   "start.picker.subtitle":
-    "Choisissez votre client — nous afficherons exactement ce qui s'applique. MCP apporte les outils ; Skill / Rules apporte le savoir-faire. La plupart des clients veulent les deux.",
+    "Deux pipelines parallèles : **terminal local / GUI** utilise une commande CLI ou un fichier de config (OAuth RFC 8252 — le premier appel ouvre un navigateur) ; **Agent en chat** colle un prompt dans le chat de l'agent et le laisse exécuter le device flow RFC 8628. Les deux fonctionnent ; choisissez par client.",
   "start.picker.generic.name": "Générique / Autre",
 
   "start.picker.content.claude-code.mcp.body":
@@ -785,9 +785,9 @@ export const fr = {
     "Codex lit le bearer indirectement via bearer_token_env_var, donc le token n'apparaît jamais en clair dans le config.toml.",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent (Nous Research) enregistre les serveurs MCP distants dans ~/.hermes/config.yaml. Collez ce snippet dans le bloc mcp_servers, puis lancez /reload-mcp dans une session Hermes.",
+    "Hermes Agent (Nous Research v0.12+) enregistre les serveurs MCP distants dans ~/.hermes/config.yaml. Collez ce snippet dans le bloc mcp_servers, puis tapez /reload-mcp dans une session Hermes. Si vous êtes dans un chat Hermes en demandant à l'agent d'installer pour vous, utilisez le prompt conversationnel en haut de cette page — `hermes mcp add` requiert un TTY et échoue dans les shells de chat.",
   "start.picker.content.hermes.mcp.note":
-    "Hermes n'a pas encore de sous-commande mcp add ; on édite le YAML puis /reload-mcp plutôt que de redémarrer le process.",
+    "Les utilisateurs en terminal local peuvent aussi exécuter `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` — cela déclenche l'OAuth RFC 8252 dans un vrai navigateur (PKCE + DCR) et écrit le YAML pour vous.",
 
   "start.picker.content.generic.mcp.body":
     "Tout Agent capable d'appels HTTP. Collez cette invite dans l'Agent — il lit les étapes, exécute le flux device en curl, et écrit sa propre configuration MCP. Votre seul rôle : cliquer une fois sur Authorize dans le navigateur.",

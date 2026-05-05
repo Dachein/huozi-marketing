@@ -690,12 +690,12 @@ export const ja = {
     "一行のコマンド、または一つのプロンプト。Agent に渡して、リンクを一回クリック。完了。",
   "start.hero.title": "はじめる",
   "start.hero.subtitle":
-    "プロンプト 1 つ、クリック 1 回で完了。MCP 対応の任意の Agent で動作。",
+    "Agent を選び、プロンプト 1 つまたはコマンド 1 行 —— リンクを 1 回クリックで接続完了。",
 
-  "start.conversation.title": "Agent に任せる",
+  "start.conversation.title": "Agent に自動でインストールさせる",
   "start.conversation.badge": "チャット · 約 60 秒",
   "start.conversation.desc":
-    "MCP 対応の任意の Agent（Claude Code、Cursor、OpenClaw、ほか web アクセス可能なもの）にこの一言を貼ってください。このページからインストール手順を読み取り、チャットで 2〜3 の質問をします：新規登録、ブラウザログイン、トークン貼り付け。ターミナル不要。",
+    "MCP 対応の任意の Agent（Hermes、OpenClaw、Claude Code など）にこの一言を貼り付けてください。このページの手順を読み取り、自身で RFC 8628 device flow を実行 —— huozi.app/device のリンクを 1 つ表示するので、Approve を 1 回クリック。Agent が key を取得して config に書き込み、huozi_whoami で検証します。完全に Agent 駆動。",
 
   "start.terminal.title": "または、ターミナルから",
   "start.terminal.badge": "Node ≥ 18",
@@ -727,9 +727,9 @@ export const ja = {
 
   "start.manual.summary": "Agent なし？手動で",
   "start.manual.desc":
-    "同じフローはただの HTTP です — 自分で curl を実行できます：",
+    "全フローは単なる HTTP です — 自分で curl で device flow を回せます：",
   "start.manual.noteBefore":
-    "すでに huozi.app にログイン済み？Cursor / OpenClaw 用の設定スニペットを直接取得することもできます：",
+    "すでに huozi.app にログイン済み？クライアントを選んで設定スニペットを取得：",
   "start.manual.noteAfter": "。",
 
   "start.footer.mcp.title": "MCP リファレンス",
@@ -743,9 +743,9 @@ export const ja = {
     "同じドライブを、あなた自身の Cloudflare アカウントにデプロイ。MIT。",
 
   // /start の InstallPicker
-  "start.picker.title": "クライアント別のインストール",
+  "start.picker.title": "またはクライアント別にスニペットを取得",
   "start.picker.subtitle":
-    "クライアントを選んでください —— 該当するパスだけを表示します。MCP はツール、Skill / Rules はノウハウを加えます。大抵は両方必要です。",
+    "2 つの並行パイプライン：**ローカルターミナル / GUI** は CLI 1 行または設定ファイル（RFC 8252 OAuth、初回呼び出しでブラウザ起動）；**チャットモード Agent** はプロンプトをチャットに貼り、Agent が RFC 8628 device flow を実行。両方動作。クライアントで選んで。",
   "start.picker.generic.name": "汎用 / その他",
 
   "start.picker.content.claude-code.mcp.body":
@@ -778,9 +778,9 @@ export const ja = {
     "Codex は bearer_token_env_var で間接的に key を読むため、平文の token が config.toml に残りません。",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent（Nous Research）は ~/.hermes/config.yaml でリモート MCP を登録。下のスニペットを mcp_servers ブロックに貼り、Hermes セッション内で /reload-mcp を実行。",
+    "Hermes Agent（Nous Research v0.12+）は ~/.hermes/config.yaml でリモート MCP を登録。下のスニペットを mcp_servers ブロックに貼り、Hermes セッション内で /reload-mcp を実行。Hermes チャット内でエージェントに任せる場合は、ページ上部の対話プロンプトを使ってください —— `hermes mcp add` は TTY が必要で、チャットの非 TTY シェルでは即終了します。",
   "start.picker.content.hermes.mcp.note":
-    "Hermes には mcp add サブコマンドがまだなく、yaml を編集して /reload-mcp する流儀です（プロセス再起動ではなく）。",
+    "ローカルターミナルなら `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` も可 —— RFC 8252 ブラウザ OAuth（PKCE+DCR）が起動し、yaml を自動で書きます。",
 
   "start.picker.content.generic.mcp.body":
     "HTTP を扱える任意の Agent 向け。このプロンプトを Agent に貼り付け —— Agent が手順を読み、curl デバイスフローを実行し、自身の MCP 設定を書き込みます。あなたはブラウザで Authorize を一回クリックするだけ。",

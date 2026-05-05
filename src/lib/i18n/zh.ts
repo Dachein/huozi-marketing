@@ -681,12 +681,12 @@ export const zh = {
     "一行命令，或一段提示词。交给任何 Agent。点一次链接，搞定。",
   "start.hero.title": "开始使用",
   "start.hero.subtitle":
-    "一段提示词、一次点击，搞定。适用于任何支持 MCP 的 Agent。",
+    "选你用的 Agent。一段 prompt 或一行命令，点一次链接就连上了。",
 
-  "start.conversation.title": "让你的 Agent 装",
+  "start.conversation.title": "让 Agent 自己装",
   "start.conversation.badge": "对话 · 约 60 秒",
   "start.conversation.desc":
-    "把这句话贴给任意支持 MCP 的 Agent（Claude Code、Cursor、OpenClaw，或任何能联网的）。它会从本页读取安装协议，然后在对话里问你 2-3 个问题：注册、浏览器登录、或者粘已有 token。全程不用打开终端。",
+    "把这句话贴给任意支持 MCP 的 Agent（Hermes、OpenClaw、Claude Code 等）。它读完本页指令后自己跑 RFC 8628 device flow：给你一个 huozi.app/device 链接，你点一次 Approve，Agent 拿到 key、写好配置、调用 huozi_whoami 验证。Agent 驱动全程。",
 
   "start.terminal.title": "或者，从终端",
   "start.terminal.badge": "Node ≥ 18",
@@ -716,10 +716,11 @@ export const zh = {
 
   "start.manual.summary": "没有 Agent？手动装一遍",
   "start.manual.desc":
-    "整条流程就是纯 HTTP —— 你可以自己跑 curl：",
+    "整条流程就是纯 HTTP —— 你可以自己跑 curl 走 device flow：",
   "start.manual.noteBefore":
-    "已登录 huozi.app？也可以在此处直接拿到为 Cursor / OpenClaw 准备好的配置片段：",
-  "start.manual.noteAfter": "。",
+    "已登录 huozi.app？直接在",
+  "start.manual.noteAfter":
+    " 选客户端拿 ready-to-use 的配置片段。",
 
   "start.footer.mcp.title": "MCP 参考文档",
   "start.footer.mcp.desc":
@@ -732,9 +733,9 @@ export const zh = {
     "同一款云盘，部署到你自己的 Cloudflare 账号。MIT 协议。",
 
   // /start 页上的 InstallPicker
-  "start.picker.title": "按客户端选择安装方式",
+  "start.picker.title": "或者按客户端拿安装片段",
   "start.picker.subtitle":
-    "选你的客户端 —— 下方会只显示与之相关的路径。MCP 加的是工具，Skill / Rules 加的是说明书；大多数场景两者都需要。",
+    "两条平行管线：**本地终端 / GUI** 一行命令或一段配置（RFC 8252 OAuth，第一次调用弹浏览器）；**Chat-mode Agent** 粘一段 prompt 让 Agent 自己跑 RFC 8628 device flow。两条都通，选你的客户端。",
   "start.picker.generic.name": "通用 / 其他",
 
   "start.picker.content.claude-code.mcp.body":
@@ -767,9 +768,9 @@ export const zh = {
     "Codex 用 bearer_token_env_var 间接读 key，避免把明文写进配置文件。",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent（Nous Research）通过 ~/.hermes/config.yaml 注册远程 MCP。把下面这段贴进文件的 mcp_servers 块，然后在 Hermes 会话里 /reload-mcp。",
+    "Hermes Agent（Nous Research v0.12+）通过 ~/.hermes/config.yaml 注册远程 MCP。把下面这段贴进文件的 mcp_servers 块，然后在 Hermes 会话里输 /reload-mcp。如果你在 Hermes chat 里让 agent 自己装，请改用顶部的对话粘贴模式 —— `hermes mcp add` CLI 需要 TTY，在 chat 的非 TTY shell 里会直接退出。",
   "start.picker.content.hermes.mcp.note":
-    "Hermes 暂时没有 mcp add 子命令；改 yaml 后必须 /reload-mcp 而不是重启进程。",
+    "本地终端用户也可以跑 `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` —— 这条会触发 RFC 8252 浏览器 OAuth（PKCE+DCR），自动写好 config。",
 
   "start.picker.content.generic.mcp.body":
     "任何能发 HTTP 请求的 Agent 都适用。把下面这段提示词贴给 Agent —— 它读指令、跑 curl 设备流程、把拿到的 key 写进自己的 MCP 配置里。你只需要在浏览器里点一次 Authorize。",
