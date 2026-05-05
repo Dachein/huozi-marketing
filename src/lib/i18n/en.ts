@@ -768,24 +768,22 @@ export const en = {
     "Cowork shares its connector store with Claude.ai web and Claude Desktop; available on every plan (Free / Pro / Max / Team / Enterprise). huozi isn't in the built-in Connectors Directory search yet, but the Customize path works today.",
 
   "start.picker.content.cursor.mcp.body":
-    "Cursor ships native remote-MCP support. Open Cursor's integrated terminal (⌘J) and run this — it writes ~/.cursor/mcp.json; Reload Window (⌘⇧P) to pick it up.",
+    "Add this to ~/.cursor/mcp.json (or project-level .cursor/mcp.json) and Reload Window (⌘⇧P). First call to huozi triggers Cursor to open your browser for OAuth-on-first-use.",
 
   "start.picker.content.openclaw.mcp.body":
-    "Run this and OpenClaw's MCP layer is configured. The CLI writes ~/.openclaw/openclaw.json under mcp.servers.huozi (transport: streamable-http); restart OpenClaw to pick it up.",
-  "start.picker.content.openclaw.skill.body":
-    "OpenClaw's native ecosystem is ClawHub — Skill is a first-class entry point here. Run this; the CLI pulls huozi/mcp from ClawHub into ~/.openclaw/skills/ and you restart OpenClaw to pick it up.",
-  "start.picker.content.openclaw.skill.note":
-    "We only surface Skill for OpenClaw because that's where it's the native idiom — Claude Code and Cursor users stick with MCP.",
+    "Paste this in your terminal — OpenClaw writes huozi into ~/.openclaw/openclaw.json under mcp.servers.huozi (transport: streamable-http). First call to huozi pops your browser, click Approve once (OAuth-on-first-use), tools light up.",
+  "start.picker.content.openclaw.mcp.note":
+    "OpenClaw's RFC 8252 OAuth-on-first-use is upstream WIP. If the first call returns 401 without a browser pop, fall back to Choice 1 (Agent-driven device flow) above.",
 
   "start.picker.content.codex.mcp.body":
-    "OpenAI Codex CLI is a first-class MCP host. Run this — it writes ~/.codex/config.toml; export your key in your shell rc and restart codex.",
+    "Paste this in your terminal — Codex registers huozi into ~/.codex/config.toml, then on first call opens your browser for one-tap Approve (RFC 8252 PKCE OAuth). Tools light up in every codex session afterward.",
   "start.picker.content.codex.mcp.note":
-    "Codex reads the bearer indirectly via bearer_token_env_var, so the token never lands in plain text inside config.toml.",
+    "OAuth token stays inside codex locally and never enters the conversation context. No need to export an API key by hand.",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent (Nous Research v0.12+) registers remote MCP servers through ~/.hermes/config.yaml. Paste this snippet into the mcp_servers block, then type /reload-mcp inside a Hermes session. If you're inside a Hermes chat asking the agent to install for you, use the conversation prompt at the top of this page instead — `hermes mcp add` requires a TTY and exits in chat shells.",
+    "Paste this in your terminal — Hermes writes huozi into ~/.hermes/config.yaml and runs the RFC 8252 OAuth flow in a real browser (PKCE + DCR + /.well-known discovery). One Approve click and you're done. Needs a TTY and a local browser, so this is for users at their own terminal; if you're inside a Hermes chat asking the agent to install for you, use Choice 1 above.",
   "start.picker.content.hermes.mcp.note":
-    "Local-terminal users can also run `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` — that triggers RFC 8252 OAuth in a real browser (PKCE + DCR) and writes the YAML for you.",
+    "OAuth token lands in ~/.hermes/mcp-tokens/huozi.json, never enters the conversation context. The \\`--auth oauth\\` flag is mandatory — without it Hermes won't run the PKCE flow and the connect hangs at 401.",
 
   "start.picker.content.generic.mcp.body":
     "Any Agent that can make HTTP calls. Copy this prompt into the Agent — it reads the steps, runs the curl device flow, and writes its own MCP config. Your only job: click one Authorize link in the browser.",

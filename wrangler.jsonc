@@ -35,10 +35,11 @@
     { "pattern": "huozi.app/docs", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/start", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/start/*", "zone_name": "huozi.app" },
-    // Canonical agent-readable install protocol (llms.txt standard).
-    // Plain markdown served from public/, used by chat agents that
-    // WebFetch a stable spec instead of parsing HTML on /start.
-    { "pattern": "huozi.app/llms.txt", "zone_name": "huozi.app" },
+    // /llms.txt now lives in the product worker (app/), not here, so
+    // each deploy (Cloud / Edge) serves its own URLs templated into the
+    // markdown. Cloud users land at cloud.huozi.app/llms.txt; Edge users
+    // at <their>.workers.dev/llms.txt. Marketing has no MCP endpoint of
+    // its own to advertise.
     { "pattern": "huozi.app/marketing-static/*", "zone_name": "huozi.app" }
   ]
 }

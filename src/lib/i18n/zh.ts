@@ -753,24 +753,22 @@ export const zh = {
     "Cowork 跟 Claude.ai 网页、Claude Desktop 共用同一份连接器存储；Free / Pro / Max / Team / Enterprise 全部 plan 都能用。huozi 暂未进入 Connectors Directory 内置搜索，但走 Customize 这条路径今天就能接。",
 
   "start.picker.content.cursor.mcp.body":
-    "Cursor 原生支持远程 MCP。打开 Cursor 的集成终端（⌘J），跑这行 —— CLI 写 ~/.cursor/mcp.json，Reload Window（⌘⇧P）生效。",
+    "把这段加到 ~/.cursor/mcp.json（或项目级 .cursor/mcp.json），Reload Window（⌘⇧P）生效。首次调用 huozi 时 Cursor 会自动弹浏览器走 OAuth-on-first-use。",
 
   "start.picker.content.openclaw.mcp.body":
-    "跑这行 OpenClaw 的 MCP 层就配置好了。CLI 写 ~/.openclaw/openclaw.json 的 mcp.servers.huozi（transport: streamable-http），重启 OpenClaw 生效。",
-  "start.picker.content.openclaw.skill.body":
-    "OpenClaw 原生的生态是 ClawHub —— Skill 在这里是一等公民。跑这行，CLI 会从 ClawHub 拉 huozi/mcp 并写进 ~/.openclaw/skills/，重启 OpenClaw 生效。",
-  "start.picker.content.openclaw.skill.note":
-    "Skill 这条路只出现在 OpenClaw，因为那里才是它的原生习惯 —— Claude Code 和 Cursor 用户保持 MCP 一条路就够了。",
+    "终端粘贴这一行 —— OpenClaw 把 huozi 写进 ~/.openclaw/openclaw.json 的 mcp.servers.huozi（transport: streamable-http），首次调用 huozi 时弹浏览器一键 Approve（OAuth-on-first-use），工具立即可用。",
+  "start.picker.content.openclaw.mcp.note":
+    "OpenClaw 的 RFC 8252 OAuth-on-first-use 是上游 WIP；如果首次调用返回 401 没弹浏览器，请用上方「选择一」走 Agent device flow 装。",
 
   "start.picker.content.codex.mcp.body":
-    "OpenAI Codex CLI 一等支持远程 MCP。跑这行命令，CLI 写进 ~/.codex/config.toml；shell rc 里 export 你的 API key，重启 Codex 生效。",
+    "终端粘贴这一行 —— Codex 把 huozi 注册到 ~/.codex/config.toml，首次调用时弹浏览器一键 Approve（RFC 8252 PKCE OAuth），工具在所有 codex 会话里立即可用。",
   "start.picker.content.codex.mcp.note":
-    "Codex 用 bearer_token_env_var 间接读 key，避免把明文写进配置文件。",
+    "OAuth token 由 codex 在本地持有，不进入对话上下文。无需手动 export API key。",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent（Nous Research v0.12+）通过 ~/.hermes/config.yaml 注册远程 MCP。把下面这段贴进文件的 mcp_servers 块，然后在 Hermes 会话里输 /reload-mcp。如果你在 Hermes chat 里让 agent 自己装，请改用顶部的对话粘贴模式 —— `hermes mcp add` CLI 需要 TTY，在 chat 的非 TTY shell 里会直接退出。",
+    "终端粘贴这一行 —— Hermes 把 huozi 写进 ~/.hermes/config.yaml，自动跑 RFC 8252 浏览器 OAuth（PKCE + DCR + /.well-known discovery），点一次 Approve 即可。需要 TTY 与本地浏览器，因此这条只适合在自己电脑终端跑;如果你在 Hermes chat 里让 agent 自己装，请用上方「选择一」。",
   "start.picker.content.hermes.mcp.note":
-    "本地终端用户也可以跑 `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` —— 这条会触发 RFC 8252 浏览器 OAuth（PKCE+DCR），自动写好 config。",
+    "OAuth token 落在 ~/.hermes/mcp-tokens/huozi.json，不进入对话上下文。\\`--auth oauth\\` 必须加，否则 Hermes 不会跑 PKCE 流程，连接卡 401。",
 
   "start.picker.content.generic.mcp.body":
     "任何能发 HTTP 请求的 Agent 都适用。把下面这段提示词贴给 Agent —— 它读指令、跑 curl 设备流程、把拿到的 key 写进自己的 MCP 配置里。你只需要在浏览器里点一次 Authorize。",

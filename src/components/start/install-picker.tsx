@@ -87,47 +87,43 @@ const MODE_LABELS: Record<Mode, string> = {
 };
 
 function commandFor(client: Client, mode: Mode): string {
-  // MCP install — runs the host's add-MCP-server command directly
-  // against the remote HTTP endpoint. No npm wrapper, no local proxy.
-  // The host stores the api_key in its own MCP config; daily traffic
-  // goes from the host straight to cloud.huozi.app/mcp.
+  // Choice 2 across all clients = one CLI line (or GUI URL paste for
+  // Cowork). Every client relies on RFC 8252 OAuth-on-first-use:
+  // first MCP call returns 401 with WWW-Authenticate, host opens the
+  // user's browser, click Approve, host stores the OAuth token in its
+  // own credential store. No static api_key in any of these snippets;
+  // the api_key path is reserved for Choice 1 (Agent-driven device
+  // flow) where the agent itself drives the install.
   if (mode === "mcp" && client === "claude-code") {
     return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp`;
   }
+  if (mode === "mcp" && client === "codex") {
+    return `codex mcp add huozi --url https://cloud.huozi.app/mcp`;
+  }
+  if (mode === "mcp" && client === "hermes") {
+    // The --auth oauth flag tells Hermes to run the MCP SDK's PKCE +
+    // DCR + /.well-known discovery flow (vs expecting a static Bearer
+    // header). Without it the connect hangs at 401.
+    return `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth`;
+  }
+  if (mode === "mcp" && client === "openclaw") {
+    // OpenClaw's `mcp set` takes the server JSON inline. We omit the
+    // Authorization header — the first MCP call should trigger OAuth
+    // discovery on hosts that support it. (OpenClaw RFC 8252 native
+    // support is upstream WIP; users on older builds may need to fall
+    // back to Choice 1.)
+    return `openclaw mcp set huozi '{"url":"https://cloud.huozi.app/mcp","transport":"streamable-http"}'`;
+  }
   // Cowork — UI flow, no terminal command. Show the URL itself in the
   // copy box so users can paste it into the Customize > Connectors > +
-  // dialog. No `--header` because Cowork drives OAuth itself.
+  // dialog. Cowork drives OAuth itself.
   if (mode === "mcp" && client === "cowork") {
     return `https://cloud.huozi.app/mcp`;
   }
-  // OpenAI Codex CLI — same `mcp add` ergonomic, but TOML-backed
-  // (~/.codex/config.toml) and reads the bearer indirectly via env-var
-  // so the token never lands in plain text inside config.
-  if (client === "codex" && mode === "mcp") {
-    return `# 1) export the key once in your shell rc
-export HUOZI_API_KEY=hz_your_key
-
-# 2) register the server
-codex mcp add huozi \\
-  --url https://cloud.huozi.app/mcp \\
-  --bearer-token-env-var HUOZI_API_KEY`;
-  }
-  // Cursor / OpenClaw-MCP / Hermes / generic share the same shape: a
-  // config-file snippet. We render the YAML/JSON inline below the picker;
-  // the function returns an empty string so the parent skips the "command"
-  // panel and goes straight to the snippet panel.
+  // Cursor / generic — return empty string so the parent skips the
+  // "command" panel and renders mcpJsonSnippet() (Cursor) or the
+  // GenericCell agent prompt instead.
   return "";
-}
-
-/** Hermes Agent uses YAML, not JSON; bearer is inline (no env-var
- *  redirect documented in their config schema as of Feb 2026). */
-function hermesYamlSnippet(): string {
-  return `# Append to ~/.hermes/config.yaml
-mcp_servers:
-  huozi:
-    url: "https://cloud.huozi.app/mcp"
-    headers:
-      Authorization: "Bearer hz_your_key"`;
 }
 
 export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
@@ -225,16 +221,11 @@ export function InstallPicker({ agentPrompt }: { agentPrompt: string }) {
 }
 
 /**
- * Build the mcp.json snippet a Cursor / OpenClaw config needs.
- * Universal shape:
- *   { "mcpServers": { "huozi": {
- *       "type": "http",
- *       "url": "https://cloud.huozi.app/mcp",
- *       "headers": { "Authorization": "Bearer hz_your_key" }
- *   } } }
- *
- * The placeholder string `hz_your_key` is intentional — users grab their
- * actual key from /workspace/connect on the product side.
+ * mcp.json snippet for Cursor (the only client that lacks a one-line CLI
+ * and still uses a config-file paste). No Authorization header — Cursor
+ * supports OAuth-on-first-use, so the first MCP call returns 401 and
+ * Cursor opens the user's browser to authorize. Static keys belong to
+ * Choice 1 (the Agent-driven device flow), not here.
  */
 function mcpJsonSnippet(): string {
   return JSON.stringify(
@@ -243,9 +234,6 @@ function mcpJsonSnippet(): string {
         huozi: {
           type: "http",
           url: "https://cloud.huozi.app/mcp",
-          headers: {
-            Authorization: "Bearer hz_your_key",
-          },
         },
       },
     },
@@ -264,10 +252,10 @@ function InstallCell({
   t: (key: string) => string;
 }) {
   const cmd = commandFor(client, mode);
-  const showJson =
-    mode === "mcp" && (client === "cursor" || client === "openclaw");
+  // Cursor is the only client without a one-line CLI; it gets the
+  // mcp.json paste. Everyone else is covered by `cmd`.
+  const showJson = mode === "mcp" && client === "cursor";
   const json = showJson ? mcpJsonSnippet() : "";
-  const yaml = client === "hermes" && mode === "mcp" ? hermesYamlSnippet() : "";
   const bodyKey = `start.picker.content.${client}.${mode}.body`;
   const step2Key = `start.picker.content.${client}.${mode}.step2`;
   const noteKey = `start.picker.content.${client}.${mode}.note`;
@@ -304,14 +292,6 @@ function InstallCell({
             <code>{json}</code>
           </pre>
           <CopyButton text={json} />
-        </div>
-      )}
-      {yaml && (
-        <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20 mb-3">
-          <pre className="p-4 pr-14 text-xs leading-relaxed font-mono whitespace-pre overflow-x-auto">
-            <code>{yaml}</code>
-          </pre>
-          <CopyButton text={yaml} />
         </div>
       )}
       {hasNote && (

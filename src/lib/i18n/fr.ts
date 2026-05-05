@@ -770,24 +770,22 @@ export const fr = {
     "Cowork partage le magasin de connecteurs avec Claude.ai web et Claude Desktop ; disponible sur tous les plans (Free / Pro / Max / Team / Enterprise). huozi n'est pas encore dans la recherche Connectors Directory intégrée, mais la voie Customize fonctionne dès aujourd'hui.",
 
   "start.picker.content.cursor.mcp.body":
-    "Cursor prend en charge nativement MCP distant. Ouvrez le terminal intégré de Cursor (⌘J) et exécutez ceci — il écrit ~/.cursor/mcp.json ; Reload Window (⌘⇧P) pour l'activer.",
+    "Ajoutez ceci à ~/.cursor/mcp.json (ou .cursor/mcp.json au niveau projet) et Reload Window (⌘⇧P). Le premier appel à huozi déclenche l'ouverture du navigateur par Cursor pour l'OAuth-on-first-use.",
 
   "start.picker.content.openclaw.mcp.body":
-    "Exécutez ceci et la couche MCP d'OpenClaw est configurée. Le CLI écrit ~/.openclaw/openclaw.json sous mcp.servers.huozi (transport : streamable-http) ; redémarrez OpenClaw.",
-  "start.picker.content.openclaw.skill.body":
-    "L'écosystème natif d'OpenClaw est ClawHub — Skill y est un citoyen de première classe. Exécutez ceci : le CLI récupère huozi/mcp depuis ClawHub dans ~/.openclaw/skills/ ; redémarrez OpenClaw pour l'activer.",
-  "start.picker.content.openclaw.skill.note":
-    "Skill n'apparaît que pour OpenClaw parce que c'est là qu'il est l'idiome natif — les utilisateurs Claude Code et Cursor en restent à MCP.",
+    "Collez ceci dans votre terminal — OpenClaw écrit huozi dans ~/.openclaw/openclaw.json sous mcp.servers.huozi (transport : streamable-http). Le premier appel à huozi ouvre votre navigateur, cliquez Approve une fois (OAuth-on-first-use), les outils sont disponibles.",
+  "start.picker.content.openclaw.mcp.note":
+    "Le support RFC 8252 OAuth-on-first-use d'OpenClaw est en cours côté upstream. Si le premier appel renvoie 401 sans ouvrir de navigateur, repliez-vous sur le « Choix 1 » ci-dessus (device flow piloté par l'agent).",
 
   "start.picker.content.codex.mcp.body":
-    "OpenAI Codex CLI prend en charge MCP distant nativement. Lancez cette commande — elle écrit dans ~/.codex/config.toml ; exportez votre clé dans votre shell rc et relancez codex pour l'activer.",
+    "Collez ceci dans votre terminal — Codex enregistre huozi dans ~/.codex/config.toml, puis au premier appel ouvre votre navigateur pour un Approve en un clic (OAuth PKCE RFC 8252). Outils disponibles dans toutes les sessions codex ensuite.",
   "start.picker.content.codex.mcp.note":
-    "Codex lit le bearer indirectement via bearer_token_env_var, donc le token n'apparaît jamais en clair dans le config.toml.",
+    "Le jeton OAuth reste dans codex en local et n'entre jamais dans le contexte de la conversation. Pas besoin d'exporter une clé API à la main.",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent (Nous Research v0.12+) enregistre les serveurs MCP distants dans ~/.hermes/config.yaml. Collez ce snippet dans le bloc mcp_servers, puis tapez /reload-mcp dans une session Hermes. Si vous êtes dans un chat Hermes en demandant à l'agent d'installer pour vous, utilisez le prompt conversationnel en haut de cette page — `hermes mcp add` requiert un TTY et échoue dans les shells de chat.",
+    "Collez ceci dans votre terminal — Hermes écrit huozi dans ~/.hermes/config.yaml et exécute le flux OAuth RFC 8252 dans un vrai navigateur (PKCE + DCR + /.well-known discovery). Un clic sur Approve et c'est terminé. Nécessite un TTY et un navigateur local, donc à utiliser sur votre propre terminal ; si vous êtes dans un chat Hermes en demandant à l'agent d'installer pour vous, utilisez le « Choix 1 » ci-dessus.",
   "start.picker.content.hermes.mcp.note":
-    "Les utilisateurs en terminal local peuvent aussi exécuter `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` — cela déclenche l'OAuth RFC 8252 dans un vrai navigateur (PKCE + DCR) et écrit le YAML pour vous.",
+    "Le jeton OAuth atterrit dans ~/.hermes/mcp-tokens/huozi.json, n'entre jamais dans le contexte de la conversation. Le flag \\`--auth oauth\\` est obligatoire — sans lui Hermes n'exécute pas le flux PKCE et la connexion bloque sur 401.",
 
   "start.picker.content.generic.mcp.body":
     "Tout Agent capable d'appels HTTP. Collez cette invite dans l'Agent — il lit les étapes, exécute le flux device en curl, et écrit sa propre configuration MCP. Votre seul rôle : cliquer une fois sur Authorize dans le navigateur.",

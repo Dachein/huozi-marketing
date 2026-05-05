@@ -763,24 +763,22 @@ export const ja = {
     "Cowork は Claude.ai ウェブと Claude Desktop と同じコネクタストアを共有。全プラン（Free / Pro / Max / Team / Enterprise）で利用可能。huozi は Connectors Directory の内蔵検索にはまだ載っていませんが、Customize 経由は今日から使えます。",
 
   "start.picker.content.cursor.mcp.body":
-    "Cursor はリモート MCP をネイティブサポート。統合ターミナル（⌘J）を開いてこれを実行 —— ~/.cursor/mcp.json に書き込まれ、Reload Window（⌘⇧P）で反映されます。",
+    "これを ~/.cursor/mcp.json（またはプロジェクト直下の .cursor/mcp.json）に追加し、Reload Window（⌘⇧P）で反映。huozi を初回呼び出しすると Cursor が自動でブラウザを開き OAuth-on-first-use を実行。",
 
   "start.picker.content.openclaw.mcp.body":
-    "これを実行すれば OpenClaw の MCP 層は設定完了。CLI が ~/.openclaw/openclaw.json の mcp.servers.huozi（transport: streamable-http）に書き込みます。OpenClaw を再起動で反映。",
-  "start.picker.content.openclaw.skill.body":
-    "OpenClaw のネイティブ生態系は ClawHub —— Skill はここでは一級市民です。これを実行すると、CLI が ClawHub から huozi/mcp を取得して ~/.openclaw/skills/ に配置します。OpenClaw を再起動で反映。",
-  "start.picker.content.openclaw.skill.note":
-    "Skill を表示するのは OpenClaw だけです —— そこが Skill のネイティブな慣習だから。Claude Code と Cursor のユーザーは MCP 一本で十分。",
+    "ターミナルでこれを貼り付け —— OpenClaw が ~/.openclaw/openclaw.json の mcp.servers.huozi（transport: streamable-http）に書き込みます。huozi 初回呼び出しでブラウザが開き、Approve を 1 回クリック（OAuth-on-first-use）でツールが利用可能に。",
+  "start.picker.content.openclaw.mcp.note":
+    "OpenClaw の RFC 8252 OAuth-on-first-use は上流で対応中。初回呼び出しが 401 でブラウザが開かない場合は、上の「選択 1」（エージェント駆動 device flow）にフォールバック。",
 
   "start.picker.content.codex.mcp.body":
-    "OpenAI Codex CLI はリモート MCP をネイティブ対応。このコマンドで ~/.codex/config.toml に書き込み、shell rc で API key を export して codex を再起動すれば反映。",
+    "ターミナルでこれを貼り付け —— Codex が huozi を ~/.codex/config.toml に登録し、初回呼び出しでブラウザが開き Approve を 1 回（RFC 8252 PKCE OAuth）。以降すべての codex セッションでツール利用可能。",
   "start.picker.content.codex.mcp.note":
-    "Codex は bearer_token_env_var で間接的に key を読むため、平文の token が config.toml に残りません。",
+    "OAuth トークンは codex がローカルで保持し、会話の文脈には入りません。API キーを手動で export する必要なし。",
 
   "start.picker.content.hermes.mcp.body":
-    "Hermes Agent（Nous Research v0.12+）は ~/.hermes/config.yaml でリモート MCP を登録。下のスニペットを mcp_servers ブロックに貼り、Hermes セッション内で /reload-mcp を実行。Hermes チャット内でエージェントに任せる場合は、ページ上部の対話プロンプトを使ってください —— `hermes mcp add` は TTY が必要で、チャットの非 TTY シェルでは即終了します。",
+    "ターミナルでこれを貼り付け —— Hermes が ~/.hermes/config.yaml に huozi を書き込み、実ブラウザで RFC 8252 OAuth フロー（PKCE + DCR + /.well-known discovery）を実行。Approve を 1 回クリックで完了。TTY とローカルブラウザが必要なため、ご自身のターミナルで実行する場合のみ；Hermes チャット内でエージェントに任せたい場合は上の「選択 1」を使用。",
   "start.picker.content.hermes.mcp.note":
-    "ローカルターミナルなら `hermes mcp add huozi --url https://cloud.huozi.app/mcp --auth oauth` も可 —— RFC 8252 ブラウザ OAuth（PKCE+DCR）が起動し、yaml を自動で書きます。",
+    "OAuth トークンは ~/.hermes/mcp-tokens/huozi.json に格納され、会話の文脈には入りません。\\`--auth oauth\\` は必須 —— 付けないと Hermes が PKCE フローを実行せず、接続が 401 で止まります。",
 
   "start.picker.content.generic.mcp.body":
     "HTTP を扱える任意の Agent 向け。このプロンプトを Agent に貼り付け —— Agent が手順を読み、curl デバイスフローを実行し、自身の MCP 設定を書き込みます。あなたはブラウザで Authorize を一回クリックするだけ。",
