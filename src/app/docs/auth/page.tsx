@@ -29,7 +29,7 @@ export default async function AuthPage() {
     <article>
       <h1 className="text-3xl font-bold tracking-tight">
         {t({
-          zh: "两条安装管线",
+          zh: "两条 pipeline",
           en: "Two install pipelines",
           ja: "2 つのインストールパイプライン",
           fr: "Deux pipelines d'installation",
@@ -37,7 +37,7 @@ export default async function AuthPage() {
       </h1>
       <Lead>
         {t({
-          zh: "huozi 支持两条平行的安装路径,适配不同执行环境。两条路最终都拿到 Bearer token 调 /mcp,但凭证来源、流程、token 形态都不同。按你 Agent 跑在哪决定走哪条。",
+          zh: "huozi 支持两条平行的 pipeline,适配不同执行环境。两条最终都拿到 Bearer token 调 /mcp,但凭证来源、流程、token 形态都不同。按你 Agent 跑在哪决定走哪条。",
           en: "huozi supports two parallel install paths, matched to where your agent runs. Both end at the same place — a Bearer token against /mcp — but the credential source, the flow, and the token shape differ. Pick by environment.",
           ja: "huozi はエージェントの実行環境に合わせた 2 つの並行インストールパスをサポートします。どちらも最終的に /mcp に対する Bearer トークンに行き着きますが、認証情報の出所・フロー・トークンの形が異なります。環境で選んでください。",
           fr: "huozi prend en charge deux paths d'installation parallèles, adaptés à l'environnement où s'exécute votre agent. Les deux aboutissent au même endroit — un token Bearer contre /mcp — mais la source du jeton, le flux et la forme diffèrent. Choisissez selon l'environnement.",

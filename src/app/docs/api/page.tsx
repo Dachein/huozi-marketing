@@ -497,7 +497,7 @@ curl -sS -X POST https://cloud.huozi.app/oauth/token \\
         <li>
           <Link href="/docs/auth" className="underline hover:text-foreground">
             {t({
-              zh: "Two install pipelines —— OAuth 与 device flow 深度",
+              zh: "两条 pipeline —— OAuth 与 device flow 深度",
               en: "Two install pipelines — OAuth and device flow deep dive",
               ja: "Two install pipelines — OAuth と device flow の詳細",
               fr: "Deux pipelines d'installation — OAuth et device flow en détail",

@@ -391,7 +391,7 @@ export default async function EditionsPage() {
         <li>
           <Link href="/docs/auth" className="underline hover:text-foreground">
             {t({
-              zh: "Two install pipelines (OAuth + device flow)",
+              zh: "两条 pipeline (OAuth + device flow)",
               en: "Two install pipelines (OAuth + device flow)",
               ja: "2 つのインストールパイプライン (OAuth + device flow)",
               fr: "Deux pipelines d'installation (OAuth + device flow)",

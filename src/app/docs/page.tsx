@@ -29,7 +29,7 @@ export default async function DocsPage() {
       </h1>
       <Lead>
         {isZh
-          ? "huozi 是一个 Agent 原生的云盘 —— 通过 MCP 暴露文件树,任何 MCP 客户端(Claude Code / Cursor / Hermes / OpenClaw / Cowork / 任意 Agent)都能把它当作共享工作区。本文档覆盖 Cloud / Edge 两个版本、两条安装路径(RFC 8252 OAuth + RFC 8628 device flow)、以及 16 个 MCP 工具。"
+          ? "huozi 是一个 Agent 原生的云盘 —— 通过 MCP 暴露文件树,任何 MCP 客户端(Claude Code / Cursor / Hermes / OpenClaw / Cowork / 任意 Agent)都能把它当作共享工作区。本文档覆盖 Cloud / Edge 两个版本、两条 pipeline(RFC 8252 OAuth + RFC 8628 device flow)、以及 16 个 MCP 工具。"
           : "huozi is an Agent-native cloud drive. It exposes a versioned file tree over MCP so any MCP client (Claude Code, Cursor, Hermes, OpenClaw, Cowork, or any agent) can use it as a shared workspace. These docs cover the Cloud / Edge editions, the two install pipelines (RFC 8252 OAuth + RFC 8628 device flow), and the 16-tool MCP surface."}
       </Lead>
 
@@ -61,7 +61,7 @@ export default async function DocsPage() {
         />
         <TopicCard
           href="/docs/auth"
-          title={isZh ? "Two install pipelines" : "Two install pipelines"}
+          title={isZh ? "两条 pipeline" : "Two install pipelines"}
           desc={
             isZh
               ? "RFC 8252 OAuth-on-first-use(本地终端)vs RFC 8628 device flow(Agent 自己装)。"
@@ -417,7 +417,7 @@ export default async function DocsPage() {
             className="underline hover:text-foreground"
           >
             {isZh
-              ? "Two install pipelines — OAuth 与 device flow"
+              ? "两条 pipeline — OAuth 与 device flow"
               : "Two install pipelines — OAuth and device flow"}
           </Link>
         </li>

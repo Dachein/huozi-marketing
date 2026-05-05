@@ -726,7 +726,7 @@ export const zh = {
   "docs.nav.heading": "文档导航",
   "docs.nav.overview": "概览",
   "docs.nav.editions": "Cloud vs Edge",
-  "docs.nav.auth": "两条安装管线",
+  "docs.nav.auth": "两条 pipeline",
   "docs.nav.api": "HTTP API 参考",
 
   "start.footer.mcp.title": "MCP 参考文档",
