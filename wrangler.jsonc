@@ -9,6 +9,20 @@
     "binding": "ASSETS"
   },
   "workers_dev": true,
+  // Blog runtime store. Static posts live in posts.ts; dynamic posts (the
+  // "register a new post by URL" admin flow) live in this KV — written by
+  // /blog/admin server actions, read by the public /blog index. Ship as
+  // empty: bind it once with `wrangler kv namespace create huozi-blog-posts`
+  // and paste the resulting id below.
+  "kv_namespaces": [
+    {
+      "binding": "BLOG_POSTS",
+      "id": "8007669b38ec44d9b0785d8d8be3cac8"
+    }
+  ],
+  // BLOG_ADMIN_TOKEN must be set as a secret:
+  //   wrangler secret put BLOG_ADMIN_TOKEN
+  // It gates /blog/admin server actions. Local dev: put it in .dev.vars.
   // Marketing claims the brand paths; everything else falls through to the
   // product worker via its own catch-all. CF picks the most-specific route
   // pattern, so /blog/foo lands here while /workspace stays on the product.
@@ -20,6 +34,7 @@
     { "pattern": "huozi.app/edge", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/docs", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/start", "zone_name": "huozi.app" },
+    { "pattern": "huozi.app/start/*", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/marketing-static/*", "zone_name": "huozi.app" }
   ]
 }
