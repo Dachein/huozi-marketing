@@ -35,6 +35,10 @@
     { "pattern": "huozi.app/docs", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/start", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/start/*", "zone_name": "huozi.app" },
+    // Canonical agent-readable install protocol (llms.txt standard).
+    // Plain markdown served from public/, used by chat agents that
+    // WebFetch a stable spec instead of parsing HTML on /start.
+    { "pattern": "huozi.app/llms.txt", "zone_name": "huozi.app" },
     { "pattern": "huozi.app/marketing-static/*", "zone_name": "huozi.app" }
   ]
 }

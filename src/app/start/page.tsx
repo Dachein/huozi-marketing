@@ -215,9 +215,9 @@ export default async function StartPage() {
         </p>
         <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20">
           <pre className="p-5 pr-14 text-base leading-relaxed font-mono whitespace-pre-wrap">
-            <code>Install huozi from huozi.app/start.</code>
+            <code>Install huozi from huozi.app/llms.txt.</code>
           </pre>
-          <CopyButton text="Install huozi from huozi.app/start." />
+          <CopyButton text="Install huozi from huozi.app/llms.txt." />
         </div>
       </section>
 

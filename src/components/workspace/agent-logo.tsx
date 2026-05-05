@@ -128,36 +128,22 @@ export function AgentLogo({ kind, size = 20, className }: AgentLogoProps) {
         </svg>
       );
 
-    /* ── Hermes Agent (Nous Research) · Mercury / ☿ ──
-       The astronomical glyph for Mercury (the Roman name for the
-       Greek god Hermes): crescent on top, circle in the middle,
-       cross at the bottom. Distinctive at 20×20. */
+    /* ── Hermes Agent (Nous Research) · classical bust silhouette ──
+       Hermes Agent's actual brand at hermes-agent.nousresearch.com
+       leans on classical figurative imagery (favicon = portrait,
+       og:image = Renaissance-style Hermes figure). Render a head +
+       shoulders silhouette here — the only human-figure mark in the
+       lineup — instead of the alchemical ☿ Mercury glyph the slot
+       used to carry. We still don't pixel-reproduce their mark, just
+       match its spirit at 20×20. */
     case "hermes":
     case "hermes-agent":
       return (
         <svg {...common}>
-          <path
-            d="M6 4 Q10 1.5 14 4"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <circle
-            cx="10"
-            cy="8.2"
-            r="2.5"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            fill="none"
-          />
-          <path
-            d="M10 10.7 L10 17 M7.4 14 L12.6 14"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            fill="none"
-          />
+          <g fill="currentColor">
+            <circle cx="10" cy="6.5" r="3.2" />
+            <path d="M3 18 Q5 11.5 10 11 Q15 11.5 17 18 Z" />
+          </g>
         </svg>
       );
 
