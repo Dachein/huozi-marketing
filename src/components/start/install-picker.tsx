@@ -49,23 +49,23 @@ const CLIENTS: Client[] = [
 ];
 
 /**
- * Per-client install modes, matched to each ecosystem's native extension
- * culture:
- *   - Claude Code / Cursor → MCP is the canonical way to extend, and their
- *     MCP tool descriptions carry enough context that a separate Skill
- *     layer is redundant. Same pattern Supabase / Linear / GitHub MCP
- *     servers follow.
- *   - OpenClaw → ClawHub is the first-class ecosystem. Skill and MCP coexist;
- *     users may prefer the Skill entry point.
- *   - Codex → first-class MCP via `codex mcp add` (TOML-backed).
- *   - Hermes → MCP via ~/.hermes/config.yaml; no `mcp add` subcommand yet.
- *   - Generic → only the Agent-readable curl prompt applies.
+ * Per-client install modes. Every client now ships exactly one path
+ * (MCP), so the Mode dimension is structurally a no-op — the layout
+ * machinery and the pill row are still here in case we resurrect a
+ * second mode for some client later, but with all arrays of length 1
+ * the pill row is hidden everywhere.
+ *
+ * History note: OpenClaw used to expose a Skill mode (ClawHub install
+ * via `openclaw skills install huozi/mcp`). It was dropped 2026-05
+ * because there is no Skill layer to install — huozi ships only an MCP
+ * server, no companion Skill package, and offering the Skill route
+ * created a dead path that confused users.
  */
 const CLIENT_MODES: Record<Client, Mode[]> = {
   "claude-code": ["mcp"],
   cowork: ["mcp"],
   cursor: ["mcp"],
-  openclaw: ["mcp", "skill"],
+  openclaw: ["mcp"],
   codex: ["mcp"],
   hermes: ["mcp"],
   generic: ["mcp"],
@@ -111,11 +111,6 @@ export HUOZI_API_KEY=hz_your_key
 codex mcp add huozi \\
   --url https://cloud.huozi.app/mcp \\
   --bearer-token-env-var HUOZI_API_KEY`;
-  }
-  // OpenClaw skill — published to ClawHub as huozi/mcp; the CLI fetches
-  // and wires the skill into ~/.openclaw/skills/ for you.
-  if (client === "openclaw" && mode === "skill") {
-    return `openclaw skills install huozi/mcp`;
   }
   // Cursor / OpenClaw-MCP / Hermes / generic share the same shape: a
   // config-file snippet. We render the YAML/JSON inline below the picker;
