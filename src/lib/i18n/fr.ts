@@ -762,6 +762,13 @@ export const fr = {
   "start.picker.content.claude-code.mcp.note":
     "Endpoint : cloud.huozi.app/mcp · Le jeton OAuth reste localement dans le client MCP, n'entre jamais dans la conversation · Le même flux s'applique si vous ouvrez Code depuis Claude Desktop — c'est le même Claude Code en dessous.",
 
+  "start.picker.content.cowork.mcp.body":
+    "Step 1 · Cowork est le troisième onglet de Claude Desktop (Chat / Cowork / Code). Dans le menu supérieur, ouvrez Customize → Connectors pour accéder au panneau des connecteurs.",
+  "start.picker.content.cowork.mcp.step2":
+    "Step 2 · Cliquez sur + → Name : huozi → collez l'URL ci-dessous → Add. Un clic OAuth dans le navigateur et les outils huozi sont disponibles dans la conversation actuelle — sans terminal.",
+  "start.picker.content.cowork.mcp.note":
+    "Cowork partage le magasin de connecteurs avec Claude.ai web et Claude Desktop ; disponible sur tous les plans (Free / Pro / Max / Team / Enterprise). huozi n'est pas encore dans la recherche Connectors Directory intégrée, mais la voie Customize fonctionne dès aujourd'hui.",
+
   "start.picker.content.cursor.mcp.body":
     "Cursor prend en charge nativement MCP distant. Ouvrez le terminal intégré de Cursor (⌘J) et exécutez ceci — il écrit ~/.cursor/mcp.json ; Reload Window (⌘⇧P) pour l'activer.",
 

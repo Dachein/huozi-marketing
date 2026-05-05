@@ -12,6 +12,7 @@
 // product's @/lib/identity (which lives in the huozi product repo).
 type AgentKind =
   | "claude-code"
+  | "cowork"
   | "cursor"
   | "desktop"
   | "openclaw"
@@ -38,9 +39,12 @@ export function AgentLogo({ kind, size = 20, className }: AgentLogoProps) {
   };
 
   switch (kind) {
-    /* ── Anthropic family · Claude Code + Claude Desktop ──
-       8-pointed star — echoes Anthropic's asterisk mark. */
+    /* ── Anthropic family · Claude Code + Cowork + Claude Desktop ──
+       8-pointed star — echoes Anthropic's asterisk mark. Cowork is
+       Desktop's third tab (Chat / Cowork / Code) so it shares the
+       Anthropic mark visually. */
     case "claude-code":
+    case "cowork":
     case "desktop":
       return (
         <svg {...common}>

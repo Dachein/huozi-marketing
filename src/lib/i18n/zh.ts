@@ -744,6 +744,13 @@ export const zh = {
   "start.picker.content.claude-code.mcp.note":
     "Endpoint: cloud.huozi.app/mcp · 授权令牌由 MCP 客户端在本地持有，不进入对话上下文 · 在 Claude Desktop 内进入 Code 模式同样适用 —— 底层是同一个 Claude Code。",
 
+  "start.picker.content.cowork.mcp.body":
+    "Step 1 · Cowork 是 Claude Desktop 的第三个 tab（Chat / Cowork / Code）。打开顶部菜单 Customize → Connectors，进入连接器面板。",
+  "start.picker.content.cowork.mcp.step2":
+    "Step 2 · 点 + 按钮 → Name 填 huozi → URL 粘贴下面这一行 → Add。浏览器一键 OAuth，huozi 工具立即在本对话可用 —— 全程不用打开终端。",
+  "start.picker.content.cowork.mcp.note":
+    "Cowork 跟 Claude.ai 网页、Claude Desktop 共用同一份连接器存储；Free / Pro / Max / Team / Enterprise 全部 plan 都能用。huozi 暂未进入 Connectors Directory 内置搜索，但走 Customize 这条路径今天就能接。",
+
   "start.picker.content.cursor.mcp.body":
     "Cursor 原生支持远程 MCP。打开 Cursor 的集成终端（⌘J），跑这行 —— CLI 写 ~/.cursor/mcp.json，Reload Window（⌘⇧P）生效。",
 

@@ -755,6 +755,13 @@ export const ja = {
   "start.picker.content.claude-code.mcp.note":
     "Endpoint: cloud.huozi.app/mcp · 認可トークンは MCP クライアント内のみで保持され、会話には流れません · Claude Desktop から Code モードを起動した場合も同じ手順 —— 内部は同じ Claude Code です。",
 
+  "start.picker.content.cowork.mcp.body":
+    "Step 1 · Cowork は Claude Desktop の三番目のタブ（Chat / Cowork / Code）。トップメニューで Customize → Connectors を開き、コネクタパネルへ。",
+  "start.picker.content.cowork.mcp.step2":
+    "Step 2 · ＋ボタン → Name に「huozi」 → 下の URL を貼り付け → Add。ブラウザで OAuth を一回承認すれば、現在の会話で huozi ツールが即利用可能 —— ターミナル不要。",
+  "start.picker.content.cowork.mcp.note":
+    "Cowork は Claude.ai ウェブと Claude Desktop と同じコネクタストアを共有。全プラン（Free / Pro / Max / Team / Enterprise）で利用可能。huozi は Connectors Directory の内蔵検索にはまだ載っていませんが、Customize 経由は今日から使えます。",
+
   "start.picker.content.cursor.mcp.body":
     "Cursor はリモート MCP をネイティブサポート。統合ターミナル（⌘J）を開いてこれを実行 —— ~/.cursor/mcp.json に書き込まれ、Reload Window（⌘⇧P）で反映されます。",
 

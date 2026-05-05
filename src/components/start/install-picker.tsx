@@ -25,6 +25,7 @@ import { useT } from "@/lib/i18n/context";
 
 type Client =
   | "claude-code"
+  | "cowork"
   | "cursor"
   | "openclaw"
   | "codex"
@@ -34,6 +35,7 @@ type Mode = "mcp" | "skill";
 
 const CLIENTS: Client[] = [
   "claude-code",
+  "cowork",
   "cursor",
   "openclaw",
   "codex",
@@ -56,6 +58,7 @@ const CLIENTS: Client[] = [
  */
 const CLIENT_MODES: Record<Client, Mode[]> = {
   "claude-code": ["mcp"],
+  cowork: ["mcp"],
   cursor: ["mcp"],
   openclaw: ["mcp", "skill"],
   codex: ["mcp"],
@@ -65,6 +68,7 @@ const CLIENT_MODES: Record<Client, Mode[]> = {
 
 const CLIENT_NAMES: Record<Exclude<Client, "generic">, string> = {
   "claude-code": "Claude Code",
+  cowork: "Claude Cowork",
   cursor: "Cursor",
   openclaw: "OpenClaw",
   codex: "Codex",
@@ -84,6 +88,12 @@ function commandFor(client: Client, mode: Mode): string {
   // goes from the host straight to cloud.huozi.app/mcp.
   if (mode === "mcp" && client === "claude-code") {
     return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp`;
+  }
+  // Cowork — UI flow, no terminal command. Show the URL itself in the
+  // copy box so users can paste it into the Customize > Connectors > +
+  // dialog. No `--header` because Cowork drives OAuth itself.
+  if (mode === "mcp" && client === "cowork") {
+    return `https://cloud.huozi.app/mcp`;
   }
   // OpenAI Codex CLI — same `mcp add` ergonomic, but TOML-backed
   // (~/.codex/config.toml) and reads the bearer indirectly via env-var
