@@ -770,7 +770,8 @@ export const zh = {
     "Cowork 跟 Claude.ai 网页、Claude Desktop 共用同一份连接器存储；Free / Pro / Max / Team / Enterprise 全部 plan 都能用。huozi 暂未进入 Connectors Directory 内置搜索，但走 Customize 这条路径今天就能接。",
 
   "start.picker.content.cursor.mcp.body":
-    "把这段加到 ~/.cursor/mcp.json（或项目级 .cursor/mcp.json），Reload Window（⌘⇧P）生效。首次调用 huozi 时 Cursor 会自动弹浏览器走 OAuth-on-first-use。",
+    "点下面这个按钮 —— Cursor 通过 cursor:// 协议原生接管，自己写自己的配置，不动 ~/.cursor/mcp.json，也不需要 Reload Window。首次调用 huozi 时自动弹浏览器走 OAuth-on-first-use。",
+  "start.picker.content.cursor.mcp.button": "一键添加到 Cursor",
 
   "start.picker.content.openclaw.mcp.body":
     "终端粘贴这一行 —— OpenClaw 把 huozi 写进 ~/.openclaw/openclaw.json 的 mcp.servers.huozi（transport: streamable-http），首次调用 huozi 时弹浏览器一键 Approve（OAuth-on-first-use），工具立即可用。",

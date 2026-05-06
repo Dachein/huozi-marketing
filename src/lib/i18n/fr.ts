@@ -787,7 +787,8 @@ export const fr = {
     "Cowork partage le magasin de connecteurs avec Claude.ai web et Claude Desktop ; disponible sur tous les plans (Free / Pro / Max / Team / Enterprise). huozi n'est pas encore dans la recherche Connectors Directory intégrée, mais la voie Customize fonctionne dès aujourd'hui.",
 
   "start.picker.content.cursor.mcp.body":
-    "Ajoutez ceci à ~/.cursor/mcp.json (ou .cursor/mcp.json au niveau projet) et Reload Window (⌘⇧P). Le premier appel à huozi déclenche l'ouverture du navigateur par Cursor pour l'OAuth-on-first-use.",
+    "Cliquez le bouton ci-dessous — Cursor gère nativement via le protocole cursor://, écrit sa propre config, sans toucher à ~/.cursor/mcp.json ni recharger. Le premier appel à huozi ouvre le navigateur pour OAuth-on-first-use.",
+  "start.picker.content.cursor.mcp.button": "Ajouter à Cursor",
 
   "start.picker.content.openclaw.mcp.body":
     "Collez ceci dans votre terminal — OpenClaw écrit huozi dans ~/.openclaw/openclaw.json sous mcp.servers.huozi (transport : streamable-http). Le premier appel à huozi ouvre votre navigateur, cliquez Approve une fois (OAuth-on-first-use), les outils sont disponibles.",

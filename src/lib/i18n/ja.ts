@@ -780,7 +780,8 @@ export const ja = {
     "Cowork は Claude.ai ウェブと Claude Desktop と同じコネクタストアを共有。全プラン（Free / Pro / Max / Team / Enterprise）で利用可能。huozi は Connectors Directory の内蔵検索にはまだ載っていませんが、Customize 経由は今日から使えます。",
 
   "start.picker.content.cursor.mcp.body":
-    "これを ~/.cursor/mcp.json（またはプロジェクト直下の .cursor/mcp.json）に追加し、Reload Window（⌘⇧P）で反映。huozi を初回呼び出しすると Cursor が自動でブラウザを開き OAuth-on-first-use を実行。",
+    "下のボタンをクリック — Cursor が cursor:// プロトコルでネイティブ処理し、~/.cursor/mcp.json も Reload Window も不要。huozi 初回呼び出しでブラウザが開き OAuth-on-first-use を実行。",
+  "start.picker.content.cursor.mcp.button": "Cursor に追加",
 
   "start.picker.content.openclaw.mcp.body":
     "ターミナルでこれを貼り付け —— OpenClaw が ~/.openclaw/openclaw.json の mcp.servers.huozi（transport: streamable-http）に書き込みます。huozi 初回呼び出しでブラウザが開き、Approve を 1 回クリック（OAuth-on-first-use）でツールが利用可能に。",

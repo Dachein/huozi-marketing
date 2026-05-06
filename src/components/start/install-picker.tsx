@@ -119,8 +119,8 @@ function commandFor(client: Client, mode: Mode): string {
   if (mode === "mcp" && client === "generic") {
     return `https://cloud.huozi.app/mcp`;
   }
-  // Cursor — empty string so the parent renders mcpJsonSnippet()
-  // (config-file paste, no one-line CLI exists).
+  // Cursor — empty string so the parent renders the "Add to Cursor"
+  // deeplink button instead of a code box.
   return "";
 }
 
@@ -243,25 +243,23 @@ export function InstallPicker(_props: { agentPrompt: string }) {
 }
 
 /**
- * mcp.json snippet for Cursor (the only client that lacks a one-line CLI
- * and still uses a config-file paste). No Authorization header — Cursor
- * supports OAuth-on-first-use, so the first MCP call returns 401 and
- * Cursor opens the user's browser to authorize. Static keys belong to
- * Choice 1 (the Agent-driven device flow), not here.
+ * Cursor's "Add to Cursor" deeplink. Cursor IDE registers the cursor://
+ * URI scheme and handles this URL natively (no Reload Window required).
+ *
+ * Spec: cursor://anysphere.cursor-deeplink/mcp/install?name=<NAME>&config=<base64>
+ *   - config = base64(JSON of just the inner server entry, no `mcpServers` wrapper)
+ *   - No Authorization header — Choice 2 is OAuth-on-first-use; static
+ *     keys belong to Choice 1.
+ *
+ * Marketing site is Cloud-only by design, so the URL is hard-coded.
  */
-function mcpJsonSnippet(): string {
-  return JSON.stringify(
-    {
-      mcpServers: {
-        huozi: {
-          type: "http",
-          url: "https://cloud.huozi.app/mcp",
-        },
-      },
-    },
-    null,
-    2,
-  );
+function cursorDeeplink(): string {
+  const inner = JSON.stringify({
+    type: "http",
+    url: "https://cloud.huozi.app/mcp",
+  });
+  const b64 = typeof btoa === "function" ? btoa(inner) : "";
+  return `cursor://anysphere.cursor-deeplink/mcp/install?name=huozi&config=${b64}`;
 }
 
 function InstallCell({
@@ -274,10 +272,11 @@ function InstallCell({
   t: (key: string) => string;
 }) {
   const cmd = commandFor(client, mode);
-  // Cursor is the only client without a one-line CLI; it gets the
-  // mcp.json paste. Everyone else is covered by `cmd`.
-  const showJson = mode === "mcp" && client === "cursor";
-  const json = showJson ? mcpJsonSnippet() : "";
+  // Cursor renders the "Add to Cursor" deeplink button instead of a
+  // CLI command or config-file paste — Cursor handles cursor:// URIs
+  // natively, so the user just clicks once and Cursor registers the
+  // server in its own store (no ~/.cursor/mcp.json edit, no reload).
+  const showCursorDeeplink = mode === "mcp" && client === "cursor";
   const bodyKey = `start.picker.content.${client}.${mode}.body`;
   const step2Key = `start.picker.content.${client}.${mode}.step2`;
   const noteKey = `start.picker.content.${client}.${mode}.note`;
@@ -308,13 +307,14 @@ function InstallCell({
           {step2}
         </p>
       )}
-      {json && (
-        <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20 mb-3">
-          <pre className="p-4 pr-14 text-xs leading-relaxed font-mono whitespace-pre overflow-x-auto">
-            <code>{json}</code>
-          </pre>
-          <CopyButton text={json} />
-        </div>
+      {showCursorDeeplink && (
+        <a
+          href={cursorDeeplink()}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity shadow-sm mb-3"
+        >
+          <AgentLogo kind="cursor" size={16} />
+          <span>{t("start.picker.content.cursor.mcp.button")}</span>
+        </a>
       )}
       {hasNote && (
         <p className="text-xs text-muted-foreground leading-relaxed mt-3">
