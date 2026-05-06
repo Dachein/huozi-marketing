@@ -780,9 +780,9 @@ export const zh = {
     "OpenClaw 的 RFC 8252 OAuth-on-first-use 是上游 WIP；如果首次调用返回 401 没弹浏览器，请用上方「选择一」走 Agent device flow 装。",
 
   "start.picker.content.codex.mcp.body":
-    "终端粘贴这一行 —— Codex 把 huozi 注册到 ~/.codex/config.toml，首次调用时弹浏览器一键 Approve（RFC 8252 PKCE OAuth），工具在所有 codex 会话里立即可用。",
+    "Codex 的 HTTP MCP 接入分两步：先把 TOML 配置块加到 ~/.codex/config.toml（codex mcp add CLI 只支持 stdio），再跑 codex mcp login huozi 走浏览器 OAuth（RFC 8252 PKCE）。",
   "start.picker.content.codex.mcp.note":
-    "OAuth token 由 codex 在本地持有，不进入对话上下文。无需手动 export API key。",
+    "OAuth token 由 codex 在本地持有，不进入对话上下文。无需手动 export API key。修改 config.toml 后下次启动 codex 时生效。",
 
   "start.picker.content.hermes.mcp.body":
     "终端粘贴这一行 —— Hermes 把 huozi 写进 ~/.hermes/config.yaml，自动跑 RFC 8252 浏览器 OAuth（PKCE + DCR + /.well-known discovery），点一次 Approve 即可。需要 TTY 与本地浏览器，因此这条只适合在自己电脑终端跑;如果你在 Hermes chat 里让 agent 自己装，请用上方「选择一」。",

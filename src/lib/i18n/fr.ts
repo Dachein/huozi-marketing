@@ -797,9 +797,9 @@ export const fr = {
     "Le support RFC 8252 OAuth-on-first-use d'OpenClaw est en cours côté upstream. Si le premier appel renvoie 401 sans ouvrir de navigateur, repliez-vous sur le « Choix 1 » ci-dessus (device flow piloté par l'agent).",
 
   "start.picker.content.codex.mcp.body":
-    "Collez ceci dans votre terminal — Codex enregistre huozi dans ~/.codex/config.toml, puis au premier appel ouvre votre navigateur pour un Approve en un clic (OAuth PKCE RFC 8252). Outils disponibles dans toutes les sessions codex ensuite.",
+    "Codex demande 2 étapes pour MCP HTTP : ajoutez le bloc TOML à ~/.codex/config.toml (le CLI codex mcp add est stdio uniquement), puis exécutez codex mcp login huozi pour OAuth navigateur (RFC 8252 PKCE).",
   "start.picker.content.codex.mcp.note":
-    "Le jeton OAuth reste dans codex en local et n'entre jamais dans le contexte de la conversation. Pas besoin d'exporter une clé API à la main.",
+    "Le jeton OAuth reste dans codex en local et n'entre jamais dans le contexte de la conversation. Pas besoin d'exporter une clé API à la main. Les changements de config.toml prennent effet au prochain lancement de codex.",
 
   "start.picker.content.hermes.mcp.body":
     "Collez ceci dans votre terminal — Hermes écrit huozi dans ~/.hermes/config.yaml et exécute le flux OAuth RFC 8252 dans un vrai navigateur (PKCE + DCR + /.well-known discovery). Un clic sur Approve et c'est terminé. Nécessite un TTY et un navigateur local, donc à utiliser sur votre propre terminal ; si vous êtes dans un chat Hermes en demandant à l'agent d'installer pour vous, utilisez le « Choix 1 » ci-dessus.",

@@ -92,7 +92,16 @@ function commandFor(client: Client, mode: Mode): string {
     return `claude mcp add --transport http huozi https://cloud.huozi.app/mcp`;
   }
   if (mode === "mcp" && client === "codex") {
-    return `codex mcp add huozi --url https://cloud.huozi.app/mcp`;
+    // Codex's `mcp add` CLI only supports stdio servers. HTTP servers
+    // are configured by editing ~/.codex/config.toml; OAuth-on-first-
+    // use is triggered explicitly via `codex mcp login <name>`. Both
+    // steps go in the snippet so users can paste them in order.
+    return `# Add to ~/.codex/config.toml
+[mcp_servers.huozi]
+url = "https://cloud.huozi.app/mcp"
+
+# Then trigger OAuth in the terminal:
+codex mcp login huozi`;
   }
   if (mode === "mcp" && client === "hermes") {
     // The --auth oauth flag tells Hermes to run the MCP SDK's PKCE +

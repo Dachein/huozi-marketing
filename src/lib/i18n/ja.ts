@@ -790,9 +790,9 @@ export const ja = {
     "OpenClaw の RFC 8252 OAuth-on-first-use は上流で対応中。初回呼び出しが 401 でブラウザが開かない場合は、上の「選択 1」（エージェント駆動 device flow）にフォールバック。",
 
   "start.picker.content.codex.mcp.body":
-    "ターミナルでこれを貼り付け —— Codex が huozi を ~/.codex/config.toml に登録し、初回呼び出しでブラウザが開き Approve を 1 回（RFC 8252 PKCE OAuth）。以降すべての codex セッションでツール利用可能。",
+    "Codex の HTTP MCP は 2 ステップ：まず ~/.codex/config.toml に TOML ブロックを追加（codex mcp add CLI は stdio 専用）、次に codex mcp login huozi を実行してブラウザ OAuth（RFC 8252 PKCE）。",
   "start.picker.content.codex.mcp.note":
-    "OAuth トークンは codex がローカルで保持し、会話の文脈には入りません。API キーを手動で export する必要なし。",
+    "OAuth トークンは codex がローカルで保持し、会話の文脈には入りません。API キーを手動で export する必要なし。config.toml の変更は次回 codex 起動時に反映されます。",
 
   "start.picker.content.hermes.mcp.body":
     "ターミナルでこれを貼り付け —— Hermes が ~/.hermes/config.yaml に huozi を書き込み、実ブラウザで RFC 8252 OAuth フロー（PKCE + DCR + /.well-known discovery）を実行。Approve を 1 回クリックで完了。TTY とローカルブラウザが必要なため、ご自身のターミナルで実行する場合のみ；Hermes チャット内でエージェントに任せたい場合は上の「選択 1」を使用。",
