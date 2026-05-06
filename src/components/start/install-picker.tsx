@@ -296,7 +296,7 @@ function InstallCell({
       )}
       {cmd && (
         <div className="relative rounded-xl border-2 border-accent/40 bg-muted/20 mb-3">
-          <pre className="p-4 pr-14 text-sm leading-relaxed font-mono whitespace-pre overflow-x-auto">
+          <pre className="p-4 pr-14 text-sm leading-relaxed font-mono whitespace-pre-wrap break-all">
             <code>{cmd}</code>
           </pre>
           <CopyButton text={cmd} />

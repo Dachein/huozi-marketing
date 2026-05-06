@@ -113,6 +113,7 @@ export const en = {
   "cloud.cta.signIn": "Sign in",
   "cloud.cta.open": "Open my workspace",
   "cloud.cta.connectAgent": "Connect an Agent",
+  "cloud.cta.signInWorkspace": "Sign in to workspace",
 
   // /cloud — full page
   "cloud.meta.title": "huozi Cloud — An Agent-Native Hard Drive",

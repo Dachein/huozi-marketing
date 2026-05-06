@@ -112,6 +112,7 @@ export const ja = {
   "cloud.cta.signIn": "ログイン",
   "cloud.cta.open": "ワークスペースを開く",
   "cloud.cta.connectAgent": "Agent を接続",
+  "cloud.cta.signInWorkspace": "Workspace にログイン",
 
   // /cloud — 全ページ
   "cloud.meta.title": "huozi Cloud — Agent ネイティブのハードドライブ",

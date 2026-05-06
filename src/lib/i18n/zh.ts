@@ -111,6 +111,7 @@ export const zh = {
   "cloud.cta.signIn": "登录",
   "cloud.cta.open": "打开我的云盘",
   "cloud.cta.connectAgent": "接入 Agent",
+  "cloud.cta.signInWorkspace": "登录 workspace",
 
   // /cloud — 整页
   "cloud.meta.title": "huozi Cloud — 为 Agent 而造的硬盘",
