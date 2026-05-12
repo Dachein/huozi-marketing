@@ -260,6 +260,55 @@ export const en = {
   "cloud.who.4.body":
     "Start on your laptop. Continue on your iPad. Review on your phone. Your Agent's state — what it read, what it edited — follows you.",
 
+  "cloud.metaphor.featuresLink": "See the full capabilities overview →",
+
+  // /cloud/features — capabilities overview
+  "cloud.features.meta.title": "huozi Cloud — capabilities",
+  "cloud.features.meta.description":
+    "Everything shipped today, grouped by value: four-type rendering, live JSONL Collections, client-side JS runtime, public shares, multi-Agent collab, MCP tools, version history, self-hosted Edge.",
+  "cloud.features.hero.title": "Capabilities",
+  "cloud.features.hero.subtitle":
+    "What huozi Cloud can do today — grouped by value. From Agent-friendly data types, through a real client-side JS runtime, to full collab and sharing.",
+
+  "cloud.features.fourtype.title": "Four-type rendering",
+  "cloud.features.fourtype.body":
+    "Files render by extension — .csv → table, .md → doc, .jsonl → collection view, .html → live page. Agents write; humans see the right UX, no config round-trips.",
+
+  "cloud.features.jsonl.title": "Live data: Collection (.jsonl)",
+  "cloud.features.jsonl.body":
+    "Not just a .csv on the side: jsonl is an append-only event stream, each line self-describing. Inline schema (first `op:schema` event) drives rendering; later events fold latest-wins per field to reconstruct current state. Agent-friendly live data — huozi's core differentiator.",
+  "cloud.features.jsonl.tag": "Differentiator",
+
+  "cloud.features.jsruntime.title": "JS runtime: HTML pages run",
+  "cloud.features.jsruntime.body":
+    "`.html` isn't a static doc — your inline `<script>` actually executes in the browser. huozi injects a small lib (charts, layout), and `<meta huozi:share-include>` lets your script read sibling files (.csv / .jsonl). One share link = one tiny running app.",
+  "cloud.features.jsruntime.tag": "Differentiator",
+
+  "cloud.features.share.title": "Public shares /p/<token>",
+  "cloud.features.share.body":
+    "Any file, one call, public URL. Optional 6-digit passcode and TTL. Live mode — source changes follow the link, no re-publishing.",
+
+  "cloud.features.collab.title": "Multi-Agent collab",
+  "cloud.features.collab.body":
+    "Email-OTP login (no passwords), invite members on demand. Each Agent gets its own API key — who did what, when, line by line.",
+
+  "cloud.features.mcp.title": "17 MCP tools",
+  "cloud.features.mcp.body":
+    "Byte-exact compat with Claude Code's file tool dialect (Read / Edit / Write / Glob / Grep), plus huozi-native extensions (Collection, share, upload, template…). Works with any MCP client.",
+
+  "cloud.features.history.title": "Version history",
+  "cloud.features.history.body":
+    "Every write = a commit. Browse, diff, revert. Not a cache layer — Git-style source of truth, commit_sha aligned with real Git.",
+
+  "cloud.features.edge.title": "Self-host Edge",
+  "cloud.features.edge.body":
+    "One codebase, two editions. Cloud: multi-workspace + email OTP. Edge: single-admin + password login, runs on your own Cloudflare, MIT-licensed.",
+
+  "cloud.features.cta.title": "Want the per-tool breakdown?",
+  "cloud.features.cta.body":
+    "The full 17-tool list, design principles, and roadmap all live on the Cloud overview:",
+  "cloud.features.cta.link": "← Back to Cloud overview",
+
   "cloud.footer.tagline": "A workspace for Agents. Built on Cloudflare.",
   "cloud.footer.publish": "Publish (MD/HTML)",
 

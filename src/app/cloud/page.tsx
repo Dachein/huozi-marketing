@@ -200,6 +200,15 @@ export default async function CloudPage() {
               </tbody>
             </table>
           </div>
+
+          <div className="mt-6 text-center">
+            <Link
+              href="/cloud/features"
+              className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            >
+              {_("cloud.metaphor.featuresLink")}
+            </Link>
+          </div>
         </section>
 
         {/* What's shipped today */}

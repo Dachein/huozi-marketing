@@ -277,6 +277,55 @@ export const zh = {
   "cloud.who.4.body":
     "笔电上开始。iPad 上继续。手机上审阅。你 Agent 的状态 —— 它读了什么、改了什么 —— 跟着你走。",
 
+  "cloud.metaphor.featuresLink": "看完整能力总览 →",
+
+  // /cloud/features — 能力总览页
+  "cloud.features.meta.title": "huozi Cloud 能力总览",
+  "cloud.features.meta.description":
+    "已上线的所有能力，按价值维度分组：四件套渲染、活数据 Collection、JS Runtime、公开分享、多 Agent 协作、MCP 工具、版本历史、Edge 自部署。",
+  "cloud.features.hero.title": "能力总览",
+  "cloud.features.hero.subtitle":
+    "huozi Cloud 当前已能做的事。按价值维度分组，从 Agent 友好的数据类型，到可执行的客户端 JS Runtime，再到完整的协作与分享。",
+
+  "cloud.features.fourtype.title": "四件套自动渲染",
+  "cloud.features.fourtype.body":
+    "按扩展名进入对应渲染器 —— 表（.csv）→ 表格、文（.md）→ 文档、集（.jsonl）→ 集合视图、版（.html）→ 直接渲染。Agent 写，人看到的就是合适的 UX，不用 round-trip 工具配置。",
+
+  "cloud.features.jsonl.title": "活数据：Collection (.jsonl)",
+  "cloud.features.jsonl.body":
+    "区别于扔一份 csv：jsonl 是 append-only 的事件流，每一行 self-describing。内联 schema（第一条 op:schema 事件）决定如何渲染；后续事件逐字段 latest-wins 重建当前态。Agent 友好的活数据格式，也是 huozi 区别于其它云盘的核心。",
+  "cloud.features.jsonl.tag": "差异化",
+
+  "cloud.features.jsruntime.title": "JS Runtime：HTML 版会跑",
+  "cloud.features.jsruntime.body":
+    "`.html` 不是静态展示 —— 你的 inline `<script>` 在浏览器里真的执行。huozi 自动注入一套 lib（图表、布局），再加上 `<meta huozi:share-include>` 让脚本读兄弟文件（.csv / .jsonl）。一份分享链接 = 一个能跑的小应用。",
+  "cloud.features.jsruntime.tag": "差异化",
+
+  "cloud.features.share.title": "公开分享 /p/<token>",
+  "cloud.features.share.body":
+    "任何文件一行命令变成公开链接。可加 6 位 passcode 与过期时间。Live mode —— 源文件改动自动同步，链接永远是最新版。",
+
+  "cloud.features.collab.title": "多 Agent 协作",
+  "cloud.features.collab.body":
+    "邮箱 OTP 登录（无密码），按需邀请成员。每个 Agent 拿独立 API key，谁干了什么、什么时候干的，逐条可查。",
+
+  "cloud.features.mcp.title": "17 个 MCP 工具",
+  "cloud.features.mcp.body":
+    "Claude Code 文件工具方言逐字节兼容（Read / Edit / Write / Glob / Grep），加上 huozi 原生扩展（Collection、分享、上传、模板…）。任何 MCP 客户端都能接。",
+
+  "cloud.features.history.title": "版本历史",
+  "cloud.features.history.body":
+    "每次写入 = 一次 commit。可查、可比、可还原。不是缓存层 —— Git 风格的事实源，commit_sha 跟本地 Git 对齐。",
+
+  "cloud.features.edge.title": "Edge 自部署",
+  "cloud.features.edge.body":
+    "一份代码两个版本。Cloud 多 workspace + 邮箱 OTP；Edge 单管理员 + 密码登录，跑在你自己的 Cloudflare 上，MIT 开源。",
+
+  "cloud.features.cta.title": "想看每条能力背后的工具？",
+  "cloud.features.cta.body":
+    "完整的 17 工具清单 + 设计原则 + 路线图都在 Cloud 主页：",
+  "cloud.features.cta.link": "← 返回 Cloud 主页",
+
   "cloud.footer.tagline": "为 Agent 造的工作空间。建在 Cloudflare 上。",
   "cloud.footer.publish": "发布（MD/HTML）",
 
